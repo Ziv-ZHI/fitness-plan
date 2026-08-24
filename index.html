@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>90天蜕变计划 · 改善皮肤 · 瘦脸 · 薄肌</title>
+<style>
+:root{
+  --bg:#0b1220;
+  --bg-soft:#101a2e;
+  --card:rgba(255,255,255,.045);
+  --card-solid:#131e33;
+  --border:rgba(255,255,255,.09);
+  --text:#e8edf5;
+  --muted:#93a1b8;
+  --accent:#34d399;
+  --accent2:#38bdf8;
+  --warn:#fbbf24;
+  --danger:#fb7185;
+  --grad:linear-gradient(120deg,#34d399,#38bdf8);
+  --radius:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(900px 500px at 85% -10%, rgba(56,189,248,.14), transparent 60%),
+    radial-gradient(800px 500px at -10% 20%, rgba(52,211,153,.12), transparent 60%),
+    var(--bg);
+  color:var(--text);
+  font-family:"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,sans-serif;
+  line-height:1.75;
+}
+::selection{background:rgba(52,211,153,.35)}
+
+/* ===== nav ===== */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad);z-index:100;transition:width .1s linear}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:90;
+  backdrop-filter:blur(14px);
+  background:rgba(11,18,32,.72);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:12px 20px;flex-wrap:wrap}
+.logo{font-weight:800;margin-right:auto;letter-spacing:.5px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:15px}
+nav a{color:var(--muted);text-decoration:none;font-size:13px;padding:6px 11px;border-radius:999px;transition:.25s}
+nav a:hover{color:var(--text);background:rgba(255,255,255,.06)}
+nav a.active{color:#06251c;background:linear-gradient(120deg,#34d399,#7dd3fc);font-weight:700}
+
+/* ===== layout ===== */
+main{max-width:1080px;margin:0 auto;padding:0 20px}
+section{padding:84px 0 10px}
+.sec-tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:3px;color:var(--accent);font-weight:700;text-transform:uppercase}
+.sec-tag::before{content:"";width:26px;height:2px;background:var(--grad);border-radius:2px}
+h2{font-size:30px;margin:10px 0 6px;letter-spacing:1px}
+.sub{color:var(--muted);font-size:14.5px;max-width:760px}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px;backdrop-filter:blur(6px)}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.on{opacity:1;transform:none}
+
+/* ===== hero ===== */
+header.hero{min-height:92vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:60px}
+.hero-inner{max-width:1080px;margin:0 auto;padding:40px 20px;width:100%}
+.badge{display:inline-block;border:1px solid var(--border);background:rgba(52,211,153,.08);color:var(--accent);font-size:12.5px;padding:6px 14px;border-radius:999px;letter-spacing:2px}
+h1{font-size:clamp(38px,7vw,66px);line-height:1.15;margin:22px 0 14px;font-weight:900}
+h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{color:var(--muted);font-size:16.5px;max-width:640px}
+.stats{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px 22px;min-width:128px}
+.stat b{font-size:26px;display:block;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{font-size:12.5px;color:var(--muted)}
+.cta{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{padding:13px 26px;border-radius:999px;font-weight:700;font-size:14.5px;text-decoration:none;transition:.25s;border:1px solid transparent}
+.btn.primary{background:var(--grad);color:#06251c;box-shadow:0 8px 30px rgba(52,211,153,.25)}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(56,189,248,.35)}
+.btn.ghost{border-color:var(--border);color:var(--text)}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ===== principle cards ===== */
+.p-card{position:relative;overflow:hidden}
+.p-card .num{position:absolute;right:-6px;top:-22px;font-size:110px;font-weight:900;color:rgba(255,255,255,.04)}
+.p-card h3{font-size:21px;margin-bottom:4px}
+.p-card .eq{display:inline-block;background:rgba(56,189,248,.12);color:var(--accent2);border-radius:8px;padding:3px 12px;font-size:14px;font-weight:700;margin:8px 0 14px}
+.p-card ul{list-style:none}
+.p-card li{padding-left:22px;position:relative;margin:7px 0;color:#c9d4e4;font-size:14.5px}
+.p-card li::before{content:"▸";position:absolute;left:2px;color:var(--accent)}
+.p-card .act{margin-top:14px;padding:12px 14px;border-radius:12px;background:rgba(52,211,153,.07);border:1px dashed rgba(52,211,153,.35);font-size:13.5px}
+.p-card .act b{color:var(--accent)}
+
+/* ===== adversarial ===== */
+.a-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:14px}
+.a-item{display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px}
+.a-item .n{flex:none;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:15px}
+.a-item h4{font-size:14.5px;color:#ffd9a8}
+.a-item p{font-size:13.5px;color:#c9d4e4;margin-top:5px}
+.a-item p b{color:var(--accent)}
+
+/* ===== roadmap ===== */
+.timeline{position:relative;margin-top:40px;padding-left:34px}
+.timeline::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:3px;background:linear-gradient(180deg,#34d399,#38bdf8);border-radius:3px;opacity:.55}
+.t-node{position:relative;margin-bottom:26px}
+.t-node::before{content:"";position:absolute;left:-31px;top:8px;width:17px;height:17px;border-radius:50%;background:var(--bg);border:4px solid var(--accent)}
+.t-node:nth-child(2)::before{border-color:var(--accent2)}
+.t-node:nth-child(3)::before{border-color:var(--warn)}
+.t-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 24px}
+.t-card .phase{font-size:12px;letter-spacing:2px;color:var(--accent);font-weight:800}
+.t-card h3{font-size:20px;margin:4px 0 6px}
+.t-card p{font-size:14px;color:var(--muted)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chip{font-size:12px;border:1px solid var(--border);border-radius:999px;padding:4px 12px;color:#c9d4e4;background:rgba(255,255,255,.03)}
+
+/* ===== tabs / training ===== */
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 18px}
+.tab-btn{cursor:pointer;border:1px solid var(--border);background:var(--card);color:var(--muted);padding:11px 22px;border-radius:999px;font-size:14px;font-weight:600;transition:.25s;font-family:inherit}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{background:var(--grad);color:#06251c;border-color:transparent;box-shadow:0 8px 24px rgba(52,211,153,.25)}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:fadeUp .45s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1}}
+
+table{width:100%;border-collapse:collapse;font-size:14px;margin:14px 0}
+th{text-align:left;color:var(--accent);font-size:12.5px;letter-spacing:1px;padding:10px 12px;border-bottom:1px solid rgba(52,211,153,.3)}
+td{padding:11px 12px;border-bottom:1px solid var(--border);color:#d7dfee;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:rgba(255,255,255,.025)}
+.tagr{display:inline-block;background:rgba(56,189,248,.14);color:var(--accent2);border-radius:6px;padding:1px 9px;font-size:12.5px;font-weight:600;white-space:nowrap}
+.tagg{display:inline-block;background:rgba(52,211,153,.14);color:var(--accent);border-radius:6px;padding:1px 9px;font-size:12.5px;font-weight:600;white-space:nowrap}
+.tago{display:inline-block;background:rgba(251,191,36,.14);color:var(--warn);border-radius:6px;padding:1px 9px;font-size:12.5px;font-weight:600;white-space:nowrap}
+
+.week-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin:16px 0}
+.wday{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 6px;text-align:center;font-size:12px;color:var(--muted)}
+.wday b{display:block;color:var(--text);font-size:13px;margin-bottom:3px}
+.wday.run b{color:var(--accent2)} .wday.lift b{color:var(--accent)} .wday.rest b{color:var(--warn)}
+
+.note{background:rgba(251,191,36,.07);border:1px dashed rgba(251,191,36,.4);border-radius:14px;padding:14px 18px;font-size:13.5px;margin:14px 0}
+.note b{color:var(--warn)}
+.ok{background:rgba(52,211,153,.07);border:1px dashed rgba(52,211,153,.4);border-radius:14px;padding:14px 18px;font-size:13.5px;margin:14px 0}
+.ok b{color:var(--accent)}
+
+ol.rules{padding-left:20px;font-size:14px;color:#d7dfee}
+ol.rules li{margin:9px 0}
+
+/* checklist */
+.chk{list-style:none;margin-top:8px}
+.chk li{margin:8px 0}
+.chk label{display:flex;align-items:flex-start;gap:11px;cursor:pointer;font-size:14px;color:#d7dfee;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:11px 15px;transition:.2s}
+.chk label:hover{border-color:rgba(52,211,153,.5)}
+.chk input{display:none}
+.chk .box{flex:none;width:20px;height:20px;border-radius:6px;border:2px solid #3f5068;margin-top:2px;position:relative;transition:.2s}
+.chk input:checked + .box{background:var(--grad);border-color:transparent}
+.chk input:checked + .box::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#06251c;font-weight:900;font-size:13px}
+.chk input:checked ~ span.txt{color:var(--muted);text-decoration:line-through}
+
+/* ===== diet ===== */
+.macro-chips{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.mchip{flex:1;min-width:170px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;text-align:center}
+.mchip b{font-size:23px;display:block;color:var(--accent2)}
+.mchip span{font-size:12.5px;color:var(--muted)}
+.palm{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.palm .p{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;text-align:center}
+.palm .emoji{font-size:40px}
+.palm h4{font-size:15px;margin:10px 0 4px}
+.palm p{font-size:13px;color:var(--muted)}
+.rb{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.rb{grid-template-columns:1fr}.week-strip{grid-template-columns:repeat(4,1fr)}}
+.good,.bad{border-radius:16px;padding:20px;border:1px solid var(--border)}
+.good{background:rgba(52,211,153,.06)}
+.bad{background:rgba(251,113,133,.06)}
+.good h4{color:var(--accent);margin-bottom:8px}
+.bad h4{color:var(--danger);margin-bottom:8px}
+.good ul,.bad ul{list-style:none;font-size:14px}
+.good li,.bad li{margin:6px 0;padding-left:20px;position:relative;color:#d7dfee}
+.good li::before{content:"✓";position:absolute;left:0;color:var(--accent)}
+.bad li::before{content:"✕";position:absolute;left:0;color:var(--danger)}
+
+/* ===== skin & sleep ===== */
+.duo{display:grid;grid-template-columns:70fr 30fr;gap:16px}
+@media(max-width:800px){.duo{grid-template-columns:1fr}}
+.ring{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.ring .bar{height:12px;border-radius:6px;background:var(--grad)}
+.sleep-line{margin-top:18px}
+.s-row{display:flex;gap:14px;align-items:flex-start;margin:12px 0}
+.s-time{flex:none;width:64px;font-weight:800;font-size:13.5px;color:var(--accent2);background:rgba(56,189,248,.1);border-radius:8px;padding:3px 0;text-align:center}
+.s-desc{font-size:14px;color:#d7dfee}
+
+/* ===== tracking ===== */
+.dec-table td:first-child{white-space:nowrap;font-weight:600}
+
+/* ===== faq ===== */
+details{background:var(--card);border:1px solid var(--border);border-radius:14px;margin:10px 0;overflow:hidden}
+summary{cursor:pointer;padding:16px 20px;font-weight:700;font-size:14.5px;list-style:none;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:20px;color:var(--accent);font-size:20px;top:50%;transform:translateY(-50%);transition:.25s}
+details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+details p{padding:0 20px 16px;color:#c9d4e4;font-size:14px}
+
+footer{border-top:1px solid var(--border);margin-top:80px;padding:44px 20px;text-align:center;color:var(--muted);font-size:13px}
+footer .refs{max-width:720px;margin:14px auto 0;line-height:2}
+footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;font-size:12.5px}
+.quote{max-width:640px;margin:40px auto 0;padding:26px 30px;border-radius:20px;background:linear-gradient(135deg,rgba(52,211,153,.1),rgba(56,189,248,.08));border:1px solid rgba(52,211,153,.3);font-size:16.5px;font-weight:600}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav><div class="nav-inner">
+  <span class="logo">90天 · 蜕变计划</span>
+  <a href="#principles">原理</a>
+  <a href="#adversarial">防放弃</a>
+  <a href="#roadmap">路线图</a>
+  <a href="#phases">训练</a>
+  <a href="#diet">饮食</a>
+  <a href="#skin">皮肤</a>
+  <a href="#sleep">作息</a>
+  <a href="#tracking">追踪</a>
+  <a href="#faq">FAQ</a>
+</div></nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-inner">
+    <span class="badge">改善皮肤 · 瘦脸 · 练出薄肌</span>
+    <h1>三个月，<br>把「想变好」<span class="g">变成看得见</span>。</h1>
+    <p class="lead">为 20 岁大学生定制的 12 周系统方案：前 2 周居家筑基，后 10 周健身房渐进训练。
+    骨架取自 r/BodyweightFitness、Phrak's GSLP 与 GZCLP 等经过百万级人群验证的开源训练体系。</p>
+    <div class="stats">
+      <div class="stat"><b>175cm</b><span>身高</span></div>
+      <div class="stat"><b>70kg</b><span>起点体重</span></div>
+      <div class="stat"><b>12周</b><span>计划周期</span></div>
+      <div class="stat"><b>-4~6cm</b><span>腰围目标</span></div>
+      <div class="stat"><b>5km</b><span>跑步能力</span></div>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="#roadmap">查看路线图 ↓</a>
+      <a class="btn ghost" href="#principles">为什么这样设计？</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ PRINCIPLES ============ -->
+<section id="principles" class="reveal">
+  <span class="sec-tag">First Principles</span>
+  <h2>第一性原理：三个目标的本质</h2>
+  <p class="sub">拆到不能再拆，三个目标其实共用一套底层方案：<b style="color:var(--accent)">缓慢热量缺口饮食 + 渐进抗阻训练 + 规律有氧 + 早睡 + 戒糖。</b></p>
+  <div class="grid g3" style="margin-top:26px">
+
+    <div class="card p-card">
+      <div class="num">01</div>
+      <h3>瘦脸</h3>
+      <span class="eq">= 全身减脂 + 去水肿</span>
+      <ul>
+        <li>面部脂肪<b>无法局部减少</b>，任何瘦脸操都无效；但脸对体脂最敏感，降 2~3% 下颌线即现</li>
+        <li>BMI 22.9 属「瘦胖」体型 → 最优解是<b>缓慢减脂 + 同时增肌</b></li>
+        <li>脸肿三来源：钠过多→水潴留；睡眠不足→皮质醇水肿；酒精与糖</li>
+      </ul>
+      <div class="act"><b>行动：</b>温和热量缺口 + 低盐 + 早睡，一周内脸小一圈</div>
+    </div>
+
+    <div class="card p-card">
+      <div class="num">02</div>
+      <h3>薄肌</h3>
+      <span class="eq">= 渐进超负荷 + 蛋白质 + 睡眠</span>
+      <ul>
+        <li>肌肉生长唯一开关：略高于以往的张力刺激 → 恢复时超额修复</li>
+        <li>核心不是动作花哨，而是<b>每次比上次多一点点</b>（重量/次数/组数）</li>
+        <li>「薄肌」= 低体脂 + 肩背手臂腰腹基础量；新手前 3 月是增长最快窗口期</li>
+      </ul>
+      <div class="act"><b>行动：</b>蛋白质 110–140g/天（1.6–2g/kg），从第一天就系统化</div>
+    </div>
+
+    <div class="card p-card">
+      <div class="num">03</div>
+      <h3>皮肤</h3>
+      <span class="eq">= 睡眠 > 血糖 > 运动 > 清洁 > 防晒</span>
+      <ul>
+        <li>① 睡眠：夜间是皮肤修复高峰，熬夜是暗沉烂痘第一元凶</li>
+        <li>② 戒糖饮少油炸：高 GI → 胰岛素飙升 → 皮脂旺盛 → 出油长痘</li>
+        <li>③ 每周 3~5 次有氧改善微循环；④ 出汗后 15 分钟内洗脸；⑤ 每天 SPF30+</li>
+      </ul>
+      <div class="act"><b>行动：</b>戒掉含糖饮料是单一性价比最高的改变</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ADVERSARIAL ============ -->
+<section id="adversarial" class="reveal">
+  <span class="sec-tag">Adversarial Design</span>
+  <h2>对抗性设计：预判你会放弃的 7 个时刻</h2>
+  <p class="sub">每个失败模式提前埋好对策。计划的敌人不是难度，是中断。</p>
+  <div class="a-grid" style="margin-top:26px">
+    <div class="a-item"><div class="n">1</div><div><h4>第 4~10 天 · 酸痛劝退</h4><p>前两周强度刻意压低。<b>酸痛≠有效</b>，坚持≠痛苦，按计划走就不会过度。</p></div></div>
+    <div class="a-item"><div class="n">2</div><div><h4>第 3 周 · 课业冲突</h4><p>每次训练都有「最低完成版」：只做 20 分钟也算完成。<b>不断比完美重要。</b></p></div></div>
+    <div class="a-item"><div class="n">3</div><div><h4>第 4 周 · 体重不降反涨</h4><p>新手增肌抵消减脂重量，正常现象。<b>以腰围和照片为准，不以体重为准。</b></p></div></div>
+    <div class="a-item"><div class="n">4</div><div><h4>第 6 周 · 无聊平台感</h4><p>每 4 周轮换辅助动作；用 Hevy 记录看重量上升曲线获得正反馈。</p></div></div>
+    <div class="a-item"><div class="n">5</div><div><h4>聚餐奶茶破功一次</h4><p>单餐破功无影响，禁止破罐破摔。<b>下一顿正常吃即可</b>，每周留 1 顿自由餐。</p></div></div>
+    <div class="a-item"><div class="n">6</div><div><h4>熬夜刷手机恶性循环</h4><p>23:00 手机放到够不着处充电。<b>睡眠是三大目标共同的根。</b></p></div></div>
+    <div class="a-item"><div class="n">7</div><div><h4>生病受伤中断</h4><p>休息不算断，好了从原重量继续不追进度；<b>关节疼痛（非肌肉酸）立即停该动作。</b></p></div></div>
+  </div>
+</section>
+
+<!-- ============ ROADMAP ============ -->
+<section id="roadmap" class="reveal">
+  <span class="sec-tag">Roadmap</span>
+  <h2>12 周路线图</h2>
+  <div class="timeline">
+    <div class="t-node">
+      <div class="t-card">
+        <span class="phase">PHASE 0 · 第 1–2 周</span>
+        <h3>🏠 居家筑基期</h3>
+        <p>C25K 走跑结合法 + r/BodyweightFitness 自重循环。建立习惯、激活体能、切换饮食作息。零器械，操场+宿舍即可。</p>
+        <div class="chips"><span class="chip">每周 3 力量 + 3 跑步</span><span class="chip">每次 ≤40 分钟</span><span class="chip">强度刻意压低</span></div>
+      </div>
+    </div>
+    <div class="t-node">
+      <div class="t-card">
+        <span class="phase" style="color:var(--accent2)">PHASE 1 · 第 3–6 周</span>
+        <h3>🏋️ 健身房入门期</h3>
+        <p>Phrak's GSLP 全身训练（r/Fitness 官方新手计划）。学会 6 大基础动作模式，每周 3 练 + 2 有氧，线性加重量。</p>
+        <div class="chips"><span class="chip">深蹲/卧推/划船/推举</span><span class="chip">每次成功 +1.25~2.5kg</span><span class="chip">先学动作再上重量</span></div>
+      </div>
+    </div>
+    <div class="t-node">
+      <div class="t-card">
+        <span class="phase" style="color:var(--warn)">PHASE 2 · 第 7–12 周</span>
+        <h3>💎 GZCLP 塑形增肌期</h3>
+        <p>GZCLP 三层进阶体系持续加重，加入雕刻线条的辅助容量；有氧升级到每周 3 次。肩变圆、下颌线出现。</p>
+        <div class="chips"><span class="chip">T1/T2/T3 结构</span><span class="chip">辅助每 4 周轮换</span><span class="chip">可选 4 练加速版</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PHASES / TRAINING ============ -->
+<section id="phases" class="reveal">
+  <span class="sec-tag">Training</span>
+  <h2>逐阶段训练方案</h2>
+  <p class="sub">点击切换阶段。重量选择永远以「能标准完成、最后 2 次略吃力」为准——标准 &gt; 重量。</p>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="t0">Phase 0 · 居家筑基</button>
+    <button class="tab-btn" data-tab="t1">Phase 1 · 健身房入门</button>
+    <button class="tab-btn" data-tab="t2">Phase 2 · GZCLP 塑形</button>
+  </div>
+
+  <!-- PHASE 0 -->
+  <div class="tab-panel active card" id="t0">
+    <h3 style="margin-bottom:6px">周模板（第 1–2 周）</h3>
+    <div class="week-strip">
+      <div class="wday lift"><b>周一</b>A 自重力量</div>
+      <div class="wday run"><b>周二</b>B 走跑结合</div>
+      <div class="wday lift"><b>周三</b>A 自重力量</div>
+      <div class="wday run"><b>周四</b>B 走跑结合</div>
+      <div class="wday lift"><b>周五</b>A 自重力量</div>
+      <div class="wday run"><b>周六</b>B 跑步·轻松版</div>
+      <div class="wday rest"><b>周日</b>休息+测量</div>
+    </div>
+
+    <h3 style="margin-top:22px">A 日 · 自重力量（约 40 分钟）</h3>
+    <table>
+      <thead><tr><th>环节</th><th>内容</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tago">热身 5′</span></td><td>开合跳 ×2 分钟、手臂绕环 20 次、高抬腿 30″×2、髋部环绕</td><td>必做，跳过=受伤预备役</td></tr>
+        <tr><td><span class="tagg">主项</span></td><td>俯卧撑 3 组×接近力竭留 2 个</td><td>做不了→跪姿退阶；超 15 个→脚垫高</td></tr>
+        <tr><td><span class="tagg">主项</span></td><td>徒手深蹲 3×15</td><td>蹲至大腿平行地面，膝盖与脚尖同向</td></tr>
+        <tr><td><span class="tagg">主项</span></td><td>门框/桌下划船 3×12</td><td>没条件→毛巾划船或俯卧超人挺身 3×12</td></tr>
+        <tr><td><span class="tagg">主项</span></td><td>平板支撑 3×30–45″</td><td>塌腰即停</td></tr>
+        <tr><td><span class="tagg">主项</span></td><td>臀桥 3×15</td><td>顶峰夹臀停 1 秒</td></tr>
+        <tr><td><span class="tagr">拉伸</span></td><td>胸肩、大腿前后侧、髋部各 30″</td><td>组间休息 60–90 秒</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:22px">B 日 · 走跑结合（约 30–35 分钟）</h3>
+    <table>
+      <thead><tr><th>结构</th><th>第 1 周</th><th>第 2 周</th></tr></thead>
+      <tbody>
+        <tr><td>快走热身</td><td>5 分钟</td><td>5 分钟</td></tr>
+        <tr><td>主循环</td><td><span class="tagr">跑 1′ + 走 2′</span> × 7 轮</td><td><span class="tagr">跑 2′ + 走 1.5′</span> × 6 轮</td></tr>
+        <tr><td>冷身+拉伸</td><td colspan="2">快走 5 分钟，拉伸小腿大腿｜强度标准：能说整句不能唱歌（65–75% 最大心率）</td></tr>
+      </tbody>
+    </table>
+    <div class="note"><b>装备硬要求：</b>一双缓震跑鞋，其他都可以将就。</div>
+
+    <h3 style="margin-top:22px">非训练任务清单（同样重要）</h3>
+    <ul class="chk">
+      <li><label><input type="checkbox" data-k="p0a"><i class="box"></i><span class="txt">清空宿舍/家里含糖饮料 → 白水/无糖茶</span></label></li>
+      <li><label><input type="checkbox" data-k="p0b"><i class="box"></i><span class="txt">固定入睡时间并执行至少 10 天</span></label></li>
+      <li><label><input type="checkbox" data-k="p0c"><i class="box"></i><span class="txt">买齐：氨基酸洁面、保湿乳、防晒霜、跑鞋</span></label></li>
+      <li><label><input type="checkbox" data-k="p0d"><i class="box"></i><span class="txt">第 14 天晚：测腰围 + 对比照片</span></label></li>
+    </ul>
+    <div class="ok"><b>最低完成版：</b>只做热身 + 俯卧撑 + 深蹲 + 平板支撑共 15 分钟，当天也算打卡成功。</div>
+  </div>
+
+  <!-- PHASE 1 -->
+  <div class="tab-panel card" id="t1">
+    <div class="ok"><b>前两次去健身房：</b>只学动作不上重量。空杆对照视频学（B站搜「杠铃深蹲 教程」等），请巡场教练免费帮看一眼。</div>
+    <h3>Workout A</h3>
+    <table>
+      <thead><tr><th>动作</th><th>组×次数</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>杠铃深蹲</td><td><span class="tagg">3×5+</span></td><td>末组 AMRAP：力竭前保留 1–2 次</td></tr>
+        <tr><td>杠铃卧推</td><td><span class="tagg">3×5+</span></td><td>核心上肢动作</td></tr>
+        <tr><td>杠铃划船 / 器械坐姿划船</td><td><span class="tagg">3×5+</span></td><td>背部厚度</td></tr>
+        <tr><td>哑铃弯举 + 哑铃侧平举</td><td><span class="tagr">各 2×12–15</span></td><td>手臂肩线条</td></tr>
+        <tr><td>平板支撑</td><td><span class="tagr">2×45″</span></td><td>收尾核心</td></tr>
+      </tbody>
+    </table>
+    <h3>Workout B（隔次轮换）</h3>
+    <table>
+      <thead><tr><th>动作</th><th>组×次数</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>杠铃深蹲</td><td><span class="tagg">3×5+</span></td><td>同 A</td></tr>
+        <tr><td>站姿杠铃推举 OHP</td><td><span class="tagg">3×5+</span></td><td>肩线条关键</td></tr>
+        <tr><td>高位下拉</td><td><span class="tagr">3×8–12</span></td><td>能引体则做引体</td></tr>
+        <tr><td>绳索下压 + 腿弯举</td><td><span class="tagr">各 2×12–15</span></td><td>三头+腘绳肌</td></tr>
+        <tr><td>卷腹 / 悬垂举腿</td><td><span class="tagr">2×15</span></td><td>腹部</td></tr>
+      </tbody>
+    </table>
+    <h3 style="margin-top:20px">重量规则（新手线性进阶核心）</h3>
+    <ol class="rules">
+      <li><b>起始重量：</b>能标准完成全部次数、最后 2 次略吃力；拿不准就用空杆。</li>
+      <li><b>加重量：</b>每次成功完成 → 上肢 +1.25~2.5kg，下肢 +2.5kg。小步慢加更持久。</li>
+      <li><b>失败处理：</b>未完成→下次同重量再来；连败 2 次→减 10% 重爬。这是程序正常运行，不是退步。</li>
+      <li><b>标准 &gt; 重量：</b>动作变形立即停。</li>
+    </ol>
+    <h3 style="margin-top:20px">每周节奏</h3>
+    <div class="week-strip">
+      <div class="wday lift"><b>周一</b>Workout A</div>
+      <div class="wday run"><b>周二</b>跑步 30′</div>
+      <div class="wday lift"><b>周三</b>Workout B</div>
+      <div class="wday rest"><b>周四</b>休息</div>
+      <div class="wday lift"><b>周五</b>Workout A</div>
+      <div class="wday run"><b>周六</b>跑步 30′</div>
+      <div class="wday rest"><b>周日</b>完全休息</div>
+    </div>
+    <p class="sub">下次训练接着 B/A/B 轮转；第 4 周起尝试连续慢跑 15 分钟，第 6 周目标连续 20 分钟。</p>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="tab-panel card" id="t2">
+    <h3>GZCLP 四日轮转（默认每周 3 练：周一/三/五循环使用 D1→D2→D3→D4）</h3>
+    <table>
+      <thead><tr><th>训练日</th><th>T1 主项 5×3+</th><th>T2 副项 3×10</th><th>T3 辅助 3×15+</th><th>收尾</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tagg">Day 1</span></td><td>深蹲</td><td>卧推</td><td>高位下拉</td><td>核心+侧平举</td></tr>
+        <tr><td><span class="tagg">Day 2</span></td><td>推举</td><td>硬拉</td><td>单臂哑铃划船</td><td>二头弯举</td></tr>
+        <tr><td><span class="tagg">Day 3</span></td><td>卧推</td><td>深蹲(轻)</td><td>高位下拉</td><td>三头+腿举</td></tr>
+        <tr><td><span class="tagg">Day 4</span></td><td>硬拉</td><td>推举</td><td>划船类</td><td>核心+弯举</td></tr>
+      </tbody>
+    </table>
+    <h3 style="margin-top:20px">GZCLP 进阶规则</h3>
+    <ol class="rules">
+      <li><b>T1：</b>每次成功 +2.5kg（硬拉 +5kg）；失败→改 6×2 → 再失败 10×1 → 仍失败测 5RM 用其 85% 重启。</li>
+      <li><b>T2：</b>每次成功 +2.5kg；失败→降次数（3×8→3×6）→ 再失败砍 15–20% 重启。</li>
+      <li><b>T3：</b>AMRAP 组做到 25 次就 +2.5kg。</li>
+      <li><b>防无聊：</b>T3 辅助每 4 周轮换一次（高位下拉↔引体辅助、划船↔面拉、弯举↔锤式弯举）。</li>
+    </ol>
+    <div class="note"><b>可选加速版：</b>时间充裕切 4 练 —— 周一 D1 / 周二 D2 / 周四 D3 / 周五 D4，周末双休。</div>
+    <h3 style="margin-top:20px">有氧升级路径</h3>
+    <table>
+      <thead><tr><th>周</th><th>安排</th></tr></thead>
+      <tbody>
+        <tr><td>7–8 周</td><td>连续慢跑 25′ × 3 次</td></tr>
+        <tr><td>9–10 周</td><td>连续 30′ × 3 次，其中 1 次间歇跑（快 1′ 慢 2′ × 6）</td></tr>
+        <tr><td>11–12 周</td><td>每周累计 ≥100 分钟；期末周可全换成操场快走</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ DIET ============ -->
+<section id="diet" class="reveal">
+  <span class="sec-tag">Nutrition</span>
+  <h2>饮食系统（食堂学生版）</h2>
+  <p class="sub">不算卡路里，用「手掌法则 + 食堂选菜清单」。执行率 80% 的粗算法，远胜执行率 10% 的精确法。</p>
+
+  <div class="macro-chips" style="margin-top:24px">
+    <div class="mchip"><b>2200–2400</b><span>kcal / 天（温和缺口）</span></div>
+    <div class="mchip"><b>110–140g</b><span>蛋白质 / 天（增肌红线）</span></div>
+    <div class="mchip"><b>≥2.5L</b><span>水 / 天</span></div>
+    <div class="mchip"><b>偏少</b><span>盐（瘦脸关键）</span></div>
+  </div>
+
+  <div class="card">
+    <h3>🖐 手掌法则（每餐）</h3>
+    <div class="palm" style="margin-top:14px">
+      <div class="p"><div class="emoji">🖐</div><h4>蛋白质 1~1.5 掌</h4><p>掌心大小+厚度的肉蛋鱼豆<br>≈ 25–40g 蛋白质</p></div>
+      <div class="p"><div class="emoji">✊</div><h4>碳水 1 拳</h4><p>米饭/杂粮主食<br>减脂期晚餐减半拳</p></div>
+      <div class="p"><div class="emoji">👐</div><h4>蔬菜 2 捧</h4><p>多多益善<br>先吃菜再吃饭血糖更稳</p></div>
+      <div class="p"><div class="emoji">👍</div><h4>脂肪 1 拇指</h4><p>炒菜油已含大半<br>额外坚果一小把即可</p></div>
+    </div>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card">
+      <h3>一日模板</h3>
+      <table>
+        <tbody>
+          <tr><td><span class="tagg">早餐必吃</span></td><td>鸡蛋×2 + 主食（包子/燕麦/全麦）+ 无糖豆浆或牛奶 250ml</td></tr>
+          <tr><td><span class="tagg">午餐</span></td><td>一荤（去皮鸡腿/鱼虾/瘦牛肉）+ 素菜×2 + 米饭 1 拳</td></tr>
+          <tr><td><span class="tagr">练后</span></td><td>香蕉 1 根或面包 1 个；可加乳清蛋白 1 勺（¥3/勺，性价比最高蛋白质）</td></tr>
+          <tr><td><span class="tagg">晚餐</span></td><td>同午餐结构，米饭半拳，19:30 前吃完</td></tr>
+          <tr><td><span class="tagr">加餐</span></td><td>水果 1 个 / 无糖酸奶 / 茶叶蛋 / 一小把原味坚果</td></tr>
+          <tr><td><span class="tago">宵夜</span></td><td>禁止。实在饿→黄瓜/西红柿/热牛奶一杯</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h3>蛋白质凑数速查</h3>
+      <table>
+        <thead><tr><th>食物</th><th>蛋白质</th></tr></thead>
+        <tbody>
+          <tr><td>鸡蛋 1 个</td><td><span class="tagg">7g</span></td></tr>
+          <tr><td>牛奶 250ml</td><td><span class="tagg">8g</span></td></tr>
+          <tr><td>去皮鸡腿肉一份</td><td><span class="tagg">25g</span></td></tr>
+          <tr><td>鱼一段</td><td><span class="tagg">20g</span></td></tr>
+          <tr><td>豆腐一份</td><td><span class="tagg">10g</span></td></tr>
+          <tr><td>乳清蛋白 1 勺</td><td><span class="tagg">22g</span></td></tr>
+        </tbody>
+      </table>
+      <p class="sub" style="font-size:13px">示例达标：早 2 蛋+牛奶(22g)＋午鸡腿(25g)＋晚鱼肉(20g)＋练后蛋白粉(22g)＋酸奶(8g) ≈ 97g ＋两份素菜 ≈ 115g ✓</p>
+    </div>
+  </div>
+
+  <div class="rb" style="margin-top:16px">
+    <div class="good">
+      <h4>✅ 多吃</h4>
+      <ul>
+        <li>鸡胸/鸡腿、鱼虾、蛋、豆制品、瘦肉</li>
+        <li>燕麦、糙米、红薯、玉米</li>
+        <li>绿叶菜、番茄、西兰花</li>
+        <li>白水、无糖茶、美式咖啡</li>
+        <li>原味坚果每天一小把</li>
+      </ul>
+    </div>
+    <div class="bad">
+      <h4>❌ 戒掉 / 限量</h4>
+      <ul>
+        <li>含糖饮料、奶茶 —— 第一大敌</li>
+        <li>油炸物（炸鸡薯条）</li>
+        <li>宵夜烧烤、泡面</li>
+        <li>蛋糕甜点、果汁</li>
+        <li>酒精：毁皮肤+毁睡眠+空热量三杀</li>
+      </ul>
+    </div>
+  </div>
+  <div class="ok"><b>每周允许 1 顿自由餐</b>（任意吃，八分饱），安排在训练日 —— 心理可持续性 &gt; 极端自律。</div>
+</section>
+
+<!-- ============ SKIN ============ -->
+<section id="skin" class="reveal">
+  <span class="sec-tag">Skin Care</span>
+  <h2>皮肤管理系统（每天 ≤5 分钟）</h2>
+  <div class="duo" style="margin-top:24px">
+    <div class="card">
+      <div class="ring"><span class="tagg" style="font-size:14px">内调 70%</span><div class="bar" style="flex:1"></div><span style="font-size:13px;color:var(--muted)">早睡·戒糖·低油·多水多蔬果·规律运动（已含在本计划）</span></div>
+      <div class="ring"><span class="tagr" style="font-size:14px">外护 30%</span><div class="bar" style="flex:1;background:linear-gradient(90deg,#38bdf8,#818cf8)"></div><span style="font-size:13px;color:var(--muted)">三件套足够，不要叠太多产品</span></div>
+      <table>
+        <thead><tr><th>时间</th><th>步骤</th><th>要点</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tagg">早晨</span></td><td>温水洁面 → 保湿乳 → 防晒 SPF30+</td><td>防晒要涂够量，出门前完成</td></tr>
+          <tr><td><span class="tago">运动后</span></td><td>15 分钟内清水/洁面洗脸</td><td><b style="color:var(--warn)">最重要的一条外护纪律</b>，汗液油脂闷着会爆痘</td></tr>
+          <tr><td><span class="tagg">晚上</span></td><td>洁面 → 保湿乳</td><td>就这两步，够了</td></tr>
+        </tbody>
+      </table>
+      <ul class="rules" style="margin-top:8px">
+        <li>健身房自备毛巾垫器械，擦完汗别用手摸脸</li>
+        <li>枕套每周换洗；毛巾专用勤晾晒</li>
+        <li>长痘别挤；持续炎性痘痘直接去医院皮肤科（几十元药膏 &gt; 一百瓶护肤品）</li>
+        <li>喝牛奶易冒痘者：试验 2 周停乳制品观察个体反应</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>见效预期</h3>
+      <table>
+        <tbody>
+          <tr><td>第 1 周</td><td>出油减少（戒糖饮）</td></tr>
+          <tr><td>第 3–4 周</td><td>气色、暗沉肉眼可见改善（睡眠红利）</td></tr>
+          <tr><td>第 8 周</td><td>痘印淡化加速、肤质变稳</td></tr>
+          <tr><td>第 12 周</td><td>配合减脂，面部轮廓清晰</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLEEP ============ -->
+<section id="sleep" class="reveal">
+  <span class="sec-tag">Recovery</span>
+  <h2>作息表：三大目标的公共地基</h2>
+  <div class="card" style="margin-top:24px">
+    <div class="sleep-line">
+      <div class="s-row"><span class="s-time">07:00</span><span class="s-desc">起床（按第一节课微调，保证固定睡眠窗口）</span></div>
+      <div class="s-row"><span class="s-time">07:00–07:40</span><span class="s-desc">洗漱护肤 + 早餐</span></div>
+      <div class="s-row"><span class="s-time">12:30–13:00</span><span class="s-desc">午睡 20–30 分钟（不超过 30，否则下午昏沉）</span></div>
+      <div class="s-row"><span class="s-time">17:00–19:00</span><span class="s-desc">黄金训练窗口（课后晚饭前；固定「每周哪三天」比固定几点更重要）</span></div>
+      <div class="s-row"><span class="s-time">19:30 前</span><span class="s-desc">晚餐结束</span></div>
+      <div class="s-row"><span class="s-time">23:00</span><span class="s-desc">手机放到够不着处充电</span></div>
+      <div class="s-row"><span class="s-time">23:30</span><span class="s-desc">入睡 —— 睡眠 7.5h：深睡修复肌肉 + 皮肤</span></div>
+    </div>
+    <div class="note" style="margin-bottom:0"><b>睡眠纪律：</b>考试周允许压到 7h，但不许低于 7h。低于 7h 的第二天训练自动降为最低完成版。</div>
+  </div>
+</section>
+
+<!-- ============ TRACKING ============ -->
+<section id="tracking" class="reveal">
+  <span class="sec-tag">Tracking</span>
+  <h2>追踪与调整（每周日 10 分钟）</h2>
+  <div class="grid g2" style="margin-top:24px">
+    <div class="card">
+      <h3>周日仪式五步</h3>
+      <ol class="rules">
+        <li><b>称重：</b>晨起空腹排尿后</li>
+        <li><b>量腰围：</b>肚脐水平，放松自然呼吸（最重要指标）</li>
+        <li><b>拍照：</b>正面 + 左右侧，同地点同光线</li>
+        <li><b>记录训练重量曲线</b>（Hevy App 或表格）</li>
+        <li><b>按下方规则调整下周饮食量</b></li>
+      </ol>
+      <h3 style="margin-top:18px">月度里程碑</h3>
+      <p class="sub" style="font-size:13.5px">第 4/8/12 周末翻照片对比脸、肩、腰。变化在照片里非常明显，在镜子里因天天看反而看不见。</p>
+    </div>
+    <div class="card dec-table">
+      <h3>数据决策表</h3>
+      <table>
+        <thead><tr><th>情况</th><th>决策</th></tr></thead>
+        <tbody>
+          <tr><td>每周体重降 &gt;0.7kg</td><td>多吃半碗饭（掉太快掉肌肉）</td></tr>
+          <tr><td>2 周体重不动 且 腰围不动</td><td>少半碗饭 或 多走 2000 步</td></tr>
+          <tr><td>体重微涨 但 腰围降</td><td><span class="tagg">好事！正在增肌减脂，别动</span></td></tr>
+          <tr><td>训练重量 2 周原地踏步</td><td>先查睡眠+蛋白质，再查是否真做到了渐进</td></tr>
+        </tbody>
+      </table>
+      <h3 style="margin-top:14px">装备预算</h3>
+      <table>
+        <tbody>
+          <tr><td>缓震跑鞋 ¥300–500</td><td><span class="tago">必须 ★★★</span></td></tr>
+          <tr><td>洁面+保湿+防晒 ¥150</td><td><span class="tago">必须 ★★★</span></td></tr>
+          <tr><td>速干衣裤×2 ¥100 · 拉力带 ¥20</td><td><span class="tagg">建议 ★★</span></td></tr>
+          <tr><td>乳清蛋白 2 磅 ¥120–160 · 手套 ¥30</td><td><span class="tagr">可选 ★</span></td></tr>
+        </tbody>
+      </table>
+      <p class="sub" style="font-size:13px">总增量成本 ≈ ¥600–900，摊每月 ¥200–300（不含饭费）。筋膜枪 / BCAA / 左旋肉碱：不需要，省下买鸡蛋。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="reveal">
+  <span class="sec-tag">FAQ</span>
+  <h2>高频问题</h2>
+  <div style="margin-top:20px">
+    <details open><summary>练完第二天酸痛还能练吗？</summary><p>能。酸痛不影响训练，热身后缓解。若关节刺痛（非肌肉酸）则跳过该部位。</p></details>
+    <details><summary>会不会练成块头太大？</summary><p>不会。三个月新手最多增 1–2kg 肌肉，你要的「薄肌」正是这个量级；变大需要数年刻意增重训练。</p></details>
+    <details><summary>女生可以用这个计划吗？</summary><p>完全可以。所有动作男女通用，重量按自测起始即可。睾酮水平决定了女性只会更紧致不会变壮。</p></details>
+    <details><summary>某周完全没时间怎么办？</summary><p>守住两条底线：① 每周至少 2 次训练（哪怕最低完成版）；② 蛋白质和睡眠不断。中断一周损失很小，饮食崩盘才是灾难。</p></details>
+    <details><summary>需要买筋膜枪 / BCAA / 左旋肉碱吗？</summary><p>不需要。拉伸+睡眠恢复足够；后两者对你是智商税，钱省下来买鸡蛋。</p></details>
+    <details><summary>跑步伤膝盖吗？</summary><p>体重正常 + 缓震鞋 + 走跑结合渐进 + 跑前动态热身，风险很低。膝盖有旧伤则用椭圆机/游泳替代。</p></details>
+  </div>
+
+  <div class="quote">这份计划的价值不在纸面上，而在你第 37 天不想去的时候还是去了。<br><span style="color:var(--accent)">三个月后见。</span></div>
+</section>
+
+</main>
+
+<footer>
+  <b style="color:var(--text)">计划骨架来源（开源项目）</b>
+  <div class="refs">
+    r/BodyweightFitness Recommended Routine（阶段0）· Phrak's GSLP / r/Fitness Basic Beginner Routine（阶段1）·
+    <code>GZCLP</code> by Cody LeFever（阶段2）· C25K 走跑结合法（有氧）·
+    <code>wger</code> github.com/wger-project/wger 开源训练营养追踪 · <code>Hevy</code> App 记录训练重量次数
+  </div>
+  <p style="margin-top:18px">90-Day Transformation Plan · Built with 第一性原理 & 对抗性设计</p>
+</footer>
+
+<script>
+// scroll progress
+const bar=document.getElementById('progress');
+addEventListener('scroll',()=>{const h=document.documentElement;bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';},{passive:true});
+
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// scrollspy
+const links=[...document.querySelectorAll('nav a[href^="#"]')];
+const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+const spy=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      const i=secs.indexOf(e.target);
+      if(i>-1){links.forEach(l=>l.classList.remove('active'));links[i].classList.add('active');}
+    }
+  });
+},{rootMargin:'-30% 0px -60% 0px'});
+secs.forEach(s=>s&&spy.observe(s));
+
+// tabs
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+// checkbox persistence
+document.querySelectorAll('.chk input').forEach(cb=>{
+  const k='fit90_'+cb.dataset.k;
+  cb.checked=localStorage.getItem(k)==='1';
+  cb.addEventListener('change',()=>localStorage.setItem(k,cb.checked?'1':'0'));
+});
+</script>
+</body>
+</html>
