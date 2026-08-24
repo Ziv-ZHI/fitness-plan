@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>90天蜕变计划 · 改善皮肤 · 瘦脸 · 薄肌</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+<link rel="stylesheet" href="vendor/aos.css">
 <style>
 :root{
   --bg:#0b1220;
@@ -723,9 +723,9 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
   <p style="margin-top:18px">90-Day Transformation Plan · Built with 第一性原理 & 对抗性设计</p>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="vendor/particles.min.js"></script>
+<script src="vendor/chart.umd.min.js"></script>
+<script src="vendor/aos.js"></script>
 <script>
 // scroll progress
 const bar=document.getElementById('progress');
@@ -804,6 +804,7 @@ if(window.Chart){
   Chart.defaults.font.family='"PingFang SC","Microsoft YaHei",sans-serif';
   Chart.defaults.borderColor='rgba(255,255,255,.07)';
   const grad=(ctx,c)=>{const g=ctx.createLinearGradient(0,0,0,320);g.addColorStop(0,c+'55');g.addColorStop(1,c+'00');return g;};
+  const safeGrad=(c,color)=>{try{return c.chart&&c.chart.chartArea?grad(c.chart.ctx,color):'rgba(52,211,153,.12)';}catch(e){return 'rgba(52,211,153,.12)';}};
 
   new Chart(document.getElementById('weightChart'),{
     type:'line',
@@ -811,7 +812,7 @@ if(window.Chart){
       labels:['第0周','第1周','第2周','第4周','第6周','第8周','第10周','第12周'],
       datasets:[
         {label:'体重 kg',data:[70,69.8,69.6,69.0,68.4,67.9,67.4,66.9],
-         borderColor:'#34d399',backgroundColor:c=>grad(c.chart.ctx,'#34d399'),
+         borderColor:'#34d399',backgroundColor:c=>safeGrad(c,'#34d399'),
          fill:true,tension:.4,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#34d399',yAxisID:'y'},
         {label:'腰围累计下降 cm',data:[0,.4,.8,1.5,2.2,3,3.8,4.6],
          borderColor:'#38bdf8',borderDash:[6,5],fill:false,
@@ -836,7 +837,7 @@ if(window.Chart){
       labels:['W3','W4','W5','W6','W7','W8','W9','W10','W11','W12'],
       datasets:[
         {label:'深蹲',data:[30,40,47.5,55,60,65,70,73.5,76.5,80],
-         borderColor:'#34d399',backgroundColor:c=>grad(c.chart.ctx,'#34d399'),
+         borderColor:'#34d399',backgroundColor:c=>safeGrad(c,'#34d399'),
          fill:true,tension:.35,borderWidth:2.5,pointRadius:3},
         {label:'卧推',data:[27.5,33,37,41,43.5,46,47.5,49,49.5,50],
          borderColor:'#fbbf24',fill:false,tension:.35,borderWidth:2,pointRadius:3},
@@ -856,8 +857,12 @@ if(window.Chart){
   });
 }
 
-// AOS init (last)
-AOS.init({once:true,duration:700,offset:80,easing:'ease-out-cubic'});
+// AOS init (last) — 库加载失败时自动放行所有动画元素，保证内容可见
+if(window.AOS){
+  AOS.init({once:true,duration:700,offset:80,easing:'ease-out-cubic'});
+}else{
+  document.querySelectorAll('[data-aos]').forEach(el=>{el.style.opacity=1;el.style.transform='none';});
+}
 </script>
 </body>
 </html>
