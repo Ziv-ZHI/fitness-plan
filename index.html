@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>90天蜕变计划 · 改善皮肤 · 瘦脸 · 薄肌</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
 <style>
 :root{
   --bg:#0b1220;
@@ -55,30 +56,33 @@ section{padding:84px 0 10px}
 h2{font-size:30px;margin:10px 0 6px;letter-spacing:1px}
 .sub{color:var(--muted);font-size:14.5px;max-width:760px}
 
-.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px;backdrop-filter:blur(6px)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px;backdrop-filter:blur(6px);transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+.card:hover{transform:translateY(-4px);border-color:rgba(52,211,153,.35);box-shadow:0 18px 44px rgba(0,0,0,.35)}
 .grid{display:grid;gap:16px}
 .g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
 .g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
 
-/* reveal */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
-.reveal.on{opacity:1;transform:none}
-
 /* ===== hero ===== */
 header.hero{min-height:92vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:60px}
-.hero-inner{max-width:1080px;margin:0 auto;padding:40px 20px;width:100%}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;pointer-events:none;animation:float 14s ease-in-out infinite alternate}
+.orb.o1{width:420px;height:420px;background:rgba(52,211,153,.22);top:-80px;left:-100px}
+.orb.o2{width:520px;height:520px;background:rgba(56,189,248,.18);bottom:-160px;right:-140px;animation-delay:-7s}
+@keyframes float{from{transform:translateY(0) scale(1)}to{transform:translateY(46px) scale(1.08)}}
+#particles{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero-inner{max-width:1080px;margin:0 auto;padding:40px 20px;width:100%;position:relative;z-index:1}
 .badge{display:inline-block;border:1px solid var(--border);background:rgba(52,211,153,.08);color:var(--accent);font-size:12.5px;padding:6px 14px;border-radius:999px;letter-spacing:2px}
 h1{font-size:clamp(38px,7vw,66px);line-height:1.15;margin:22px 0 14px;font-weight:900}
 h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p.lead{color:var(--muted);font-size:16.5px;max-width:640px}
 .stats{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
-.stat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px 22px;min-width:128px}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px 22px;min-width:128px;transition:.3s}
+.stat:hover{border-color:rgba(56,189,248,.45);transform:translateY(-3px)}
 .stat b{font-size:26px;display:block;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .stat span{font-size:12.5px;color:var(--muted)}
 .cta{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
-.btn{padding:13px 26px;border-radius:999px;font-weight:700;font-size:14.5px;text-decoration:none;transition:.25s;border:1px solid transparent}
+.btn{padding:13px 26px;border-radius:999px;font-weight:700;font-size:14.5px;text-decoration:none;transition:.25s;border:1px solid transparent;display:inline-block}
 .btn.primary{background:var(--grad);color:#06251c;box-shadow:0 8px 30px rgba(52,211,153,.25)}
-.btn.primary:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(56,189,248,.35)}
+.btn.primary:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 12px 34px rgba(56,189,248,.4)}
 .btn.ghost{border-color:var(--border);color:var(--text)}
 .btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
 
@@ -95,7 +99,8 @@ h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;c
 
 /* ===== adversarial ===== */
 .a-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:14px}
-.a-item{display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px}
+.a-item{display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;transition:.3s}
+.a-item:hover{border-color:rgba(251,191,36,.4);transform:translateY(-3px)}
 .a-item .n{flex:none;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:15px}
 .a-item h4{font-size:14.5px;color:#ffd9a8}
 .a-item p{font-size:13.5px;color:#c9d4e4;margin-top:5px}
@@ -108,7 +113,8 @@ h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;c
 .t-node::before{content:"";position:absolute;left:-31px;top:8px;width:17px;height:17px;border-radius:50%;background:var(--bg);border:4px solid var(--accent)}
 .t-node:nth-child(2)::before{border-color:var(--accent2)}
 .t-node:nth-child(3)::before{border-color:var(--warn)}
-.t-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 24px}
+.t-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 24px;transition:.3s}
+.t-card:hover{border-color:rgba(52,211,153,.35);transform:translateX(4px)}
 .t-card .phase{font-size:12px;letter-spacing:2px;color:var(--accent);font-weight:800}
 .t-card h3{font-size:20px;margin:4px 0 6px}
 .t-card p{font-size:14px;color:var(--muted)}
@@ -134,7 +140,8 @@ tbody tr:hover td{background:rgba(255,255,255,.025)}
 .tago{display:inline-block;background:rgba(251,191,36,.14);color:var(--warn);border-radius:6px;padding:1px 9px;font-size:12.5px;font-weight:600;white-space:nowrap}
 
 .week-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin:16px 0}
-.wday{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 6px;text-align:center;font-size:12px;color:var(--muted)}
+.wday{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 6px;text-align:center;font-size:12px;color:var(--muted);transition:.25s}
+.wday:hover{transform:scale(1.05)}
 .wday b{display:block;color:var(--text);font-size:13px;margin-bottom:3px}
 .wday.run b{color:var(--accent2)} .wday.lift b{color:var(--accent)} .wday.rest b{color:var(--warn)}
 
@@ -150,7 +157,7 @@ ol.rules li{margin:9px 0}
 .chk{list-style:none;margin-top:8px}
 .chk li{margin:8px 0}
 .chk label{display:flex;align-items:flex-start;gap:11px;cursor:pointer;font-size:14px;color:#d7dfee;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:11px 15px;transition:.2s}
-.chk label:hover{border-color:rgba(52,211,153,.5)}
+.chk label:hover{border-color:rgba(52,211,153,.5);transform:translateX(3px)}
 .chk input{display:none}
 .chk .box{flex:none;width:20px;height:20px;border-radius:6px;border:2px solid #3f5068;margin-top:2px;position:relative;transition:.2s}
 .chk input:checked + .box{background:var(--grad);border-color:transparent}
@@ -159,12 +166,15 @@ ol.rules li{margin:9px 0}
 
 /* ===== diet ===== */
 .macro-chips{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px}
-.mchip{flex:1;min-width:170px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;text-align:center}
+.mchip{flex:1;min-width:170px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;text-align:center;transition:.3s}
+.mchip:hover{border-color:rgba(56,189,248,.4);transform:translateY(-3px)}
 .mchip b{font-size:23px;display:block;color:var(--accent2)}
 .mchip span{font-size:12.5px;color:var(--muted)}
 .palm{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
-.palm .p{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;text-align:center}
-.palm .emoji{font-size:40px}
+.palm .p{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;text-align:center;transition:.3s}
+.palm .p:hover{transform:translateY(-4px);border-color:rgba(52,211,153,.35)}
+.palm .emoji{font-size:40px;display:inline-block;transition:.35s}
+.palm .p:hover .emoji{transform:scale(1.2) rotate(-6deg)}
 .palm h4{font-size:15px;margin:10px 0 4px}
 .palm p{font-size:13px;color:var(--muted)}
 .rb{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -189,11 +199,17 @@ ol.rules li{margin:9px 0}
 .s-time{flex:none;width:64px;font-weight:800;font-size:13.5px;color:var(--accent2);background:rgba(56,189,248,.1);border-radius:8px;padding:3px 0;text-align:center}
 .s-desc{font-size:14px;color:#d7dfee}
 
+/* ===== viz ===== */
+.chart-box{position:relative;height:320px}
+.chart-card p.hint{font-size:12.5px;color:var(--muted);margin-top:10px}
+
 /* ===== tracking ===== */
 .dec-table td:first-child{white-space:nowrap;font-weight:600}
 
 /* ===== faq ===== */
-details{background:var(--card);border:1px solid var(--border);border-radius:14px;margin:10px 0;overflow:hidden}
+details{background:var(--card);border:1px solid var(--border);border-radius:14px;margin:10px 0;overflow:hidden;transition:.3s}
+details:hover{border-color:rgba(52,211,153,.3)}
+details[open]{border-color:rgba(52,211,153,.4)}
 summary{cursor:pointer;padding:16px 20px;font-weight:700;font-size:14.5px;list-style:none;position:relative}
 summary::-webkit-details-marker{display:none}
 summary::after{content:"+";position:absolute;right:20px;color:var(--accent);font-size:20px;top:50%;transform:translateY(-50%);transition:.25s}
@@ -219,25 +235,28 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
   <a href="#diet">饮食</a>
   <a href="#skin">皮肤</a>
   <a href="#sleep">作息</a>
+  <a href="#viz">数据</a>
   <a href="#tracking">追踪</a>
   <a href="#faq">FAQ</a>
 </div></nav>
 
 <!-- ============ HERO ============ -->
 <header class="hero">
+  <div class="orb o1"></div><div class="orb o2"></div>
+  <div id="particles"></div>
   <div class="hero-inner">
-    <span class="badge">改善皮肤 · 瘦脸 · 练出薄肌</span>
-    <h1>三个月，<br>把「想变好」<span class="g">变成看得见</span>。</h1>
-    <p class="lead">为 20 岁大学生定制的 12 周系统方案：前 2 周居家筑基，后 10 周健身房渐进训练。
+    <span class="badge" data-aos="fade-down">改善皮肤 · 瘦脸 · 练出薄肌</span>
+    <h1 data-aos="fade-up" data-aos-delay="100">三个月，<br>把「想变好」<span class="g">变成看得见</span>。</h1>
+    <p class="lead" data-aos="fade-up" data-aos-delay="200">为 20 岁大学生定制的 12 周系统方案：前 2 周居家筑基，后 10 周健身房渐进训练。
     骨架取自 r/BodyweightFitness、Phrak's GSLP 与 GZCLP 等经过百万级人群验证的开源训练体系。</p>
-    <div class="stats">
-      <div class="stat"><b>175cm</b><span>身高</span></div>
-      <div class="stat"><b>70kg</b><span>起点体重</span></div>
-      <div class="stat"><b>12周</b><span>计划周期</span></div>
+    <div class="stats" data-aos="fade-up" data-aos-delay="300">
+      <div class="stat"><b data-count="175" data-suffix="cm">175cm</b><span>身高</span></div>
+      <div class="stat"><b data-count="70" data-suffix="kg">70kg</b><span>起点体重</span></div>
+      <div class="stat"><b data-count="12" data-suffix="周">12周</b><span>计划周期</span></div>
       <div class="stat"><b>-4~6cm</b><span>腰围目标</span></div>
-      <div class="stat"><b>5km</b><span>跑步能力</span></div>
+      <div class="stat"><b data-count="5" data-suffix="km">5km</b><span>跑步能力</span></div>
     </div>
-    <div class="cta">
+    <div class="cta" data-aos="fade-up" data-aos-delay="400">
       <a class="btn primary" href="#roadmap">查看路线图 ↓</a>
       <a class="btn ghost" href="#principles">为什么这样设计？</a>
     </div>
@@ -247,13 +266,13 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
 <main>
 
 <!-- ============ PRINCIPLES ============ -->
-<section id="principles" class="reveal">
+<section id="principles" data-aos="fade-up">
   <span class="sec-tag">First Principles</span>
   <h2>第一性原理：三个目标的本质</h2>
   <p class="sub">拆到不能再拆，三个目标其实共用一套底层方案：<b style="color:var(--accent)">缓慢热量缺口饮食 + 渐进抗阻训练 + 规律有氧 + 早睡 + 戒糖。</b></p>
   <div class="grid g3" style="margin-top:26px">
 
-    <div class="card p-card">
+    <div class="card p-card" data-aos="zoom-in-up" data-aos-delay="0">
       <div class="num">01</div>
       <h3>瘦脸</h3>
       <span class="eq">= 全身减脂 + 去水肿</span>
@@ -265,7 +284,7 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
       <div class="act"><b>行动：</b>温和热量缺口 + 低盐 + 早睡，一周内脸小一圈</div>
     </div>
 
-    <div class="card p-card">
+    <div class="card p-card" data-aos="zoom-in-up" data-aos-delay="150">
       <div class="num">02</div>
       <h3>薄肌</h3>
       <span class="eq">= 渐进超负荷 + 蛋白质 + 睡眠</span>
@@ -277,7 +296,7 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
       <div class="act"><b>行动：</b>蛋白质 110–140g/天（1.6–2g/kg），从第一天就系统化</div>
     </div>
 
-    <div class="card p-card">
+    <div class="card p-card" data-aos="zoom-in-up" data-aos-delay="300">
       <div class="num">03</div>
       <h3>皮肤</h3>
       <span class="eq">= 睡眠 > 血糖 > 运动 > 清洁 > 防晒</span>
@@ -292,27 +311,27 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
 </section>
 
 <!-- ============ ADVERSARIAL ============ -->
-<section id="adversarial" class="reveal">
+<section id="adversarial" data-aos="fade-up">
   <span class="sec-tag">Adversarial Design</span>
   <h2>对抗性设计：预判你会放弃的 7 个时刻</h2>
   <p class="sub">每个失败模式提前埋好对策。计划的敌人不是难度，是中断。</p>
   <div class="a-grid" style="margin-top:26px">
-    <div class="a-item"><div class="n">1</div><div><h4>第 4~10 天 · 酸痛劝退</h4><p>前两周强度刻意压低。<b>酸痛≠有效</b>，坚持≠痛苦，按计划走就不会过度。</p></div></div>
-    <div class="a-item"><div class="n">2</div><div><h4>第 3 周 · 课业冲突</h4><p>每次训练都有「最低完成版」：只做 20 分钟也算完成。<b>不断比完美重要。</b></p></div></div>
-    <div class="a-item"><div class="n">3</div><div><h4>第 4 周 · 体重不降反涨</h4><p>新手增肌抵消减脂重量，正常现象。<b>以腰围和照片为准，不以体重为准。</b></p></div></div>
-    <div class="a-item"><div class="n">4</div><div><h4>第 6 周 · 无聊平台感</h4><p>每 4 周轮换辅助动作；用 Hevy 记录看重量上升曲线获得正反馈。</p></div></div>
-    <div class="a-item"><div class="n">5</div><div><h4>聚餐奶茶破功一次</h4><p>单餐破功无影响，禁止破罐破摔。<b>下一顿正常吃即可</b>，每周留 1 顿自由餐。</p></div></div>
-    <div class="a-item"><div class="n">6</div><div><h4>熬夜刷手机恶性循环</h4><p>23:00 手机放到够不着处充电。<b>睡眠是三大目标共同的根。</b></p></div></div>
-    <div class="a-item"><div class="n">7</div><div><h4>生病受伤中断</h4><p>休息不算断，好了从原重量继续不追进度；<b>关节疼痛（非肌肉酸）立即停该动作。</b></p></div></div>
+    <div class="a-item" data-aos="flip-left" data-aos-delay="0"><div class="n">1</div><div><h4>第 4~10 天 · 酸痛劝退</h4><p>前两周强度刻意压低。<b>酸痛≠有效</b>，坚持≠痛苦，按计划走就不会过度。</p></div></div>
+    <div class="a-item" data-aos="flip-left" data-aos-delay="100"><div class="n">2</div><div><h4>第 3 周 · 课业冲突</h4><p>每次训练都有「最低完成版」：只做 20 分钟也算完成。<b>不断比完美重要。</b></p></div></div>
+    <div class="a-item" data-aos="flip-left" data-aos-delay="200"><div class="n">3</div><div><h4>第 4 周 · 体重不降反涨</h4><p>新手增肌抵消减脂重量，正常现象。<b>以腰围和照片为准，不以体重为准。</b></p></div></div>
+    <div class="a-item" data-aos="flip-left" data-aos-delay="300"><div class="n">4</div><div><h4>第 6 周 · 无聊平台感</h4><p>每 4 周轮换辅助动作；用 Hevy 记录看重量上升曲线获得正反馈。</p></div></div>
+    <div class="a-item" data-aos="flip-left" data-aos-delay="400"><div class="n">5</div><div><h4>聚餐奶茶破功一次</h4><p>单餐破功无影响，禁止破罐破摔。<b>下一顿正常吃即可</b>，每周留 1 顿自由餐。</p></div></div>
+    <div class="a-item" data-aos="flip-left" data-aos-delay="500"><div class="n">6</div><div><h4>熬夜刷手机恶性循环</h4><p>23:00 手机放到够不着处充电。<b>睡眠是三大目标共同的根。</b></p></div></div>
+    <div class="a-item" data-aos="flip-left" data-aos-delay="600"><div class="n">7</div><div><h4>生病受伤中断</h4><p>休息不算断，好了从原重量继续不追进度；<b>关节疼痛（非肌肉酸）立即停该动作。</b></p></div></div>
   </div>
 </section>
 
 <!-- ============ ROADMAP ============ -->
-<section id="roadmap" class="reveal">
+<section id="roadmap" data-aos="fade-up">
   <span class="sec-tag">Roadmap</span>
   <h2>12 周路线图</h2>
   <div class="timeline">
-    <div class="t-node">
+    <div class="t-node" data-aos="slide-right">
       <div class="t-card">
         <span class="phase">PHASE 0 · 第 1–2 周</span>
         <h3>🏠 居家筑基期</h3>
@@ -320,7 +339,7 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
         <div class="chips"><span class="chip">每周 3 力量 + 3 跑步</span><span class="chip">每次 ≤40 分钟</span><span class="chip">强度刻意压低</span></div>
       </div>
     </div>
-    <div class="t-node">
+    <div class="t-node" data-aos="slide-right">
       <div class="t-card">
         <span class="phase" style="color:var(--accent2)">PHASE 1 · 第 3–6 周</span>
         <h3>🏋️ 健身房入门期</h3>
@@ -328,7 +347,7 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
         <div class="chips"><span class="chip">深蹲/卧推/划船/推举</span><span class="chip">每次成功 +1.25~2.5kg</span><span class="chip">先学动作再上重量</span></div>
       </div>
     </div>
-    <div class="t-node">
+    <div class="t-node" data-aos="slide-right">
       <div class="t-card">
         <span class="phase" style="color:var(--warn)">PHASE 2 · 第 7–12 周</span>
         <h3>💎 GZCLP 塑形增肌期</h3>
@@ -340,12 +359,12 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
 </section>
 
 <!-- ============ PHASES / TRAINING ============ -->
-<section id="phases" class="reveal">
+<section id="phases" data-aos="fade-up">
   <span class="sec-tag">Training</span>
   <h2>逐阶段训练方案</h2>
   <p class="sub">点击切换阶段。重量选择永远以「能标准完成、最后 2 次略吃力」为准——标准 &gt; 重量。</p>
 
-  <div class="tabs">
+  <div class="tabs" data-aos="fade-up">
     <button class="tab-btn active" data-tab="t0">Phase 0 · 居家筑基</button>
     <button class="tab-btn" data-tab="t1">Phase 1 · 健身房入门</button>
     <button class="tab-btn" data-tab="t2">Phase 2 · GZCLP 塑形</button>
@@ -477,19 +496,19 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
 </section>
 
 <!-- ============ DIET ============ -->
-<section id="diet" class="reveal">
+<section id="diet" data-aos="fade-up">
   <span class="sec-tag">Nutrition</span>
   <h2>饮食系统（食堂学生版）</h2>
   <p class="sub">不算卡路里，用「手掌法则 + 食堂选菜清单」。执行率 80% 的粗算法，远胜执行率 10% 的精确法。</p>
 
   <div class="macro-chips" style="margin-top:24px">
-    <div class="mchip"><b>2200–2400</b><span>kcal / 天（温和缺口）</span></div>
-    <div class="mchip"><b>110–140g</b><span>蛋白质 / 天（增肌红线）</span></div>
-    <div class="mchip"><b>≥2.5L</b><span>水 / 天</span></div>
-    <div class="mchip"><b>偏少</b><span>盐（瘦脸关键）</span></div>
+    <div class="mchip" data-aos="zoom-in" data-aos-delay="0"><b>2200–2400</b><span>kcal / 天（温和缺口）</span></div>
+    <div class="mchip" data-aos="zoom-in" data-aos-delay="100"><b>110–140g</b><span>蛋白质 / 天（增肌红线）</span></div>
+    <div class="mchip" data-aos="zoom-in" data-aos-delay="200"><b>≥2.5L</b><span>水 / 天</span></div>
+    <div class="mchip" data-aos="zoom-in" data-aos-delay="300"><b>偏少</b><span>盐（瘦脸关键）</span></div>
   </div>
 
-  <div class="card">
+  <div class="card" data-aos="fade-up">
     <h3>🖐 手掌法则（每餐）</h3>
     <div class="palm" style="margin-top:14px">
       <div class="p"><div class="emoji">🖐</div><h4>蛋白质 1~1.5 掌</h4><p>掌心大小+厚度的肉蛋鱼豆<br>≈ 25–40g 蛋白质</p></div>
@@ -500,7 +519,7 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
   </div>
 
   <div class="grid g2" style="margin-top:16px">
-    <div class="card">
+    <div class="card" data-aos="fade-right">
       <h3>一日模板</h3>
       <table>
         <tbody>
@@ -513,7 +532,7 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
         </tbody>
       </table>
     </div>
-    <div class="card">
+    <div class="card" data-aos="fade-left">
       <h3>蛋白质凑数速查</h3>
       <table>
         <thead><tr><th>食物</th><th>蛋白质</th></tr></thead>
@@ -531,7 +550,7 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
   </div>
 
   <div class="rb" style="margin-top:16px">
-    <div class="good">
+    <div class="good" data-aos="fade-right">
       <h4>✅ 多吃</h4>
       <ul>
         <li>鸡胸/鸡腿、鱼虾、蛋、豆制品、瘦肉</li>
@@ -541,7 +560,7 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
         <li>原味坚果每天一小把</li>
       </ul>
     </div>
-    <div class="bad">
+    <div class="bad" data-aos="fade-left">
       <h4>❌ 戒掉 / 限量</h4>
       <ul>
         <li>含糖饮料、奶茶 —— 第一大敌</li>
@@ -556,11 +575,11 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
 </section>
 
 <!-- ============ SKIN ============ -->
-<section id="skin" class="reveal">
+<section id="skin" data-aos="fade-up">
   <span class="sec-tag">Skin Care</span>
   <h2>皮肤管理系统（每天 ≤5 分钟）</h2>
   <div class="duo" style="margin-top:24px">
-    <div class="card">
+    <div class="card" data-aos="fade-right">
       <div class="ring"><span class="tagg" style="font-size:14px">内调 70%</span><div class="bar" style="flex:1"></div><span style="font-size:13px;color:var(--muted)">早睡·戒糖·低油·多水多蔬果·规律运动（已含在本计划）</span></div>
       <div class="ring"><span class="tagr" style="font-size:14px">外护 30%</span><div class="bar" style="flex:1;background:linear-gradient(90deg,#38bdf8,#818cf8)"></div><span style="font-size:13px;color:var(--muted)">三件套足够，不要叠太多产品</span></div>
       <table>
@@ -578,7 +597,7 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
         <li>喝牛奶易冒痘者：试验 2 周停乳制品观察个体反应</li>
       </ul>
     </div>
-    <div class="card">
+    <div class="card" data-aos="fade-left">
       <h3>见效预期</h3>
       <table>
         <tbody>
@@ -593,29 +612,48 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
 </section>
 
 <!-- ============ SLEEP ============ -->
-<section id="sleep" class="reveal">
+<section id="sleep" data-aos="fade-up">
   <span class="sec-tag">Recovery</span>
   <h2>作息表：三大目标的公共地基</h2>
   <div class="card" style="margin-top:24px">
     <div class="sleep-line">
-      <div class="s-row"><span class="s-time">07:00</span><span class="s-desc">起床（按第一节课微调，保证固定睡眠窗口）</span></div>
-      <div class="s-row"><span class="s-time">07:00–07:40</span><span class="s-desc">洗漱护肤 + 早餐</span></div>
-      <div class="s-row"><span class="s-time">12:30–13:00</span><span class="s-desc">午睡 20–30 分钟（不超过 30，否则下午昏沉）</span></div>
-      <div class="s-row"><span class="s-time">17:00–19:00</span><span class="s-desc">黄金训练窗口（课后晚饭前；固定「每周哪三天」比固定几点更重要）</span></div>
-      <div class="s-row"><span class="s-time">19:30 前</span><span class="s-desc">晚餐结束</span></div>
-      <div class="s-row"><span class="s-time">23:00</span><span class="s-desc">手机放到够不着处充电</span></div>
-      <div class="s-row"><span class="s-time">23:30</span><span class="s-desc">入睡 —— 睡眠 7.5h：深睡修复肌肉 + 皮肤</span></div>
+      <div class="s-row" data-aos="fade-left" data-aos-delay="0"><span class="s-time">07:00</span><span class="s-desc">起床（按第一节课微调，保证固定睡眠窗口）</span></div>
+      <div class="s-row" data-aos="fade-left" data-aos-delay="50"><span class="s-time">07:00–07:40</span><span class="s-desc">洗漱护肤 + 早餐</span></div>
+      <div class="s-row" data-aos="fade-left" data-aos-delay="100"><span class="s-time">12:30–13:00</span><span class="s-desc">午睡 20–30 分钟（不超过 30，否则下午昏沉）</span></div>
+      <div class="s-row" data-aos="fade-left" data-aos-delay="150"><span class="s-time">17:00–19:00</span><span class="s-desc">黄金训练窗口（课后晚饭前；固定「每周哪三天」比固定几点更重要）</span></div>
+      <div class="s-row" data-aos="fade-left" data-aos-delay="200"><span class="s-time">19:30 前</span><span class="s-desc">晚餐结束</span></div>
+      <div class="s-row" data-aos="fade-left" data-aos-delay="250"><span class="s-time">23:00</span><span class="s-desc">手机放到够不着处充电</span></div>
+      <div class="s-row" data-aos="fade-left" data-aos-delay="300"><span class="s-time">23:30</span><span class="s-desc">入睡 —— 睡眠 7.5h：深睡修复肌肉 + 皮肤</span></div>
     </div>
     <div class="note" style="margin-bottom:0"><b>睡眠纪律：</b>考试周允许压到 7h，但不许低于 7h。低于 7h 的第二天训练自动降为最低完成版。</div>
   </div>
 </section>
 
+<!-- ============ VIZ ============ -->
+<section id="viz" data-aos="fade-up">
+  <span class="sec-tag">Visualization</span>
+  <h2>12 周数据可视化</h2>
+  <p class="sub">基于线性进阶与温和热量缺口的保守预测曲线。实际数值以每周测量为准 —— 图表的意义是让你看见方向。</p>
+  <div class="grid g2" style="margin-top:26px">
+    <div class="card chart-card" data-aos="zoom-in-up">
+      <h3>📉 体重 × 腰围轨迹预测</h3>
+      <div class="chart-box"><canvas id="weightChart"></canvas></div>
+      <p class="hint">左轴：体重 kg｜右轴：腰围累计下降 cm｜悬停查看每周数据</p>
+    </div>
+    <div class="card chart-card" data-aos="zoom-in-up" data-aos-delay="150">
+      <h3>💪 三大项力量增长预测</h3>
+      <div class="chart-box"><canvas id="strengthChart"></canvas></div>
+      <p class="hint">深蹲 / 卧推 / 站姿推举（kg），线性进阶下的保守估计</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============ TRACKING ============ -->
-<section id="tracking" class="reveal">
+<section id="tracking" data-aos="fade-up">
   <span class="sec-tag">Tracking</span>
   <h2>追踪与调整（每周日 10 分钟）</h2>
   <div class="grid g2" style="margin-top:24px">
-    <div class="card">
+    <div class="card" data-aos="fade-right">
       <h3>周日仪式五步</h3>
       <ol class="rules">
         <li><b>称重：</b>晨起空腹排尿后</li>
@@ -627,7 +665,7 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
       <h3 style="margin-top:18px">月度里程碑</h3>
       <p class="sub" style="font-size:13.5px">第 4/8/12 周末翻照片对比脸、肩、腰。变化在照片里非常明显，在镜子里因天天看反而看不见。</p>
     </div>
-    <div class="card dec-table">
+    <div class="card dec-table" data-aos="fade-left">
       <h3>数据决策表</h3>
       <table>
         <thead><tr><th>情况</th><th>决策</th></tr></thead>
@@ -653,7 +691,7 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
 </section>
 
 <!-- ============ FAQ ============ -->
-<section id="faq" class="reveal">
+<section id="faq" data-aos="fade-up">
   <span class="sec-tag">FAQ</span>
   <h2>高频问题</h2>
   <div style="margin-top:20px">
@@ -665,7 +703,7 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
     <details><summary>跑步伤膝盖吗？</summary><p>体重正常 + 缓震鞋 + 走跑结合渐进 + 跑前动态热身，风险很低。膝盖有旧伤则用椭圆机/游泳替代。</p></details>
   </div>
 
-  <div class="quote">这份计划的价值不在纸面上，而在你第 37 天不想去的时候还是去了。<br><span style="color:var(--accent)">三个月后见。</span></div>
+  <div class="quote" data-aos="zoom-in">这份计划的价值不在纸面上，而在你第 37 天不想去的时候还是去了。<br><span style="color:var(--accent)">三个月后见。</span></div>
 </section>
 
 </main>
@@ -677,17 +715,21 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
     <code>GZCLP</code> by Cody LeFever（阶段2）· C25K 走跑结合法（有氧）·
     <code>wger</code> github.com/wger-project/wger 开源训练营养追踪 · <code>Hevy</code> App 记录训练重量次数
   </div>
+  <div class="refs">
+    页面增强：<a href="https://github.com/michalsnik/aos" style="color:var(--accent2)">AOS ⭐28k</a> 滚动动画 ·
+    <a href="https://github.com/chartjs/Chart.js" style="color:var(--accent2)">Chart.js ⭐67.6k</a> 数据可视化 ·
+    <a href="https://github.com/VincentGarreau/particles.js" style="color:var(--accent2)">particles.js ⭐30k</a> 粒子背景
+  </div>
   <p style="margin-top:18px">90-Day Transformation Plan · Built with 第一性原理 & 对抗性设计</p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
 // scroll progress
 const bar=document.getElementById('progress');
 addEventListener('scroll',()=>{const h=document.documentElement;bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';},{passive:true});
-
-// reveal on scroll
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.08});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 // scrollspy
 const links=[...document.querySelectorAll('nav a[href^="#"]')];
@@ -718,6 +760,104 @@ document.querySelectorAll('.chk input').forEach(cb=>{
   cb.checked=localStorage.getItem(k)==='1';
   cb.addEventListener('change',()=>localStorage.setItem(k,cb.checked?'1':'0'));
 });
+
+// hero count-up
+function countUp(el){
+  const target=parseFloat(el.dataset.count),dur=1500,suf=el.dataset.suffix||'';
+  const t0=performance.now();
+  function tick(t){
+    const p=Math.min((t-t0)/dur,1),eased=1-Math.pow(1-p,3);
+    el.textContent=Math.round(target*eased)+suf;
+    if(p<1)requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+const statIO=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){countUp(e.target);statIO.unobserve(e.target);}
+}),{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>statIO.observe(el));
+
+// particles
+if(window.particlesJS){
+  particlesJS('particles',{
+    particles:{
+      number:{value:55,density:{enable:true,value_area:900}},
+      color:{value:['#34d399','#38bdf8']},
+      shape:{type:'circle'},
+      opacity:{value:.28,random:true},
+      size:{value:2.6,random:true},
+      line_linked:{enable:true,distance:130,color:'#34d399',opacity:.14,width:1},
+      move:{enable:true,speed:.7,direction:'none',random:true,out_mode:'out'}
+    },
+    interactivity:{
+      detect_on:'canvas',
+      events:{onhover:{enable:true,mode:'grab'},onclick:{enable:false},resize:true},
+      modes:{grab:{distance:150,line_linked:{opacity:.32}}}
+    },
+    retina_detect:true
+  });
+}
+
+// charts
+if(window.Chart){
+  Chart.defaults.color='#93a1b8';
+  Chart.defaults.font.family='"PingFang SC","Microsoft YaHei",sans-serif';
+  Chart.defaults.borderColor='rgba(255,255,255,.07)';
+  const grad=(ctx,c)=>{const g=ctx.createLinearGradient(0,0,0,320);g.addColorStop(0,c+'55');g.addColorStop(1,c+'00');return g;};
+
+  new Chart(document.getElementById('weightChart'),{
+    type:'line',
+    data:{
+      labels:['第0周','第1周','第2周','第4周','第6周','第8周','第10周','第12周'],
+      datasets:[
+        {label:'体重 kg',data:[70,69.8,69.6,69.0,68.4,67.9,67.4,66.9],
+         borderColor:'#34d399',backgroundColor:c=>grad(c.chart.ctx,'#34d399'),
+         fill:true,tension:.4,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#34d399',yAxisID:'y'},
+        {label:'腰围累计下降 cm',data:[0,.4,.8,1.5,2.2,3,3.8,4.6],
+         borderColor:'#38bdf8',borderDash:[6,5],fill:false,
+         tension:.4,borderWidth:2,pointRadius:4,pointBackgroundColor:'#38bdf8',yAxisID:'y1'}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{legend:{labels:{usePointStyle:true,pointStyle:'circle'}}},
+      scales:{
+        y:{min:66,max:71,title:{display:true,text:'体重 (kg)'},ticks:{stepSize:1}},
+        y1:{position:'right',min:0,max:6,grid:{drawOnChartArea:false},title:{display:true,text:'腰围 ↓ (cm)'}},
+        x:{grid:{display:false}}
+      }
+    }
+  });
+
+  new Chart(document.getElementById('strengthChart'),{
+    type:'line',
+    data:{
+      labels:['W3','W4','W5','W6','W7','W8','W9','W10','W11','W12'],
+      datasets:[
+        {label:'深蹲',data:[30,40,47.5,55,60,65,70,73.5,76.5,80],
+         borderColor:'#34d399',backgroundColor:c=>grad(c.chart.ctx,'#34d399'),
+         fill:true,tension:.35,borderWidth:2.5,pointRadius:3},
+        {label:'卧推',data:[27.5,33,37,41,43.5,46,47.5,49,49.5,50],
+         borderColor:'#fbbf24',fill:false,tension:.35,borderWidth:2,pointRadius:3},
+        {label:'站姿推举',data:[17.5,21,24,26.5,28.5,30,31.5,32.5,33.5,35],
+         borderColor:'#fb7185',fill:false,tension:.35,borderWidth:2,pointRadius:3}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{legend:{labels:{usePointStyle:true,pointStyle:'circle'}}},
+      scales:{
+        y:{beginAtZero:true,max:85,title:{display:true,text:'重量 (kg)'}},
+        x:{grid:{display:false}}
+      }
+    }
+  });
+}
+
+// AOS init (last)
+AOS.init({once:true,duration:700,offset:80,easing:'ease-out-cubic'});
 </script>
 </body>
 </html>
