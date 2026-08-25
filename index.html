@@ -79,6 +79,21 @@ input,select{background:var(--input-bg)!important;backdrop-filter:blur(8px);-web
 .rt-wrap svg{transform:rotate(-90deg)}
 .rt-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:27px;font-weight:800;font-family:var(--font-sans);letter-spacing:1px}
 .rt-btns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+
+/* ===== 书签式训练卡 ===== */
+.bk-rod{height:12px;border-radius:6px;background:linear-gradient(180deg,#8a7355,#6e5a42);box-shadow:0 3px 8px rgba(60,40,20,.28);margin:20px 6px 0;position:relative;z-index:1}
+.bk-row{display:flex;flex-wrap:wrap;gap:18px;padding:0 10px;margin-top:0}
+.bk{width:160px;background:var(--glass);backdrop-filter:blur(12px) saturate(1.3);-webkit-backdrop-filter:blur(12px) saturate(1.3);border:1px solid var(--border);border-top:none;clip-path:polygon(0 0,100% 0,100% 100%,50% calc(100% - 16px),0 100%);padding:0 12px 32px;text-align:center;transition:transform .3s ease,filter .3s}
+.bk:hover{transform:translateY(-7px);filter:brightness(1.04)}
+.bk-head{margin:0 -12px 10px;padding:7px 0;color:#fff;font-family:var(--font-sans);font-weight:800;font-size:12.5px;letter-spacing:3px}
+.lv1{background:#75907f}.lv2{background:#7392a5}.lv3{background:#a67c3d}.lv0{background:#8a8072}
+.bk-name{font-weight:700;font-size:14.5px;font-family:var(--font-serif);line-height:1.4}
+.bk-main{font-family:var(--font-sans);font-size:13px;color:var(--text-soft);margin:7px 0 8px}
+.bk-main b{font-size:17px;color:var(--accent)}
+.bk-rest{display:inline-block;font-size:12.5px;font-weight:700;color:var(--accent);background:rgba(125,148,132,.16);padding:3px 12px;border-radius:999px;font-family:var(--font-sans)}
+.bk-note{font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.55;min-height:34px}
+.bk-link{display:inline-block;margin-top:4px;font-size:11.5px;color:var(--accent2);text-decoration:none;font-family:var(--font-sans)}
+.bk-link:hover{text-decoration:underline}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:radial-gradient(900px 500px at 85% -10%,rgba(163,184,171,.16),transparent 60%),radial-gradient(800px 500px at -10% 20%,rgba(164,188,201,.14),transparent 60%),var(--bg);color:var(--text);font-family:var(--font-serif);line-height:1.9}
@@ -298,6 +313,7 @@ details.ex .ex-body{animation:exopen .38s ease}
   <a href="#roadmap">路线图</a>
   <a href="#phases">训练</a>
   <a href="#playbook">手册</a>
+  <a href="#daycards">训练卡</a>
   <a href="#moves">动作库</a>
   <a href="#diet">饮食</a>
   <a href="#viz">数据</a>
@@ -316,6 +332,7 @@ details.ex .ex-body{animation:exopen .38s ease}
   <a href="#overview"><span>训练总览表</span></a>
   <a href="#phases"><span>阶段详情</span></a>
   <a href="#playbook"><span>执行手册·逐步做</span></a>
+  <a href="#daycards"><span>每日训练卡·书签</span></a>
   <a href="#moves"><span>动作库·18个动作</span></a>
   <a href="#warmup"><span>热身与拉伸</span></a>
   <a href="#diet"><span>饮食系统</span></a>
@@ -539,15 +556,15 @@ details.ex .ex-body{animation:exopen .38s ease}
 
     <h3>A 日 · 自重力量（约 40 分钟）</h3>
     <table>
-      <thead><tr><th>顺序</th><th>内容</th><th>组×量</th><th>说明</th></tr></thead>
+      <thead><tr><th>顺序</th><th>内容</th><th>组×量</th><th>⏱ 组间休</th><th>说明</th></tr></thead>
       <tbody>
-        <tr><td><span class="tago">热身 5′</span></td><td><a href="#warmup" style="color:var(--accent2)">标准热身流程</a>简化版：开合跳×2′+手臂绕环+高抬腿+髋环绕</td><td>—</td><td>必做，跳过=受伤预备役</td></tr>
-        <tr><td>①</td><td><a href="#ex-pushup" style="color:var(--accent2)">俯卧撑</a></td><td>3×接近力竭留2个</td><td>做不了→跪姿；超15个→脚垫高</td></tr>
-        <tr><td>②</td><td><a href="#ex-squat" style="color:var(--accent2)">徒手深蹲</a></td><td>3×15</td><td>蹲至大腿平行，膝盖对脚尖</td></tr>
-        <tr><td>③</td><td><a href="#ex-doorrow" style="color:var(--accent2)">门框划船</a></td><td>3×12</td><td>没条件→毛巾划船/超人挺身</td></tr>
-        <tr><td>④</td><td><a href="#ex-plank" style="color:var(--accent2)">平板支撑</a></td><td>3×30–45″</td><td>塌腰即停</td></tr>
-        <tr><td>⑤</td><td><a href="#ex-bridge" style="color:var(--accent2)">臀桥</a></td><td>3×15</td><td>顶峰夹臀停1秒</td></tr>
-        <tr><td><span class="tagr">拉伸 6′</span></td><td><a href="#warmup" style="color:var(--accent2)">静态拉伸清单</a>：胸/肩/大腿前后/髋 各30″</td><td>—</td><td>组间休息60–90″</td></tr>
+        <tr><td><span class="tago">热身 5′</span></td><td><a href="#warmup" style="color:var(--accent2)">标准热身流程</a>简化版：开合跳×2′+手臂绕环+高抬腿+髋环绕</td><td>—</td><td>—</td><td>必做，跳过=受伤预备役</td></tr>
+        <tr><td>①</td><td><a href="#ex-pushup" style="color:var(--accent2)">俯卧撑</a></td><td>3×接近力竭留2个</td><td><b style="color:var(--accent)">90 秒</b></td><td>做不了→跪姿；超15个→脚垫高</td></tr>
+        <tr><td>②</td><td><a href="#ex-squat" style="color:var(--accent2)">徒手深蹲</a></td><td>3×15</td><td><b style="color:var(--accent)">90 秒</b></td><td>蹲至大腿平行，膝盖对脚尖</td></tr>
+        <tr><td>③</td><td><a href="#ex-doorrow" style="color:var(--accent2)">门框划船</a></td><td>3×12</td><td><b style="color:var(--accent)">90 秒</b></td><td>没条件→毛巾划船/超人挺身</td></tr>
+        <tr><td>④</td><td><a href="#ex-plank" style="color:var(--accent2)">平板支撑</a></td><td>3×30–45″</td><td><b style="color:var(--accent)">60 秒</b></td><td>塌腰即停</td></tr>
+        <tr><td>⑤</td><td><a href="#ex-bridge" style="color:var(--accent2)">臀桥</a></td><td>3×15</td><td><b style="color:var(--accent)">60 秒</b></td><td>顶峰夹臀停1秒</td></tr>
+        <tr><td><span class="tagr">拉伸 6′</span></td><td><a href="#warmup" style="color:var(--accent2)">静态拉伸清单</a>：胸/肩/大腿前后/髋 各30″</td><td>—</td><td>—</td><td>做完直接结束今天</td></tr>
       </tbody>
     </table>
 
@@ -575,24 +592,24 @@ details.ex .ex-body{animation:exopen .38s ease}
     <div class="ok-box"><b>前两次去健身房：</b>只学动作不上重量。空杆对照视频学，请巡场教练免费帮看一眼。<b>为什么：</b>动作模式一旦学歪，后面加的每一公斤都在强化错误轨迹。</div>
     <h3>Workout A（周一/周五轮到时）</h3>
     <table>
-      <thead><tr><th>顺序</th><th>动作</th><th>组×次数</th><th>备注</th></tr></thead>
+      <thead><tr><th>顺序</th><th>动作</th><th>组×次数</th><th>⏱ 组间休</th><th>备注</th></tr></thead>
       <tbody>
-        <tr><td>①</td><td><a href="#ex-bsquat" style="color:var(--accent2)">杠铃深蹲</a></td><td><span class="tagg">3×5+</span></td><td>末组 AMRAP：力竭前保留1–2次</td></tr>
-        <tr><td>②</td><td><a href="#ex-bench" style="color:var(--accent2)">杠铃卧推</a></td><td><span class="tagg">3×5+</span></td><td>肩胛收紧下沉</td></tr>
-        <tr><td>③</td><td><a href="#ex-brow" style="color:var(--accent2)">杠铃划船</a>/坐姿划船</td><td><span class="tagg">3×5+</span></td><td>背部厚度、体态矫正</td></tr>
-        <tr><td>④</td><td><a href="#ex-curl" style="color:var(--accent2)">哑铃弯举</a>+<a href="#ex-lateral" style="color:var(--accent2)">侧平举</a></td><td><span class="tagr">各2×12–15</span></td><td>手臂肩线条</td></tr>
-        <tr><td>⑤</td><td><a href="#ex-plank" style="color:var(--accent2)">平板支撑</a></td><td><span class="tagr">2×45″</span></td><td>收尾核心</td></tr>
+        <tr><td>①</td><td><a href="#ex-bsquat" style="color:var(--accent2)">杠铃深蹲</a></td><td><span class="tagg">3×5+</span></td><td><b style="color:var(--accent)">3 分钟</b></td><td>末组 AMRAP：力竭前保留1–2次</td></tr>
+        <tr><td>②</td><td><a href="#ex-bench" style="color:var(--accent2)">杠铃卧推</a></td><td><span class="tagg">3×5+</span></td><td><b style="color:var(--accent)">3 分钟</b></td><td>肩胛收紧下沉</td></tr>
+        <tr><td>③</td><td><a href="#ex-brow" style="color:var(--accent2)">杠铃划船</a>/坐姿划船</td><td><span class="tagg">3×5+</span></td><td><b style="color:var(--accent)">2.5 分钟</b></td><td>背部厚度、体态矫正</td></tr>
+        <tr><td>④</td><td><a href="#ex-curl" style="color:var(--accent2)">哑铃弯举</a>+<a href="#ex-lateral" style="color:var(--accent2)">侧平举</a></td><td><span class="tagr">各2×12–15</span></td><td><b style="color:var(--accent)">60 秒</b></td><td>两个动作交替算一轮；手臂肩线条</td></tr>
+        <tr><td>⑤</td><td><a href="#ex-plank" style="color:var(--accent2)">平板支撑</a></td><td><span class="tagr">2×45″</span></td><td><b style="color:var(--accent)">60 秒</b></td><td>收尾核心</td></tr>
       </tbody>
     </table>
     <h3>Workout B（周三轮到时，隔次A/B交替）</h3>
     <table>
-      <thead><tr><th>顺序</th><th>动作</th><th>组×次数</th><th>备注</th></tr></thead>
+      <thead><tr><th>顺序</th><th>动作</th><th>组×次数</th><th>⏱ 组间休</th><th>备注</th></tr></thead>
       <tbody>
-        <tr><td>①</td><td><a href="#ex-bsquat" style="color:var(--accent2)">杠铃深蹲</a></td><td><span class="tagg">3×5+</span></td><td>每次都蹲</td></tr>
-        <tr><td>②</td><td><a href="#ex-ohp" style="color:var(--accent2)">站姿推举 OHP</a></td><td><span class="tagg">3×5+</span></td><td>肩宽=衣架子身材核心</td></tr>
-        <tr><td>③</td><td><a href="#ex-pulldown" style="color:var(--accent2)">高位下拉</a></td><td><span class="tagr">3×8–12</span></td><td>引体的前置阶梯</td></tr>
-        <tr><td>④</td><td><a href="#ex-pushdown" style="color:var(--accent2)">绳索下压</a>+<a href="#ex-legcurl" style="color:var(--accent2)">腿弯举</a></td><td><span class="tagr">各2×12–15</span></td><td>三头围度+腘绳平衡</td></tr>
-        <tr><td>⑤</td><td>卷腹/悬垂举腿</td><td><span class="tagr">2×15</span></td><td>腹部</td></tr>
+        <tr><td>①</td><td><a href="#ex-bsquat" style="color:var(--accent2)">杠铃深蹲</a></td><td><span class="tagg">3×5+</span></td><td><b style="color:var(--accent)">3 分钟</b></td><td>每次都蹲</td></tr>
+        <tr><td>②</td><td><a href="#ex-ohp" style="color:var(--accent2)">站姿推举 OHP</a></td><td><span class="tagg">3×5+</span></td><td><b style="color:var(--accent)">3 分钟</b></td><td>肩宽=衣架子身材核心</td></tr>
+        <tr><td>③</td><td><a href="#ex-pulldown" style="color:var(--accent2)">高位下拉</a></td><td><span class="tagr">3×8–12</span></td><td><b style="color:var(--accent)">90 秒</b></td><td>引体的前置阶梯</td></tr>
+        <tr><td>④</td><td><a href="#ex-pushdown" style="color:var(--accent2)">绳索下压</a>+<a href="#ex-legcurl" style="color:var(--accent2)">腿弯举</a></td><td><span class="tagr">各2×12–15</span></td><td><b style="color:var(--accent)">60 秒</b></td><td>交替做省时；三头围度+腘绳平衡</td></tr>
+        <tr><td>⑤</td><td>卷腹 / 悬垂举腿</td><td><span class="tagr">2×15</span></td><td><b style="color:var(--accent)">60 秒</b></td><td>腹部</td></tr>
       </tbody>
     </table>
     <h3>重量规则（新手线性进阶核心——为什么：新手进步靠「加」，不靠「换花样」）</h3>
@@ -619,7 +636,8 @@ details.ex .ex-body{animation:exopen .38s ease}
   <div class="tab-panel card" id="t2">
     <h3 style="margin-top:0">GZCLP 四日轮转（默认每周 3 练：周一/三/五循环 D1→D2→D3→D4）</h3>
     <table>
-      <thead><tr><th>训练日</th><th>T1 主项 5×3+</th><th>T2 副项 3×10</th><th>T3 辅助 3×15+</th><th>收尾</th></tr></thead>
+      <thead><tr><th>训练日</th><th>T1 主项 5×3+</th><th>T2 副项 3×10</th><th>T3 辅助 3×15+</th><th>收尾</th></tr>
+      <tr><th style="color:var(--muted);font-weight:400">⏱ 组间休</th><td><b style="color:var(--accent)">3 分钟</b></td><td><b style="color:var(--accent)">2 分钟</b></td><td><b style="color:var(--accent)">90 秒</b></td><td><b style="color:var(--accent)">60 秒</b></td></tr></thead>
       <tbody>
         <tr><td><span class="tagg">Day 1</span></td><td>深蹲</td><td>卧推</td><td>高位下拉</td><td>核心+侧平举</td></tr>
         <tr><td><span class="tagg">Day 2</span></td><td>推举</td><td>硬拉</td><td>单臂哑铃划船</td><td>二头弯举</td></tr>
@@ -759,6 +777,114 @@ details.ex .ex-body{animation:exopen .38s ease}
         <button class="btn ghost" id="rtReset" style="padding:9px 20px;font-size:13.5px">↺ 重置</button>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ DAY CARDS (BOOKMARKS) ============ -->
+<section id="daycards" data-aos="fade-up">
+  <span class="sec-tag">Day Cards</span>
+  <h2>每日训练卡（书签版 · 小白照抄）</h2>
+  <p class="sub">每张「书签」= 一个动作，写清了 <b style="color:var(--accent)">几组×几次、组间休息多久、第一次怎么做</b>。挂在书架杆上，练完一张翻走一张。</p>
+
+  <div class="ok-box" data-aos="fade-up"><b>休息口诀（背这一句就够）：</b>大项三分钟 / 中项两分钟 / 小项九十秒 / 核心一分钟。<b>为什么休息这么久：</b>大重量练的是神经与力量，能量系统恢复需要 2–3 分钟；休息不足 → 后两组掉次数 → 渐进超负荷失效。「喘」≠效果好，<b>完成质量</b>=效果。</div>
+
+  <div class="tabs" data-aos="fade-up">
+    <button class="tab-btn active" data-tab="dc-p0">P0 · 居家 A/B 日</button>
+    <button class="tab-btn" data-tab="dc-p1">P1 · Workout A / B</button>
+    <button class="tab-btn" data-tab="dc-p2">P2 · Day 1–4</button>
+  </div>
+
+  <!-- P0 -->
+  <div class="tab-panel active" id="dc-p0">
+    <h3 class="bk-day" style="font-family:var(--font-serif)">🏠 A 日 · 自重力量（全程约 40 分钟）</h3>
+    <div class="bk-rod"></div>
+    <div class="bk-row">
+      <div class="bk"><div class="bk-head lv1">第 1 张</div><div class="bk-name">俯卧撑</div><div class="bk-main"><b>3</b> 组 × 接近力竭<b>-2</b> 个</div><div class="bk-rest">⏱ 休 90 秒</div><div class="bk-note">做不满5个→跪姿；轻松超15个→脚垫高</div><a class="bk-link" href="#ex-pushup">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv1">第 2 张</div><div class="bk-name">徒手深蹲</div><div class="bk-main"><b>3</b> 组 × <b>15</b> 次</div><div class="bk-rest">⏱ 休 90 秒</div><div class="bk-note">大腿蹲到平行地面，膝盖对脚尖</div><a class="bk-link" href="#ex-squat">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv1">第 3 张</div><div class="bk-name">门框划船</div><div class="bk-main"><b>3</b> 组 × <b>12</b> 次</div><div class="bk-rest">⏱ 休 90 秒</div><div class="bk-note">身体后倾45°拉到胸口贴门框</div><a class="bk-link" href="#ex-doorrow">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv0">第 4 张</div><div class="bk-name">平板支撑</div><div class="bk-main"><b>3</b> 组 × <b>30–45</b> 秒</div><div class="bk-rest">⏱ 休 60 秒</div><div class="bk-note">塌腰立即停；质量&gt;时长</div><a class="bk-link" href="#ex-plank">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv0">第 5 张</div><div class="bk-name">臀桥</div><div class="bk-main"><b>3</b> 组 × <b>15</b> 次</div><div class="bk-rest">⏱ 休 60 秒</div><div class="bk-note">顶端夹臀停1秒再下</div><a class="bk-link" href="#ex-bridge">详解 ▸</a></div>
+    </div>
+    <div class="card" style="margin-top:20px">
+      <h3 style="margin-top:0">🏃 B 日 · 走跑结合（约 32 分钟）——不是书签，是「循环卡」</h3>
+      <table>
+        <thead><tr><th>轮次</th><th>第 1 周</th><th>第 2 周</th><th>每轮间休</th></tr></thead>
+        <tbody>
+          <tr><td>热身</td><td>快走 5′</td><td>快走 5′</td><td>—</td></tr>
+          <tr><td>主循环</td><td>跑 <b>1′</b> + 走 2′ ×7 轮</td><td>跑 <b>2′</b> + 走 1.5′ ×6 轮</td><td>走路本身就是休息</td></tr>
+          <tr><td>冷身</td><td colspan="2">快走 5′ + 拉伸小腿大腿各30″</td><td>—</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:12.5px;color:var(--muted);margin-bottom:0">强度自检：跑步时<b>能说完整句子、不能唱歌</b>。能唱歌=太慢，说不了话=太快。</p>
+    </div>
+  </div>
+
+  <!-- P1 -->
+  <div class="tab-panel" id="dc-p1">
+    <h3 class="bk-day" style="font-family:var(--font-serif)">🏋️ Workout A（约 60–65 分钟）</h3>
+    <div class="bk-rod"></div>
+    <div class="bk-row">
+      <div class="bk"><div class="bk-head lv1">主项 T1</div><div class="bk-name">杠铃深蹲</div><div class="bk-main"><b>3</b> 组 × <b>5</b> 次<span style="display:block;font-size:11px">(末组多做，留1–2次余力)</span></div><div class="bk-rest">⏱ 休 3 分钟</div><div class="bk-note">热身链：空杆×10→50%×8→70%×5</div><a class="bk-link" href="#ex-bsquat">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv1">主项 T1</div><div class="bk-name">杠铃卧推</div><div class="bk-main"><b>3</b> 组 × <b>5</b> 次<span style="display:block;font-size:11px">(末组留余力)</span></div><div class="bk-rest">⏱ 休 3 分钟</div><div class="bk-note">安全销立好或叫人保护；肩胛夹死</div><a class="bk-link" href="#ex-bench">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv1">主项 T1</div><div class="bk-name">杠铃划船</div><div class="bk-main"><b>3</b> 组 × <b>5</b> 次<span style="display:block;font-size:11px">(末组留余力)</span></div><div class="bk-rest">⏱ 休 2.5 分钟</div><div class="bk-note">躯干45°锁定，拉向下腹</div><a class="bk-link" href="#ex-brow">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv3">辅助</div><div class="bk-name">弯举 ↔ 侧平举<br><span style="font-size:11px;color:var(--muted)">(交替超级组)</span></div><div class="bk-main">各 <b>2</b> 组 × <b>12–15</b> 次</div><div class="bk-rest">⏱ 休 60 秒</div><div class="bk-note">弯举完直接接侧平举算一轮</div><a class="bk-link" href="#ex-curl">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv0">核心</div><div class="bk-name">平板支撑</div><div class="bk-main"><b>2</b> 组 × <b>45</b> 秒</div><div class="bk-rest">⏱ 休 60 秒</div><div class="bk-note">收尾；臀腹夹紧不塌腰</div><a class="bk-link" href="#ex-plank">详解 ▸</a></div>
+    </div>
+
+    <h3 class="bk-day" style="font-family:var(--font-serif);margin-top:26px">🏋️ Workout B（隔次轮换，结构同 A）</h3>
+    <div class="bk-rod"></div>
+    <div class="bk-row">
+      <div class="bk"><div class="bk-head lv1">主项 T1</div><div class="bk-name">杠铃深蹲</div><div class="bk-main"><b>3</b> 组 × <b>5</b> 次+</div><div class="bk-rest">⏱ 休 3 分钟</div><div class="bk-note">每次训练都从深蹲开始</div><a class="bk-link" href="#ex-bsquat">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv1">主项 T1</div><div class="bk-name">站姿推举 OHP</div><div class="bk-main"><b>3</b> 组 × <b>5</b> 次+</div><div class="bk-rest">⏱ 休 3 分钟</div><div class="bk-note">杠贴脸向上，过头后头微回位</div><a class="bk-link" href="#ex-ohp">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv2">副项 T2</div><div class="bk-name">高位下拉</div><div class="bk-main"><b>3</b> 组 × <b>8–12</b> 次</div><div class="bk-rest">⏱ 休 90 秒</div><div class="bk-note">先沉肩再拉；目标12周解锁引体</div><a class="bk-link" href="#ex-pulldown">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv3">辅助</div><div class="bk-name">绳索下压 ↔ 腿弯举</div><div class="bk-main">各 <b>2</b> 组 × <b>12–15</b> 次</div><div class="bk-rest">⏱ 休 60 秒</div><div class="bk-note">交替做省时</div><a class="bk-link" href="#ex-pushdown">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv0">核心</div><div class="bk-name">卷腹/悬垂举腿</div><div class="bk-main"><b>2</b> 组 × <b>15</b> 次</div><div class="bk-rest">⏱ 休 60 秒</div><div class="bk-note">慢起慢落，不抱头借力</div><a class="bk-link" href="#ex-crunch">详解 ▸</a></div>
+    </div>
+  </div>
+
+  <!-- P2 -->
+  <div class="tab-panel" id="dc-p2">
+    <h3 class="bk-day" style="font-family:var(--font-serif)">💎 Day 1（周一轮到时）</h3>
+    <div class="bk-rod"></div>
+    <div class="bk-row">
+      <div class="bk"><div class="bk-head lv1">T1 主项</div><div class="bk-name">深蹲</div><div class="bk-main"><b>5</b> 组 × <b>3</b> 次+</div><div class="bk-rest">⏱ 休 3 分钟</div><div class="bk-note">成功→下次+2.5kg</div><a class="bk-link" href="#ex-bsquat">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv2">T2 副项</div><div class="bk-name">卧推(中等重量)</div><div class="bk-main"><b>3</b> 组 × <b>10</b> 次</div><div class="bk-rest">⏱ 休 2 分钟</div><div class="bk-note">成功→下次+2.5kg</div><a class="bk-link" href="#ex-bench">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv3">T3 辅助</div><div class="bk-name">高位下拉</div><div class="bk-main"><b>3</b> 组 × <b>15</b> 次+</div><div class="bk-rest">⏱ 休 90 秒</div><div class="bk-note">末组≥25次→加重</div><a class="bk-link" href="#ex-pulldown">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv0">收尾</div><div class="bk-name">核心+侧平举</div><div class="bk-main">各 <b>2–3</b> 组</div><div class="bk-rest">⏱ 休 60 秒</div><div class="bk-note">轻重量高次数雕刻</div><a class="bk-link" href="#ex-lateral">详解 ▸</a></div>
+    </div>
+
+    <h3 class="bk-day" style="font-family:var(--font-serif);margin-top:24px">💎 Day 2（周三轮到时）</h3>
+    <div class="bk-rod"></div>
+    <div class="bk-row">
+      <div class="bk"><div class="bk-head lv1">T1 主项</div><div class="bk-name">站姿推举</div><div class="bk-main"><b>5</b> 组 × <b>3</b> 次+</div><div class="bk-rest">⏱ 休 3 分钟</div><div class="bk-note">成功→下次+2.5kg</div><a class="bk-link" href="#ex-ohp">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv2">T2 副项</div><div class="bk-name">硬拉</div><div class="bk-main"><b>3</b> 组 × <b>10</b> 次</div><div class="bk-rest">⏱ 休 2 分钟</div><div class="bk-note">成功→下次+5kg；腰有刺痛即停</div><a class="bk-link" href="#ex-deadlift">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv3">T3 辅助</div><div class="bk-name">单臂哑铃划船</div><div class="bk-main"><b>3</b> 组 × <b>15</b> 次+/侧</div><div class="bk-rest">⏱ 休 90 秒</div><div class="bk-note">先沉肩再屈肘</div><a class="bk-link" href="#ex-brow">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv0">收尾</div><div class="bk-name">二头弯举</div><div class="bk-main"><b>2–3</b> 组 × 12–15</div><div class="bk-rest">⏱ 休 60 秒</div><div class="bk-note">可换锤式弯举</div><a class="bk-link" href="#ex-curl">详解 ▸</a></div>
+    </div>
+
+    <h3 class="bk-day" style="font-family:var(--font-serif);margin-top:24px">💎 Day 3（周五轮到时）</h3>
+    <div class="bk-rod"></div>
+    <div class="bk-row">
+      <div class="bk"><div class="bk-head lv1">T1 主项</div><div class="bk-name">卧推</div><div class="bk-main"><b>5</b> 组 × <b>3</b> 次+</div><div class="bk-rest">⏱ 休 3 分钟</div><div class="bk-note">成功→下次+2.5kg</div><a class="bk-link" href="#ex-bench">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv2">T2 副项</div><div class="bk-name">深蹲(70%重量)</div><div class="bk-main"><b>3</b> 组 × <b>10</b> 次</div><div class="bk-rest">⏱ 休 2 分钟</div><div class="bk-note">比Day1轻，攒容量</div><a class="bk-link" href="#ex-bsquat">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv3">T3 辅助</div><div class="bk-name">高位下拉</div><div class="bk-main"><b>3</b> 组 × <b>15</b> 次+</div><div class="bk-rest">⏱ 休 90 秒</div><div class="bk-note">或换引体辅助</div><a class="bk-link" href="#ex-pulldown">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv0">收尾</div><div class="bk-name">三头下压+腿举</div><div class="bk-main">各 <b>2–3</b> 组</div><div class="bk-rest">⏱ 休 60 秒</div><div class="bk-note">手臂围度日</div><a class="bk-link" href="#ex-pushdown">详解 ▸</a></div>
+    </div>
+
+    <h3 class="bk-day" style="font-family:var(--font-serif);margin-top:24px">💎 Day 4（下周一轮到时）</h3>
+    <div class="bk-rod"></div>
+    <div class="bk-row">
+      <div class="bk"><div class="bk-head lv1">T1 主项</div><div class="bk-name">硬拉</div><div class="bk-main"><b>5</b> 组 × <b>3</b> 次+</div><div class="bk-rest">⏱ 休 3 分钟</div><div class="bk-note">成功→下次+5kg</div><a class="bk-link" href="#ex-deadlift">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv2">T2 副项</div><div class="bk-name">站姿推举</div><div class="bk-main"><b>3</b> 组 × <b>10</b> 次</div><div class="bk-rest">⏱ 休 2 分钟</div><div class="bk-note">成功→下次+2.5kg</div><a class="bk-link" href="#ex-ohp">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv3">T3 辅助</div><div class="bk-name">划船类</div><div class="bk-main"><b>3</b> 组 × <b>15</b> 次+</div><div class="bk-rest">⏱ 休 90 秒</div><div class="bk-note">坐姿器械划船亦可</div><a class="bk-link" href="#ex-brow">详解 ▸</a></div>
+      <div class="bk"><div class="bk-head lv0">收尾</div><div class="bk-name">核心+弯举</div><div class="bk-main">各 <b>2–3</b> 组</div><div class="bk-rest">⏱ 休 60 秒</div><div class="bk-note">周末前收工</div><a class="bk-link" href="#ex-crunch">详解 ▸</a></div>
+    </div>
+  </div>
+
+  <div class="grid g3" style="margin-top:22px">
+    <div class="card" data-aos="zoom-in"><h3 style="margin-top:0">❓ 怎么算「一组」？</h3><p style="font-size:13.5px;color:var(--text-soft);margin-bottom:0">连续做完规定次数 = 1 组，然后按书签上的时间休息，再做下一组。<br>例：<b>3×5</b> 就是 → 做5个 → 休3分钟 → 做5个 → 休3分钟 → 做5个 → 这个动作毕业，去下一张书签。</p></div>
+    <div class="card" data-aos="zoom-in" data-aos-delay="120"><h3 style="margin-top:0">❓ 组间该干什么？</h3><p style="font-size:13.5px;color:var(--text-soft);margin-bottom:0">① 站起来走两步深呼吸 ② 用页面里的<b>计时器</b>倒计时 ③ 在 Hevy 里记下刚才的重量。<br>别坐下别瘫着别刷视频——体温和注意力掉了，下一组质量就掉。</p></div>
+    <div class="card" data-aos="zoom-in" data-aos-delay="240"><h3 style="margin-top:0">❓ 「3×5+」的 + 是什么？</h3><p style="font-size:13.5px;color:var(--text-soft);margin-bottom:0">最后一组尽力多做，但<b style="color:var(--danger)">杠速明显变慢就停</b>（还剩1–2次力气的感觉）。这个数字决定下次加多少重量——它就是进步的油门。</p></div>
   </div>
 </section>
 
