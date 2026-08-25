@@ -9,40 +9,55 @@
 <link rel="stylesheet" href="vendor/aos.css">
 <style>
 :root{
-  --bg:#0b1220;--card:rgba(255,255,255,.045);--border:rgba(255,255,255,.09);
-  --text:#e8edf5;--muted:#93a1b8;--accent:#34d399;--accent2:#38bdf8;
-  --warn:#fbbf24;--danger:#fb7185;
-  --grad:linear-gradient(120deg,#34d399,#38bdf8);--radius:18px;
-  --btn-txt:#06251c;--nav-bg:rgba(11,18,32,.78);--panel-bg:rgba(11,18,32,.6);
-  --hero-veil:linear-gradient(180deg,rgba(11,18,32,.55),rgba(11,18,32,.82) 60%,var(--bg));
-  --band-veil:linear-gradient(90deg,rgba(11,18,32,.92),rgba(11,18,32,.45));
-  --text-soft:#c9d4e4;--warn-soft:#ffd9a8;
-  --input-bg:#101a2e;--chk-border:#3f5068;--dot:#2c3a52;--ticker-text:#b9c6da;
-  --num-dim:rgba(255,255,255,.16);--hint-border:rgba(255,255,255,.35);
-  --grid-dot:rgba(255,255,255,.03);--hover-row:rgba(255,255,255,.025);
-  --chip-bg:rgba(255,255,255,.03);--chart-grid:rgba(255,255,255,.07);
-  --shadow:0 18px 44px rgba(0,0,0,.35);
+  --bg:#262320;--card:rgba(46,42,37,.55);--border:rgba(232,224,208,.1);
+  --text:#e8e2d6;--muted:#a89f8f;--accent:#a3b8ab;--accent2:#a4bcc9;
+  --warn:#d4b483;--danger:#cf9a90;
+  --grad:linear-gradient(120deg,#a3b8ab,#a4bcc9);--radius:10px;
+  --font-serif:Georgia,"Noto Serif SC","Source Han Serif SC","STZhongsong","SimSun",serif;
+  --font-sans:"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,sans-serif;
+  --btn-txt:#2e2a24;--nav-bg:rgba(38,35,32,.82);--panel-bg:rgba(38,35,32,.66);
+  --hero-veil:linear-gradient(180deg,rgba(38,35,32,.45),rgba(38,35,32,.8) 60%,var(--bg));
+  --band-veil:linear-gradient(90deg,rgba(38,35,32,.9),rgba(38,35,32,.4));
+  --text-soft:#c9c1b2;--warn-soft:#d4b483;
+  --input-bg:#332f2a;--chk-border:#6e6558;--dot:#565046;--ticker-text:#c9c1b2;
+  --num-dim:rgba(232,224,208,.16);--hint-border:rgba(232,224,208,.35);
+  --grid-dot:rgba(232,224,208,.035);--hover-row:rgba(232,224,208,.03);
+  --chip-bg:rgba(232,224,208,.045);--chart-grid:rgba(232,224,208,.09);
+  --shadow:0 14px 36px rgba(0,0,0,.3);
 }
 [data-theme="light"]{
-  --bg:#f2f5fa;--card:rgba(255,255,255,.82);--border:#dce4f0;
-  --text:#182338;--muted:#5d6d88;--accent:#0ca678;--accent2:#0077cc;
-  --warn:#b45309;--danger:#dc2626;
-  --grad:linear-gradient(120deg,#0ca678,#0284c7);
-  --btn-txt:#ffffff;--nav-bg:rgba(247,250,253,.85);--panel-bg:rgba(247,250,253,.75);
-  --hero-veil:linear-gradient(180deg,rgba(242,245,250,.30),rgba(242,245,250,.60) 55%,#f2f5fa);
-  --band-veil:linear-gradient(90deg,rgba(240,244,250,.94),rgba(240,244,250,.35));
-  --text-soft:#31405c;--warn-soft:#92600a;
-  --input-bg:#ffffff;--chk-border:#9fb0c8;--dot:#b6c4da;--ticker-text:#31405c;
-  --num-dim:rgba(24,35,56,.14);--hint-border:rgba(24,35,56,.3);
-  --grid-dot:rgba(24,35,56,.05);--hover-row:rgba(20,40,80,.045);
-  --chip-bg:rgba(20,40,80,.05);--chart-grid:rgba(24,35,56,.08);
-  --shadow:0 14px 34px rgba(25,60,110,.12);
+  --bg:#f4efe6;--card:rgba(253,250,244,.86);--border:#e3dac8;
+  --text:#3f3a31;--muted:#8a8072;--accent:#75907f;--accent2:#7392a5;
+  --warn:#a67c3d;--danger:#b56a5d;
+  --grad:linear-gradient(120deg,#7d9484,#7e97a8);
+  --btn-txt:#ffffff;--nav-bg:rgba(248,244,236,.9);--panel-bg:rgba(248,244,236,.82);
+  --hero-veil:linear-gradient(180deg,rgba(244,239,230,.32),rgba(244,239,230,.62) 55%,#f4efe6);
+  --band-veil:linear-gradient(90deg,rgba(244,239,230,.94),rgba(244,239,230,.38));
+  --text-soft:#5a5244;--warn-soft:#8a6a35;
+  --input-bg:#fdfaf3;--chk-border:#c9bda5;--dot:#cfc4ae;--ticker-text:#5a5244;
+  --num-dim:rgba(63,58,49,.16);--hint-border:rgba(63,58,49,.32);
+  --grid-dot:rgba(120,100,70,.06);--hover-row:rgba(140,110,60,.05);
+  --chip-bg:rgba(140,110,60,.06);--chart-grid:rgba(90,80,60,.13);
+  --shadow:0 10px 28px rgba(96,76,44,.13);
 }
 [data-theme="light"] .orb{opacity:.32}
 [data-theme="light"] body::after{opacity:.035}
+
+/* ===== 书页质感 × 莫兰迪 ===== */
+button,input,select,textarea,.sec-tag,.tagr,.tagg,.tago,.tagx,.chip,.ex-phase,.muscle,.wday,.stat span{font-family:var(--font-sans)}
+h1,h2,h3,h4,.band-quote,.quote,.ex-name,.logo{font-family:var(--font-serif);letter-spacing:.02em}
+.sec-tag{color:var(--accent);letter-spacing:4px;font-weight:600;gap:12px}
+.sec-tag::before{width:34px;height:1px;background:var(--border);opacity:1.2}
+.sec-tag::after{content:"";width:34px;height:1px;background:var(--border)}
+h2{font-weight:700}
+.card{box-shadow:0 1px 3px rgba(80,60,30,.06)}
+.t-card,.a-item,.good,.bad,.mchip,.palm .p,details.ex,details.faq,#todayCard{border-radius:10px}
+.quote{background:none;border:none;border-top:1px solid var(--border);border-bottom:1px solid var(--border);border-radius:0;padding:30px 20px;font-size:17px;color:var(--text-soft)}
+.band-quote em{font-style:normal}
+.ticker-track span{font-family:var(--font-serif)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:radial-gradient(900px 500px at 85% -10%,rgba(56,189,248,.14),transparent 60%),radial-gradient(800px 500px at -10% 20%,rgba(52,211,153,.12),transparent 60%),var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,sans-serif;line-height:1.75}
+body{background:radial-gradient(900px 500px at 85% -10%,rgba(163,184,171,.16),transparent 60%),radial-gradient(800px 500px at -10% 20%,rgba(164,188,201,.14),transparent 60%),var(--bg);color:var(--text);font-family:var(--font-serif);line-height:1.9}
 ::selection{background:rgba(52,211,153,.35)}
 #progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad);z-index:100}
 nav{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(14px);background:var(--nav-bg);border-bottom:1px solid var(--border)}
@@ -50,7 +65,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(14px);ba
 .logo{font-weight:800;margin-right:auto;letter-spacing:.5px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:15px}
 nav a{color:var(--muted);text-decoration:none;font-size:12.5px;padding:6px 10px;border-radius:999px;transition:.25s}
 nav a:hover{color:var(--text);background:rgba(255,255,255,.06)}
-nav a.active{color:var(--btn-txt);background:linear-gradient(120deg,#34d399,#7dd3fc);font-weight:700}
+nav a.active{color:var(--btn-txt);background:linear-gradient(120deg,#7d9484,#7dd3fc);font-weight:700}
 
 /* sidebar toc */
 #toc{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:80;display:none;flex-direction:column;background:var(--panel-bg);border:1px solid var(--border);border-radius:14px;padding:12px 10px;backdrop-filter:blur(8px)}
@@ -132,7 +147,7 @@ ol.rules,ul.rules{padding-left:20px;font-size:14px;color:var(--text-soft)}ol.rul
 .tab-panel{display:none}.tab-panel.active{display:block;animation:fadeUp .45s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1}}
 .grid-timeline{position:relative;margin-top:36px;padding-left:34px}
-.grid-timeline::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:3px;background:linear-gradient(180deg,#34d399,#38bdf8);border-radius:3px;opacity:.55}
+.grid-timeline::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:3px;background:linear-gradient(180deg,#7d9484,#7e97a8);border-radius:3px;opacity:.55}
 .t-node{position:relative;margin-bottom:24px}
 .t-node::before{content:"";position:absolute;left:-31px;top:8px;width:17px;height:17px;border-radius:50%;background:var(--bg);border:4px solid var(--accent)}
 .t-node:nth-child(2)::before{border-color:var(--accent2)}.t-node:nth-child(3)::before{border-color:var(--warn)}
@@ -198,7 +213,7 @@ main>section{counter-increment:secnum}
 main>section h2::after{content:"/" counter(secnum,decimal-leading-zero);margin-left:12px;font-size:.5em;color:var(--num-dim);font-weight:900;letter-spacing:3px;vertical-align:middle}
 
 /* hero bg photo + ken burns + parallax */
-.hero-bg{position:absolute;inset:0;z-index:0;background:url('img/hero.jpg') center/cover no-repeat;animation:kenburns 26s ease-in-out infinite alternate;will-change:transform}
+.hero-bg{position:absolute;inset:0;z-index:0;background:url('img/squat.jpg') center/cover no-repeat;animation:kenburns 26s ease-in-out infinite alternate;will-change:transform}
 .hero-veil{position:absolute;inset:0;z-index:1;background:var(--hero-veil)}
 @keyframes kenburns{from{transform:scale(1) translateY(0)}to{transform:scale(1.14) translateY(-18px)}}
 .scroll-hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:2;width:26px;height:42px;border:2px solid var(--hint-border);border-radius:14px;display:flex;justify-content:center;padding-top:7px}
@@ -228,7 +243,7 @@ header.hero .hero-inner{animation:none}
 .ex:hover .ex-icon{transform:translateY(-3px) scale(1.06)}
 .ex[open] .ex-icon svg .pulse{animation:pulseG 2.4s ease-in-out infinite}
 @keyframes pulseG{0%,100%{opacity:.85}50%{opacity:.45}}
-.ex summary .vid{flex:none;margin-left:6px;font-size:11.5px;font-weight:700;color:var(--btn-txt);background:linear-gradient(120deg,#7dd3fc,#38bdf8);border-radius:999px;padding:3px 12px;text-decoration:none;transition:.25s}
+.ex summary .vid{flex:none;margin-left:6px;font-size:11.5px;font-weight:700;color:var(--btn-txt);background:var(--grad);border-radius:999px;padding:3px 12px;text-decoration:none;transition:.25s;font-family:var(--font-sans)}
 .ex summary .vid:hover{transform:translateY(-2px) scale(1.05);box-shadow:0 6px 18px rgba(56,189,248,.4)}
 
 /* details open animation */
@@ -1097,7 +1112,7 @@ details.ex .ex-body{animation:exopen .38s ease}
   <div class="duo" style="margin-top:22px">
     <div class="card" data-aos="fade-right">
       <div style="display:flex;align-items:center;gap:16px;margin-bottom:14px"><span class="tagg" style="font-size:14px">内调 70%</span><div style="height:12px;border-radius:6px;background:var(--grad);flex:1"></div><span style="font-size:13px;color:var(--muted)">早睡·戒糖·低油·多水多蔬果·规律运动（已含在本计划）</span></div>
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px"><span class="tagr" style="font-size:14px">外护 30%</span><div style="height:12px;border-radius:6px;background:linear-gradient(90deg,#38bdf8,#818cf8);flex:1"></div><span style="font-size:13px;color:var(--muted)">三件套足够，不要叠太多产品</span></div>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px"><span class="tagr" style="font-size:14px">外护 30%</span><div style="height:12px;border-radius:6px;background:linear-gradient(90deg,#7e97a8,#818cf8);flex:1"></div><span style="font-size:13px;color:var(--muted)">三件套足够，不要叠太多产品</span></div>
       <table>
         <thead><tr><th>时间</th><th>步骤</th><th>要点</th></tr></thead>
         <tbody>
@@ -1464,7 +1479,7 @@ document.querySelectorAll('[data-count]').forEach(el=>statIO.observe(el));
 
 // particles
 if(window.particlesJS){
-  particlesJS('particles',{particles:{number:{value:55,density:{enable:true,value_area:900}},color:{value:['#34d399','#38bdf8']},shape:{type:'circle'},opacity:{value:.28,random:true},size:{value:2.6,random:true},line_linked:{enable:true,distance:130,color:'#34d399',opacity:.14,width:1},move:{enable:true,speed:.7,direction:'none',random:true,out_mode:'out'}},interactivity:{detect_on:'canvas',events:{onhover:{enable:true,mode:'grab'},onclick:{enable:false},resize:true},modes:{grab:{distance:150,line_linked:{opacity:.32}}}},retina_detect:true});
+  particlesJS('particles',{particles:{number:{value:55,density:{enable:true,value_area:900}},color:{value:['#7d9484','#7e97a8']},shape:{type:'circle'},opacity:{value:.28,random:true},size:{value:2.6,random:true},line_linked:{enable:true,distance:130,color:'#7d9484',opacity:.14,width:1},move:{enable:true,speed:.7,direction:'none',random:true,out_mode:'out'}},interactivity:{detect_on:'canvas',events:{onhover:{enable:true,mode:'grab'},onclick:{enable:false},resize:true},modes:{grab:{distance:150,line_linked:{opacity:.32}}}},retina_detect:true});
 }
 
 // charts（跟随主题配色，切换时整体重建）
@@ -1486,8 +1501,8 @@ function buildStaticCharts(){
     type:'line',
     data:{labels:['第0周','第1周','第2周','第4周','第6周','第8周','第10周','第12周'],
       datasets:[
-        {label:'体重 kg',data:[70,69.8,69.6,69.0,68.4,67.9,67.4,66.9],borderColor:'#34d399',backgroundColor:c=>safeGrad(c,'#34d399'),fill:true,tension:.4,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#34d399',yAxisID:'y'},
-        {label:'腰围累计下降 cm',data:[0,.4,.8,1.5,2.2,3,3.8,4.6],borderColor:'#38bdf8',borderDash:[6,5],fill:false,tension:.4,borderWidth:2,pointRadius:4,pointBackgroundColor:'#38bdf8',yAxisID:'y1'}
+        {label:'体重 kg',data:[70,69.8,69.6,69.0,68.4,67.9,67.4,66.9],borderColor:'#7d9484',backgroundColor:c=>safeGrad(c,'#7d9484'),fill:true,tension:.4,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#7d9484',yAxisID:'y'},
+        {label:'腰围累计下降 cm',data:[0,.4,.8,1.5,2.2,3,3.8,4.6],borderColor:'#7e97a8',borderDash:[6,5],fill:false,tension:.4,borderWidth:2,pointRadius:4,pointBackgroundColor:'#7e97a8',yAxisID:'y1'}
       ]},
     options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
       plugins:{legend:{labels:{usePointStyle:true,pointStyle:'circle'}}},
@@ -1500,9 +1515,9 @@ function buildStaticCharts(){
     type:'line',
     data:{labels:['W3','W4','W5','W6','W7','W8','W9','W10','W11','W12'],
       datasets:[
-        {label:'深蹲',data:[30,40,47.5,55,60,65,70,73.5,76.5,80],borderColor:'#34d399',backgroundColor:c=>safeGrad(c,'#34d399'),fill:true,tension:.35,borderWidth:2.5,pointRadius:3},
-        {label:'卧推',data:[27.5,33,37,41,43.5,46,47.5,49,49.5,50],borderColor:'#fbbf24',fill:false,tension:.35,borderWidth:2,pointRadius:3},
-        {label:'站姿推举',data:[17.5,21,24,26.5,28.5,30,31.5,32.5,33.5,35],borderColor:'#fb7185',fill:false,tension:.35,borderWidth:2,pointRadius:3}
+        {label:'深蹲',data:[30,40,47.5,55,60,65,70,73.5,76.5,80],borderColor:'#7d9484',backgroundColor:c=>safeGrad(c,'#7d9484'),fill:true,tension:.35,borderWidth:2.5,pointRadius:3},
+        {label:'卧推',data:[27.5,33,37,41,43.5,46,47.5,49,49.5,50],borderColor:'#c2a06b',fill:false,tension:.35,borderWidth:2,pointRadius:3},
+        {label:'站姿推举',data:[17.5,21,24,26.5,28.5,30,31.5,32.5,33.5,35],borderColor:'#c49792',fill:false,tension:.35,borderWidth:2,pointRadius:3}
       ]},
     options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
       plugins:{legend:{labels:{usePointStyle:true,pointStyle:'circle'}}},
@@ -1520,7 +1535,7 @@ const FIG=(hi,back)=>'<svg viewBox="0 0 44 60" xmlns="http://www.w3.org/2000/svg
 '<path d="M16 31 L13 54 M28 31 L31 54"/>'+
 (back?'<path d="M15 15 L10 29 M29 15 L34 29"/>':'')+
 '</g><g class="pulse">'+hi+'</g></svg>';
-const C='#34d399',B='#38bdf8',Y='#fbbf24',R='#fb7185';
+const C='#7d9484',B='#7e97a8',Y='#c2a06b',R='#c49792';
 const ell=(x,y,rx,ry,c,rot)=>'<ellipse cx="'+x+'" cy="'+y+'" rx="'+rx+'" ry="'+ry+'" fill="'+c+'" opacity=".85" transform="rotate('+(rot||0)+' '+x+' '+y+')"/>';
 const EXICON={
  chest:FIG(ell(17.5,20,4.2,3.4,C,-12)+ell(26.5,20,4.2,3.4,C,12)),
@@ -1608,8 +1623,8 @@ function renderMeasures(){
   const projW=[70,69.8,69.6,69.0,68.4,67.9,67.4,66.9].slice(0,Math.max(measures.length,2));
   const projC=[0,.4,.8,1.5,2.2,3,3.8,4.6].slice(0,Math.max(measures.length,2));
   const cfg={type:'line',data:{labels:labels.length?labels:['—'],datasets:[
-    {label:'我的体重kg',data:w,borderColor:'#34d399',borderWidth:2.5,tension:.35,pointRadius:3},
-    {label:'我的腰围cm',data:cw,borderColor:'#fbbf24',borderWidth:2.5,tension:.35,pointRadius:3,yAxisID:'y1'},
+    {label:'我的体重kg',data:w,borderColor:'#7d9484',borderWidth:2.5,tension:.35,pointRadius:3},
+    {label:'我的腰围cm',data:cw,borderColor:'#c2a06b',borderWidth:2.5,tension:.35,pointRadius:3,yAxisID:'y1'},
     {label:'预测体重',data:projW,borderColor:'rgba(52,211,153,.4)',borderDash:[5,5],borderWidth:1.5,pointRadius:0,fill:false},
     {label:'预测腰围降幅',data:projC,borderColor:'rgba(56,189,248,.35)',borderDash:[5,5],borderWidth:1.5,pointRadius:0,fill:false,yAxisID:'y1'}
   ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{boxWidth:10,usePointStyle:true}}},scales:{y:{title:{display:true,text:'kg'}},y1:{position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'cm'}},x:{grid:{display:false}}}}};
