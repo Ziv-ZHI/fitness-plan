@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>90天蜕变计划 · 改善皮肤 · 瘦脸 · 薄肌</title>
+<meta name="description" content="为20岁大学生定制的12周健身计划：18个动作逐一拆解（原理/步骤/错误/平替）、食堂饮食系统、皮肤管理、智能训练工具箱。基于第一性原理与对抗性设计。">
 <link rel="stylesheet" href="vendor/aos.css">
 <style>
 :root{
@@ -200,6 +201,8 @@ header.hero .hero-inner{animation:none}
 .ex:hover .ex-icon{transform:translateY(-3px) scale(1.06)}
 .ex[open] .ex-icon svg .pulse{animation:pulseG 2.4s ease-in-out infinite}
 @keyframes pulseG{0%,100%{opacity:.85}50%{opacity:.45}}
+.ex summary .vid{flex:none;margin-left:6px;font-size:11.5px;font-weight:700;color:#06251c;background:linear-gradient(120deg,#7dd3fc,#38bdf8);border-radius:999px;padding:3px 12px;text-decoration:none;transition:.25s}
+.ex summary .vid:hover{transform:translateY(-2px) scale(1.05);box-shadow:0 6px 18px rgba(56,189,248,.4)}
 
 /* details open animation */
 details.ex .ex-body{animation:exopen .38s ease}
@@ -231,6 +234,7 @@ details.ex .ex-body{animation:exopen .38s ease}
   <a href="#moves">动作库</a>
   <a href="#diet">饮食</a>
   <a href="#viz">数据</a>
+  <a href="#tools">工具箱</a>
   <a href="#tracking">追踪</a>
   <a href="#special">预案</a>
   <a href="#faq">FAQ</a>
@@ -249,6 +253,7 @@ details.ex .ex-body{animation:exopen .38s ease}
   <a href="#skin"><span>皮肤管理</span></a>
   <a href="#sleep"><span>作息表</span></a>
   <a href="#viz"><span>数据可视化</span></a>
+  <a href="#tools"><span>智能工具箱</span></a>
   <a href="#tracking"><span>追踪调整</span></a>
   <a href="#special"><span>特殊时期预案</span></a>
   <a href="#terms"><span>术语表</span></a>
@@ -1133,6 +1138,85 @@ details.ex .ex-body{animation:exopen .38s ease}
   </div>
 </section>
 
+<!-- ============ TOOLS ============ -->
+<section id="tools" data-aos="fade-up">
+  <span class="sec-tag">Toolbox</span>
+  <h2>智能工具箱（数据存在你自己的浏览器里）</h2>
+  <p class="sub">为什么要有这一节：<b style="color:var(--accent)">计划的敌人是「站在健身房门口想不起来该干嘛」。</b>下面四个工具把纸面计划变成随身的教练——所有数据仅保存在你的浏览器本地（localStorage），不上传任何服务器。</p>
+
+  <div class="grid g2" style="margin-top:24px">
+    <!-- 今日训练 -->
+    <div class="card" data-aos="fade-right">
+      <h3 style="margin-top:0">📅 今日训练生成器</h3>
+      <p style="font-size:13px;color:var(--muted)">设定你的开始日期后，每天打开本页自动告诉你：第几周·哪个阶段·今天练什么·每组几次。</p>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0">
+        <label style="font-size:13px">开始日期：</label>
+        <input type="date" id="startDate" style="background:#101a2e;border:1px solid var(--border);color:var(--text);padding:8px 10px;border-radius:8px;font-family:inherit">
+        <button class="tab-btn" id="saveStart" style="padding:8px 18px">保存</button>
+        <button class="tab-btn" id="clearStart" style="padding:8px 18px;border-color:rgba(251,113,133,.4);color:var(--danger)">重置</button>
+      </div>
+      <div id="todayCard" style="border:1px solid var(--border);border-radius:14px;padding:18px;background:rgba(52,211,153,.05);min-height:120px"></div>
+    </div>
+
+    <!-- 周测量追踪 -->
+    <div class="card" data-aos="fade-left">
+      <h3 style="margin-top:0">📈 我的体重 / 腰围曲线</h3>
+      <p style="font-size:13px;color:var(--muted)">每周日录入一次，虚线是本计划的预测轨迹——你的实线比预测更重要。</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0">
+        <input type="number" id="inWeight" placeholder="体重kg" step="0.1" style="width:90px;background:#101a2e;border:1px solid var(--border);color:var(--text);padding:8px;border-radius:8px">
+        <input type="number" id="inWaist" placeholder="腰围cm" step="0.1" style="width:90px;background:#101a2e;border:1px solid var(--border);color:var(--text);padding:8px;border-radius:8px">
+        <button class="tab-btn" id="addMeasure" style="padding:8px 16px">记录本周</button>
+        <button class="tab-btn" id="undoMeasure" style="padding:8px 16px;border-color:rgba(251,113,133,.4);color:var(--danger)">撤销上一条</button>
+      </div>
+      <div style="position:relative;height:240px"><canvas id="measureChart"></canvas></div>
+    </div>
+
+    <!-- 重量速记本 -->
+    <div class="card" data-aos="fade-right">
+      <h3 style="margin-top:0">🏋️ GZCLP 重量速记本</h3>
+      <p style="font-size:13px;color:var(--muted)">记录每次正式组成绩，自动执行进阶规则：成功→建议加重；同一动作失败2次→建议减10%重爬。</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0">
+        <select id="liftName" style="background:#101a2e;border:1px solid var(--border);color:var(--text);padding:8px;border-radius:8px">
+          <option value="深蹲">深蹲</option><option value="卧推">卧推</option><option value="推举">站姿推举</option>
+          <option value="硬拉">硬拉</option><option value="划船">杠铃划船</option><option value="高位下拉">高位下拉</option>
+        </select>
+        <input type="number" id="liftKg" placeholder="kg" step="0.5" style="width:80px;background:#101a2e;border:1px solid var(--border);color:var(--text);padding:8px;border-radius:8px">
+        <select id="liftRes" style="background:#101a2e;border:1px solid var(--border);color:var(--text);padding:8px;border-radius:8px">
+          <option value="ok">✅ 全部完成</option><option value="fail">❌ 未完成</option>
+        </select>
+        <button class="tab-btn" id="saveLift" style="padding:8px 16px">记录</button>
+      </div>
+      <div id="liftTable" style="font-size:13.5px"></div>
+    </div>
+
+    <!-- 数据导出 -->
+    <div class="card" data-aos="fade-left">
+      <h3 style="margin-top:0">💾 数据备份（换设备必备）</h3>
+      <p style="font-size:13px;color:var(--muted)">打卡勾选、开始日期、测量曲线、重量记录全部打包为一个 JSON 文件。<b>为什么重要：</b>清浏览器缓存/换手机会丢本地数据。</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0">
+        <button class="btn primary" id="exportData" style="padding:10px 22px;font-size:13.5px">导出备份文件</button>
+        <label class="btn ghost" style="padding:10px 22px;font-size:13.5px;cursor:pointer">导入备份<input type="file" id="importData" accept=".json" style="display:none"></label>
+      </div>
+      <div id="importMsg" style="font-size:13px;color:var(--accent)"></div>
+    </div>
+  </div>
+
+  <!-- 健康筛查 -->
+  <div class="card" style="margin-top:16px;border-color:rgba(251,191,36,.35)" data-aos="fade-up">
+    <h3 style="margin-top:0">🩺 开练前健康自查（PAR-Q 简版 · 专业计划的第一道闸门）</h3>
+    <p style="font-size:13px;color:#ffd9a8">为什么放最前面：运动医学要求开始训练前先排除心血管与骨骼禁忌。以下任一答「是」，请先去医院/校医做一次评估再开始，这不是浪费时间，是让计划能跑满 12 周的保险。</p>
+    <ul class="chk">
+      <li><label><input type="checkbox" data-k="par1"><i class="box"></i><span class="txt">医生说过我有心脏问题 / 只应在医生建议下才能运动</span></label></li>
+      <li><label><input type="checkbox" data-k="par2"><i class="box"></i><span class="txt">活动时有胸痛 / 近期静息时也有过胸痛</span></label></li>
+      <li><label><input type="checkbox" data-k="par3"><i class="box"></i><span class="txt">曾因头晕失去平衡 / 曾有过意识丧失</span></label></li>
+      <li><label><input type="checkbox" data-k="par4"><i class="box"></i><span class="txt">有骨骼关节问题（背/膝/髋）且会因活动加重</span></label></li>
+      <li><label><input type="checkbox" data-k="par5"><i class="box"></i><span class="txt">正在服用降压药/心脏病类药物</span></label></li>
+      <li><label><input type="checkbox" data-k="par6"><i class="box"></i><span class="txt">还有其他身体原因导致不建议运动</span></label></li>
+    </ul>
+    <div id="parResult" style="margin-top:10px;font-size:14px"></div>
+  </div>
+</section>
+
 <!-- ============ TRACKING ============ -->
 <section id="tracking" data-aos="fade-up">
   <span class="sec-tag">Tracking</span>
@@ -1416,11 +1500,151 @@ const EXICON={
  cardio:'<svg viewBox="0 0 44 60" xmlns="http://www.w3.org/2000/svg"><path d="M22 50 C10 40 6 32 6 25 a8 8 0 0 1 16 -3 a8 8 0 0 1 16 3 c0 7 -4 15 -16 25z" fill="none" stroke="'+R+'" stroke-width="2"/><path d="M10 27 h7 l3 -6 4 12 3 -6 h7" fill="none" stroke="'+C+'" stroke-width="2" stroke-linecap="round"/></svg>'
 };
 const GROUP={'ex-pushup':'chest','ex-bench':'chest','ex-ohp':'shoulders','ex-lateral':'shoulders','ex-pushdown':'triceps','ex-curl':'biceps','ex-doorrow':'back','ex-brow':'lats','ex-pulldown':'lats','ex-facepull':'shoulders','ex-squat':'quads','ex-bsquat':'quads','ex-deadlift':'hams','ex-bridge':'glutes','ex-legcurl':'hams','ex-plank':'core','ex-crunch':'core','ex-run':'cardio'};
+// 视频演示按钮：文字教不会动作，动态视觉示范才能（运觉学习第一性）
+const VIDEOKW={'ex-pushup':'俯卧撑 标准动作 教程','ex-bench':'杠铃卧推 教学 新手','ex-ohp':'站姿杠铃推举 教学','ex-lateral':'哑铃侧平举 教学','ex-pushdown':'绳索下压 三头 教学','ex-curl':'哑铃弯举 标准 教程','ex-doorrow':'划船 自重 门框 教程','ex-brow':'杠铃划船 教学','ex-pulldown':'高位下拉 背部 教学','ex-facepull':'面拉 face pull 教学','ex-squat':'徒手深蹲 标准姿势','ex-bsquat':'杠铃深蹲 教学 新手','ex-deadlift':'硬拉 教学 新手 直腿','ex-bridge':'臀桥 标准 教程','ex-legcurl':'腿弯举 器械 教学','ex-plank':'平板支撑 标准','ex-crunch':'悬垂举腿 卷腹 教学','ex-run':'零基础跑步 走跑结合'};
 document.querySelectorAll('details.ex').forEach(d=>{
   const g=GROUP[d.id];if(!g||!EXICON[g])return;
   const s=document.createElement('span');s.className='ex-icon';s.innerHTML=EXICON[g];
   const sum=d.querySelector('summary');if(sum)sum.insertBefore(s,sum.firstChild);
+  const kw=VIDEOKW[d.id];
+  if(kw){const a=document.createElement('a');a.className='vid';a.target='_blank';a.rel='noopener';
+    a.href='https://search.bilibili.com/all?keyword='+encodeURIComponent(kw);
+    a.textContent='▶ 动作视频';sum.appendChild(a);}
 });
+
+// ===== 智能工具箱 =====
+const LS={get:(k,d)=>{try{const v=localStorage.getItem('fit90_'+k);return v?JSON.parse(v):d}catch(e){return d}},set:(k,v)=>localStorage.setItem('fit90_'+k,JSON.stringify(v))};
+const fmtD=d=>d.toISOString().slice(0,10);
+
+// —— 今日训练生成器 ——
+const P0MAP={1:['A · 自重力量',['俯卧撑 3×接近力竭-2','徒手深蹲 3×15','门框划船 3×12','平板支撑 3×30–45″','臀桥 3×15']],2:['B · 走跑结合',['快走热身5′','跑1′走2′×7轮(W1) / 跑2′走1.5′×6轮(W2)','冷身+拉伸']],3:null,4:null,5:null,6:null,0:null};
+function renderToday(){
+  const box=document.getElementById('todayCard');
+  const sd=LS.get('startDate',null);
+  if(!sd){box.innerHTML='<p style="color:var(--muted);font-size:14px;margin:20px 0;text-align:center">👆 设定开始日期并保存，激活每日教练模式</p>';return;}
+  const start=new Date(sd+'T00:00:00'),now=new Date();now.setHours(0,0,0,0);
+  const dayIdx=Math.floor((now-start)/864e5);
+  if(dayIdx<0){box.innerHTML='<p style="font-size:14px">开始日期在未来，<b>'+(-dayIdx)+'</b> 天后启动 🎯</p>';return;}
+  const wk=Math.floor(dayIdx/7)+1,wd=now.getDay();
+  const dow=['周日','周一','周二','周三','周四','周五','周六'][wd];
+  let phase,title,items,extra='';
+  if(wk<=2){phase='P0 居家筑基';
+    const m={1:0,3:0,5:0,2:1,4:1,6:1};
+    if(wd in m){const isRun=m[wd]===1;title=isRun?'B 日 · 走跑结合':'A 日 · 自重力量';items=isRun?P0MAP[2][1]:P0MAP[1][1];}
+    else{title='休息日';items=['拉伸10分钟 或 散步','周日任务：称重+量腰围+拍照'];}
+  }else if(wk<=6){phase='P1 健身房入门';
+    const liftSlots={1:true,3:true,5:true};
+    if(liftSlots[wd]){
+      const lifts=LS.get('liftCount',0);
+      title=(lifts%2===0)?'Workout A':'Workout B';
+      items=title.includes('A')?['深蹲 3×5+','卧推 3×5+','划船 3×5+','弯举+侧平举 各2×12–15','平板 2×45″']:['深蹲 3×5+','站姿推举 3×5+','高位下拉 3×8–12','绳索下压+腿弯举 各2×12–15','卷腹 2×15'];
+      extra='<button class="tab-btn" id="markLift" style="margin-top:10px;padding:6px 14px;font-size:12px">✔ 完成本次训练(轮转+1)</button>';
+    }else if(wd===0){title='完全休息';items=['散步/拉伸','周日仪式五步'];}
+    else{title='有氧日';items=['连续慢跑目标 15–20 分钟(P1后段)','或椭圆机/坡度快走30分钟'];}
+  }else{phase='P2 GZCLP 塑形';
+    const liftSlots={1:true,3:true,5:true};
+    if(liftSlots[wd]){
+      const n=LS.get('liftCount',0)%4;
+      const D=[['Day1',['深蹲 T1 5×3+','卧推 T2 3×10','高位下拉 T3 3×15+','核心+侧平举']],
+               ['Day2',['推举 T1 5×3+','硬拉 T2 3×10','单臂划船 T3 3×15+','二头弯举']],
+               ['Day3',['卧推 T1 5×3+','深蹲(轻) T2 3×10','高位下拉 T3 3×15+','三头+腿举']],
+               ['Day4',['硬拉 T1 5×3+','推举 T2 3×10','划船类 T3 3×15+','核心+弯举']]];
+      title=D[n][0];items=D[n][1];
+      extra='<button class="tab-btn" id="markLift" style="margin-top:10px;padding:6px 14px;font-size:12px">✔ 完成本次训练(轮转+1)</button>';
+    }else if(wd===0){title='完全休息';items=['周日仪式五步：称重/腰围/照片/记录/决策'];}
+    else{title='有氧日';items=['慢跑25–30分钟 或 间歇跑(快1′慢2′×6)','周累计≥100分钟为目标'];}
+  }
+  box.innerHTML='<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span class="tagg">'+phase+'</span><span class="tagr">第'+wk+'周 · '+dow+'</span></div>'+
+    '<h4 style="margin:10px 0 6px;font-size:17px">'+title+'</h4><ul class="rules" style="font-size:13.5px">'+items.map(i=>'<li>'+i+'</li>').join('')+'</ul>'+extra+
+    '<p style="font-size:11.5px;color:var(--muted);margin-top:8px">漏练了？顺延即可——两次训练间隔至少一天。</p>';
+  const mk=document.getElementById('markLift');
+  if(mk)mk.onclick=()=>{LS.set('liftCount',(LS.get('liftCount',0))+1);renderToday();};
+}
+document.getElementById('saveStart').onclick=()=>{const v=document.getElementById('startDate').value;if(v){LS.set('startDate',v);LS.set('liftCount',0);renderToday();}};
+document.getElementById('clearStart').onclick=()=>{localStorage.removeItem('fit90_startDate');renderToday();};
+
+// —— 我的测量曲线 ——
+let measures=LS.get('measures',[]);
+let mChart=null;
+function renderMeasures(){
+  const labels=measures.map(m=>m.d.slice(5)),w=measures.map(m=>m.w),cw=measures.map(m=>m.c);
+  const projW=[70,69.8,69.6,69.0,68.4,67.9,67.4,66.9].slice(0,Math.max(measures.length,2));
+  const projC=[0,.4,.8,1.5,2.2,3,3.8,4.6].slice(0,Math.max(measures.length,2));
+  const cfg={type:'line',data:{labels:labels.length?labels:['—'],datasets:[
+    {label:'我的体重kg',data:w,borderColor:'#34d399',borderWidth:2.5,tension:.35,pointRadius:3},
+    {label:'我的腰围cm',data:cw,borderColor:'#fbbf24',borderWidth:2.5,tension:.35,pointRadius:3,yAxisID:'y1'},
+    {label:'预测体重',data:projW,borderColor:'rgba(52,211,153,.4)',borderDash:[5,5],borderWidth:1.5,pointRadius:0,fill:false},
+    {label:'预测腰围降幅',data:projC,borderColor:'rgba(56,189,248,.35)',borderDash:[5,5],borderWidth:1.5,pointRadius:0,fill:false,yAxisID:'y1'}
+  ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{boxWidth:10,usePointStyle:true}}},scales:{y:{title:{display:true,text:'kg'}},y1:{position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'cm'}},x:{grid:{display:false}}}}};
+  if(mChart)mChart.destroy();
+  mChart=new Chart(document.getElementById('measureChart'),cfg);
+}
+document.getElementById('addMeasure').onclick=()=>{
+  const wv=parseFloat(document.getElementById('inWeight').value),cv=parseFloat(document.getElementById('inWaist').value);
+  if(isNaN(wv)&&isNaN(cv))return;
+  const last=measures[measures.length-1];
+  measures.push({d:fmtD(new Date()),w:isNaN(wv)?(last?last.w:wv):wv,c:isNaN(cv)?(last?last.c:0):cv});
+  LS.set('measures',measures);renderMeasures();
+  document.getElementById('inWeight').value='';document.getElementById('inWaist').value='';
+};
+document.getElementById('undoMeasure').onclick=()=>{measures.pop();LS.set('measures',measures);renderMeasures();};
+
+// —— 重量速记本 ——
+const INC={'深蹲':2.5,'卧推':2.5,'推举':2.5,'硬拉':5,'划船':2.5,'高位下拉':2.5};
+function renderLifts(){
+  const data=LS.get('lifts',{});const el=document.getElementById('liftTable');
+  const rows=Object.keys(INC).map(k=>{
+    const r=data[k];if(!r)return '<tr><td>'+k+'</td><td colspan="3" style="color:var(--muted)">未记录</td></tr>';
+    let sug=r.fails>=2?'<span class="tagx">减10% → '+(r.w*0.9).toFixed(1)+'kg 重爬</span>':'<span class="tagg">下次 '+INC[k]+' → '+(r.w+INC[k])+'kg</span>';
+    return '<tr><td>'+k+'</td><td>'+r.w+'kg</td><td>'+(r.fails?('连败'+r.fails):'✓')+'</td><td>'+sug+'</td></tr>';
+  }).join('');
+  el.innerHTML='<table style="margin-top:4px"><thead><tr><th>动作</th><th>上次</th><th>状态</th><th>建议</th></tr></thead><tbody>'+rows+'</tbody></table>';
+}
+document.getElementById('saveLift').onclick=()=>{
+  const k=document.getElementById('liftName').value,w=parseFloat(document.getElementById('liftKg').value);
+  if(isNaN(w)||w<=0)return;
+  const ok=document.getElementById('liftRes').value==='ok';
+  const data=LS.get('lifts',{});
+  const prev=data[k]||{w:0,fails:0};
+  // 进阶规则：成功才更新重量；失败累计，2次提示减载
+  data[k]={w:ok?w:prev.w||w,fails:ok?0:(prev.w&&w>=prev.w?prev.fails+1:prev.fails)};
+  LS.set('lifts',data);renderLifts();
+};
+
+// —— PAR-Q 结果 ——
+function renderPAR(){
+  const any=['par1','par2','par3','par4','par5','par6'].some(k=>localStorage.getItem('fit90_'+k)==='1');
+  document.getElementById('parResult').innerHTML=any
+    ?'<span class="tagx">存在「是」项</span> <b style="color:var(--warn)">→ 请先完成一次医生/校医评估拿到许可，再开始本计划。这一步不能跳过。</b>'
+    :'<span class="tagg">全部「否」</span> <span style="color:var(--accent)">→ 状态良好，可以放心开始 ✅</span>';
+}
+document.querySelectorAll('[data-k^="par"]').forEach(cb=>{
+  cb.checked=localStorage.getItem('fit90_'+cb.dataset.k)==='1';
+  cb.addEventListener('change',()=>{localStorage.setItem('fit90_'+cb.dataset.k,cb.checked?'1':'0');renderPAR();});
+});
+renderPAR();
+
+// —— 导出 / 导入 ——
+document.getElementById('exportData').onclick=()=>{
+  const dump={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k.startsWith('fit90_'))dump[k]=localStorage.getItem(k);}
+  const blob=new Blob([JSON.stringify(dump,null,1)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='fitness90-backup-'+fmtD(new Date())+'.json';a.click();
+};
+document.getElementById('importData').onchange=e=>{
+  const f=e.target.files[0];if(!f)return;
+  const rd=new FileReader();
+  rd.onload=()=>{try{const obj=JSON.parse(rd.result);Object.keys(obj).forEach(k=>{if(k.startsWith('fit90_'))localStorage.setItem(k,obj[k]);});
+    document.getElementById('importMsg').textContent='✅ 已导入 '+Object.keys(obj).length+' 条数据，刷新页面生效';
+  }catch(err){document.getElementById('importMsg').textContent='❌ 文件格式不对';}};
+  rd.readAsText(f);
+};
+
+// 初始化工具箱
+const savedStart=LS.get('startDate',null);if(savedStart)document.getElementById('startDate').value=savedStart;
+renderToday();renderLifts();
+if(window.Chart)renderMeasures();
+
+// AOS init last — 库加载失败自动放行全部动画元素
 
 // ===== 首屏视差（背景图随滚动缓移）=====
 const heroBg=document.getElementById('heroBg');
