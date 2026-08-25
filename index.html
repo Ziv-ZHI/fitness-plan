@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>90天蜕变计划 · 改善皮肤 · 瘦脸 · 薄肌</title>
 <meta name="description" content="为20岁大学生定制的12周健身计划：18个动作逐一拆解（原理/步骤/错误/平替）、食堂饮食系统、皮肤管理、智能训练工具箱。基于第一性原理与对抗性设计。">
+<script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('fit90_theme')||'light')}catch(e){}</script>
 <link rel="stylesheet" href="vendor/aos.css">
 <style>
 :root{
@@ -12,24 +13,50 @@
   --text:#e8edf5;--muted:#93a1b8;--accent:#34d399;--accent2:#38bdf8;
   --warn:#fbbf24;--danger:#fb7185;
   --grad:linear-gradient(120deg,#34d399,#38bdf8);--radius:18px;
+  --btn-txt:#06251c;--nav-bg:rgba(11,18,32,.78);--panel-bg:rgba(11,18,32,.6);
+  --hero-veil:linear-gradient(180deg,rgba(11,18,32,.55),rgba(11,18,32,.82) 60%,var(--bg));
+  --band-veil:linear-gradient(90deg,rgba(11,18,32,.92),rgba(11,18,32,.45));
+  --text-soft:#c9d4e4;--warn-soft:#ffd9a8;
+  --input-bg:#101a2e;--chk-border:#3f5068;--dot:#2c3a52;--ticker-text:#b9c6da;
+  --num-dim:rgba(255,255,255,.16);--hint-border:rgba(255,255,255,.35);
+  --grid-dot:rgba(255,255,255,.03);--hover-row:rgba(255,255,255,.025);
+  --chip-bg:rgba(255,255,255,.03);--chart-grid:rgba(255,255,255,.07);
+  --shadow:0 18px 44px rgba(0,0,0,.35);
 }
+[data-theme="light"]{
+  --bg:#f2f5fa;--card:rgba(255,255,255,.82);--border:#dce4f0;
+  --text:#182338;--muted:#5d6d88;--accent:#0ca678;--accent2:#0077cc;
+  --warn:#b45309;--danger:#dc2626;
+  --grad:linear-gradient(120deg,#0ca678,#0284c7);
+  --btn-txt:#ffffff;--nav-bg:rgba(247,250,253,.85);--panel-bg:rgba(247,250,253,.75);
+  --hero-veil:linear-gradient(180deg,rgba(242,245,250,.30),rgba(242,245,250,.60) 55%,#f2f5fa);
+  --band-veil:linear-gradient(90deg,rgba(240,244,250,.94),rgba(240,244,250,.35));
+  --text-soft:#31405c;--warn-soft:#92600a;
+  --input-bg:#ffffff;--chk-border:#9fb0c8;--dot:#b6c4da;--ticker-text:#31405c;
+  --num-dim:rgba(24,35,56,.14);--hint-border:rgba(24,35,56,.3);
+  --grid-dot:rgba(24,35,56,.05);--hover-row:rgba(20,40,80,.045);
+  --chip-bg:rgba(20,40,80,.05);--chart-grid:rgba(24,35,56,.08);
+  --shadow:0 14px 34px rgba(25,60,110,.12);
+}
+[data-theme="light"] .orb{opacity:.32}
+[data-theme="light"] body::after{opacity:.035}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:radial-gradient(900px 500px at 85% -10%,rgba(56,189,248,.14),transparent 60%),radial-gradient(800px 500px at -10% 20%,rgba(52,211,153,.12),transparent 60%),var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,sans-serif;line-height:1.75}
 ::selection{background:rgba(52,211,153,.35)}
 #progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad);z-index:100}
-nav{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(14px);background:rgba(11,18,32,.78);border-bottom:1px solid var(--border)}
+nav{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(14px);background:var(--nav-bg);border-bottom:1px solid var(--border)}
 .nav-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:5px;padding:11px 20px;flex-wrap:wrap}
 .logo{font-weight:800;margin-right:auto;letter-spacing:.5px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:15px}
 nav a{color:var(--muted);text-decoration:none;font-size:12.5px;padding:6px 10px;border-radius:999px;transition:.25s}
 nav a:hover{color:var(--text);background:rgba(255,255,255,.06)}
-nav a.active{color:#06251c;background:linear-gradient(120deg,#34d399,#7dd3fc);font-weight:700}
+nav a.active{color:var(--btn-txt);background:linear-gradient(120deg,#34d399,#7dd3fc);font-weight:700}
 
 /* sidebar toc */
-#toc{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:80;display:none;flex-direction:column;background:rgba(11,18,32,.6);border:1px solid var(--border);border-radius:14px;padding:12px 10px;backdrop-filter:blur(8px)}
+#toc{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:80;display:none;flex-direction:column;background:var(--panel-bg);border:1px solid var(--border);border-radius:14px;padding:12px 10px;backdrop-filter:blur(8px)}
 @media(min-width:1320px){#toc{display:flex}}
 #toc a{display:flex;align-items:center;gap:9px;color:var(--muted);font-size:11.5px;text-decoration:none;padding:4px 6px;border-radius:8px;transition:.25s;white-space:nowrap}
-#toc a::before{content:"";width:7px;height:7px;border-radius:50%;background:#2c3a52;transition:.25s;flex:none}
+#toc a::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--dot);transition:.25s;flex:none}
 #toc a span{opacity:0;transform:translateX(4px);transition:.25s}
 #toc:hover a span,#toc a.active span{opacity:1;transform:none}
 #toc a.active{color:var(--accent)}#toc a.active::before{background:var(--accent);box-shadow:0 0 10px var(--accent)}
@@ -42,7 +69,7 @@ h2{font-size:29px;margin:10px 0 6px;letter-spacing:1px}
 h3{font-size:17px;margin:18px 0 4px}
 .sub{color:var(--muted);font-size:14.5px;max-width:780px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;backdrop-filter:blur(6px);transition:transform .35s,border-color .35s,box-shadow .35s}
-.card:hover{transform:translateY(-4px);border-color:rgba(52,211,153,.35);box-shadow:0 18px 44px rgba(0,0,0,.35)}
+.card:hover{transform:translateY(-4px);border-color:rgba(52,211,153,.35);box-shadow:var(--shadow)}
 .grid{display:grid;gap:16px}
 .g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
 .g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
@@ -66,7 +93,7 @@ h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;c
 .stat span{font-size:12.5px;color:var(--muted)}
 .cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
 .btn{padding:13px 26px;border-radius:999px;font-weight:700;font-size:14.5px;text-decoration:none;transition:.25s;border:1px solid transparent;display:inline-block}
-.btn.primary{background:var(--grad);color:#06251c;box-shadow:0 8px 30px rgba(52,211,153,.25)}
+.btn.primary{background:var(--grad);color:var(--btn-txt);box-shadow:0 8px 30px rgba(52,211,153,.25)}
 .btn.primary:hover{transform:translateY(-2px) scale(1.02)}
 .btn.ghost{border-color:var(--border);color:var(--text)}
 .btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
@@ -74,9 +101,9 @@ h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;c
 /* generic bits */
 table{width:100%;border-collapse:collapse;font-size:13.5px;margin:12px 0}
 th{text-align:left;color:var(--accent);font-size:12px;letter-spacing:1px;padding:9px 11px;border-bottom:1px solid rgba(52,211,153,.3)}
-td{padding:10px 11px;border-bottom:1px solid var(--border);color:#d7dfee;vertical-align:top}
+td{padding:10px 11px;border-bottom:1px solid var(--border);color:var(--text-soft);vertical-align:top}
 tr:last-child td{border-bottom:none}
-tbody tr:hover td{background:rgba(255,255,255,.025)}
+tbody tr:hover td{background:var(--hover-row)}
 .tagr{display:inline-block;background:rgba(56,189,248,.14);color:var(--accent2);border-radius:6px;padding:1px 9px;font-size:12px;font-weight:600;white-space:nowrap}
 .tagg{display:inline-block;background:rgba(52,211,153,.14);color:var(--accent);border-radius:6px;padding:1px 9px;font-size:12px;font-weight:600;white-space:nowrap}
 .tago{display:inline-block;background:rgba(251,191,36,.14);color:var(--warn);border-radius:6px;padding:1px 9px;font-size:12px;font-weight:600;white-space:nowrap}
@@ -84,14 +111,14 @@ tbody tr:hover td{background:rgba(255,255,255,.025)}
 .note{background:rgba(251,191,36,.07);border:1px dashed rgba(251,191,36,.4);border-radius:14px;padding:13px 17px;font-size:13.5px;margin:13px 0}.note b{color:var(--warn)}
 .ok-box{background:rgba(52,211,153,.07);border:1px dashed rgba(52,211,153,.4);border-radius:14px;padding:13px 17px;font-size:13.5px;margin:13px 0}.ok-box b{color:var(--accent)}
 .bad-box{background:rgba(251,113,133,.06);border:1px dashed rgba(251,113,133,.4);border-radius:14px;padding:13px 17px;font-size:13.5px;margin:13px 0}.bad-box b{color:var(--danger)}
-ol.rules,ul.rules{padding-left:20px;font-size:14px;color:#d7dfee}ol.rules li,ul.rules li{margin:8px 0}
+ol.rules,ul.rules{padding-left:20px;font-size:14px;color:var(--text-soft)}ol.rules li,ul.rules li{margin:8px 0}
 .chk{list-style:none;margin-top:8px}.chk li{margin:8px 0}
-.chk label{display:flex;align-items:flex-start;gap:11px;cursor:pointer;font-size:14px;color:#d7dfee;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 15px;transition:.2s}
+.chk label{display:flex;align-items:flex-start;gap:11px;cursor:pointer;font-size:14px;color:var(--text-soft);background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 15px;transition:.2s}
 .chk label:hover{border-color:rgba(52,211,153,.5);transform:translateX(3px)}
 .chk input{display:none}
-.chk .box{flex:none;width:19px;height:19px;border-radius:6px;border:2px solid #3f5068;margin-top:2px;position:relative;transition:.2s}
+.chk .box{flex:none;width:19px;height:19px;border-radius:6px;border:2px solid var(--chk-border);margin-top:2px;position:relative;transition:.2s}
 .chk input:checked + .box{background:var(--grad);border-color:transparent}
-.chk input:checked + .box::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#06251c;font-weight:900;font-size:12px}
+.chk input:checked + .box::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--btn-txt);font-weight:900;font-size:12px}
 .chk input:checked ~ span.txt{color:var(--muted);text-decoration:line-through}
 .week-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin:14px 0}
 .wday{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:9px 6px;text-align:center;font-size:11.5px;color:var(--muted);transition:.25s}
@@ -101,7 +128,7 @@ ol.rules,ul.rules{padding-left:20px;font-size:14px;color:#d7dfee}ol.rules li,ul.
 .tabs{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 16px}
 .tab-btn{cursor:pointer;border:1px solid var(--border);background:var(--card);color:var(--muted);padding:10px 20px;border-radius:999px;font-size:13.5px;font-weight:600;transition:.25s;font-family:inherit}
 .tab-btn:hover{color:var(--text)}
-.tab-btn.active{background:var(--grad);color:#06251c;border-color:transparent}
+.tab-btn.active{background:var(--grad);color:var(--btn-txt);border-color:transparent}
 .tab-panel{display:none}.tab-panel.active{display:block;animation:fadeUp .45s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1}}
 .grid-timeline{position:relative;margin-top:36px;padding-left:34px}
@@ -115,7 +142,7 @@ ol.rules,ul.rules{padding-left:20px;font-size:14px;color:#d7dfee}ol.rules li,ul.
 .t-card h3{font-size:19px;margin:4px 0 6px}
 .t-card p{font-size:13.5px;color:var(--muted)}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.chip{font-size:11.5px;border:1px solid var(--border);border-radius:999px;padding:3px 11px;color:#c9d4e4;background:rgba(255,255,255,.03)}
+.chip{font-size:11.5px;border:1px solid var(--border);border-radius:999px;padding:3px 11px;color:var(--text-soft);background:var(--chip-bg)}
 .chart-box{position:relative;height:320px}
 .chart-card p.hint{font-size:12.5px;color:var(--muted);margin-top:10px}
 details.faq{background:var(--card);border:1px solid var(--border);border-radius:14px;margin:9px 0;overflow:hidden;transition:.3s}
@@ -123,7 +150,7 @@ details.faq summary{cursor:pointer;padding:15px 20px;font-weight:700;font-size:1
 details.faq summary::-webkit-details-marker{display:none}
 details.faq summary::after{content:"+";position:absolute;right:20px;color:var(--accent);font-size:19px;top:50%;transform:translateY(-50%);transition:.25s}
 details.faq[open] summary::after{transform:translateY(-50%) rotate(45deg)}
-details.faq>div{padding:0 20px 15px;color:#c9d4e4;font-size:13.5px}
+details.faq>div{padding:0 20px 15px;color:var(--text-soft);font-size:13.5px}
 footer{border-top:1px solid var(--border);margin-top:70px;padding:44px 20px;text-align:center;color:var(--muted);font-size:13px}
 footer .refs{max-width:760px;margin:14px auto 0;line-height:2}
 footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;font-size:12px}
@@ -134,7 +161,7 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
 .good{background:rgba(52,211,153,.06)}.bad{background:rgba(251,113,133,.06)}
 .good h4{color:var(--accent);margin-bottom:8px}.bad h4{color:var(--danger);margin-bottom:8px}
 .good ul,.bad ul{list-style:none;font-size:13.5px}
-.good li,.bad li{margin:6px 0;padding-left:20px;position:relative;color:#d7dfee}
+.good li,.bad li{margin:6px 0;padding-left:20px;position:relative;color:var(--text-soft)}
 .good li::before{content:"✓";position:absolute;left:0;color:var(--accent)}
 .bad li::before{content:"✕";position:absolute;left:0;color:var(--danger)}
 .duo{display:grid;grid-template-columns:70fr 30fr;gap:16px}
@@ -152,7 +179,7 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
 .muscle{font-size:11px;padding:2px 9px;border-radius:999px;background:rgba(52,211,153,.12);color:var(--accent)}
 .ex-why-short{font-size:12px;color:var(--muted);flex-basis:100%;margin-left:auto;text-align:right;padding-right:28px}
 .ex-body{padding:4px 22px 20px;border-top:1px dashed var(--border)}
-.ex-block{margin:12px 0;font-size:13.8px;color:#c9d4e4}
+.ex-block{margin:12px 0;font-size:13.8px;color:var(--text-soft)}
 .ex-block>b{display:inline-block;color:var(--text);margin-bottom:5px}
 .ex-block.why{background:rgba(56,189,248,.06);border-left:3px solid var(--accent2);padding:10px 14px;border-radius:0 10px 10px 0}
 .ex-block.steps ol{padding-left:20px}
@@ -165,16 +192,16 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
 /* ===== texture & dynamics ===== */
 body::after{content:"";position:fixed;inset:0;z-index:99;pointer-events:none;opacity:.05;
  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-main{background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px);background-size:26px 26px}
+main{background-image:radial-gradient(var(--grid-dot) 1px,transparent 1px);background-size:26px 26px}
 main{counter-reset:secnum}
 main>section{counter-increment:secnum}
-main>section h2::after{content:"/" counter(secnum,decimal-leading-zero);margin-left:12px;font-size:.5em;color:rgba(255,255,255,.16);font-weight:900;letter-spacing:3px;vertical-align:middle}
+main>section h2::after{content:"/" counter(secnum,decimal-leading-zero);margin-left:12px;font-size:.5em;color:var(--num-dim);font-weight:900;letter-spacing:3px;vertical-align:middle}
 
 /* hero bg photo + ken burns + parallax */
 .hero-bg{position:absolute;inset:0;z-index:0;background:url('img/hero.jpg') center/cover no-repeat;animation:kenburns 26s ease-in-out infinite alternate;will-change:transform}
-.hero-veil{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(11,18,32,.55),rgba(11,18,32,.82) 60%,var(--bg))}
+.hero-veil{position:absolute;inset:0;z-index:1;background:var(--hero-veil)}
 @keyframes kenburns{from{transform:scale(1) translateY(0)}to{transform:scale(1.14) translateY(-18px)}}
-.scroll-hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:2;width:26px;height:42px;border:2px solid rgba(255,255,255,.35);border-radius:14px;display:flex;justify-content:center;padding-top:7px}
+.scroll-hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:2;width:26px;height:42px;border:2px solid var(--hint-border);border-radius:14px;display:flex;justify-content:center;padding-top:7px}
 .scroll-hint i{width:4px;height:9px;border-radius:3px;background:var(--accent);animation:wheel 1.6s ease-in-out infinite}
 @keyframes wheel{0%{transform:translateY(0);opacity:1}70%{transform:translateY(14px);opacity:0}100%{opacity:0}}
 header.hero .hero-inner{animation:none}
@@ -183,14 +210,14 @@ header.hero .hero-inner{animation:none}
 .ticker{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(52,211,153,.04);position:relative;z-index:3}
 .ticker-track{display:inline-flex;white-space:nowrap;animation:tick 36s linear infinite;padding:11px 0}
 .ticker-track:hover{animation-play-state:paused}
-.ticker span{font-size:13px;font-weight:700;letter-spacing:2px;color:#b9c6da;padding:0 22px;display:inline-flex;align-items:center;gap:22px}
+.ticker span{font-size:13px;font-weight:700;letter-spacing:2px;color:var(--ticker-text);padding:0 22px;display:inline-flex;align-items:center;gap:22px}
 .ticker b{color:var(--accent)}
 @keyframes tick{to{transform:translateX(-50%)}}
 
 /* full-bleed parallax bands */
 .band{position:relative;margin:74px calc(50% - 50vw) 0;width:100vw;min-height:300px;background-size:cover;background-position:center;display:flex;align-items:center}
 @media(hover:hover){.band{background-attachment:fixed}}
-.band::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,18,32,.92),rgba(11,18,32,.45))}
+.band::before{content:"";position:absolute;inset:0;background:var(--band-veil)}
 .band-inner{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:40px 24px;width:100%}
 .band-quote{font-size:clamp(21px,3.4vw,30px);font-weight:900;line-height:1.4;max-width:720px}
 .band-quote em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -201,7 +228,7 @@ header.hero .hero-inner{animation:none}
 .ex:hover .ex-icon{transform:translateY(-3px) scale(1.06)}
 .ex[open] .ex-icon svg .pulse{animation:pulseG 2.4s ease-in-out infinite}
 @keyframes pulseG{0%,100%{opacity:.85}50%{opacity:.45}}
-.ex summary .vid{flex:none;margin-left:6px;font-size:11.5px;font-weight:700;color:#06251c;background:linear-gradient(120deg,#7dd3fc,#38bdf8);border-radius:999px;padding:3px 12px;text-decoration:none;transition:.25s}
+.ex summary .vid{flex:none;margin-left:6px;font-size:11.5px;font-weight:700;color:var(--btn-txt);background:linear-gradient(120deg,#7dd3fc,#38bdf8);border-radius:999px;padding:3px 12px;text-decoration:none;transition:.25s}
 .ex summary .vid:hover{transform:translateY(-2px) scale(1.05);box-shadow:0 6px 18px rgba(56,189,248,.4)}
 
 /* details open animation */
@@ -238,6 +265,7 @@ details.ex .ex-body{animation:exopen .38s ease}
   <a href="#tracking">追踪</a>
   <a href="#special">预案</a>
   <a href="#faq">FAQ</a>
+  <button id="themeBtn" title="切换日间/夜间模式" style="margin-left:4px;cursor:pointer;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:999px;padding:5px 13px;font-size:13px;font-family:inherit">🌙 夜间</button>
 </div></nav>
 
 <aside id="toc">
@@ -308,7 +336,7 @@ details.ex .ex-body{animation:exopen .38s ease}
     </div>
     <div class="card" data-aos="zoom-in-up" data-aos-delay="150">
       <h3 style="margin-top:0">② 第 1 周怎么练</h3>
-      <p style="font-size:14px;color:#c9d4e4">打开下方<b style="color:var(--accent)">「阶段详情」→ Phase 0</b>，照做即可。第一次训练用<b style="color:var(--accent)">最低完成版</b>（热身+俯卧撑+深蹲+平板，15 分钟），先让身体和大脑接受「我在训练」这件事。</p>
+      <p style="font-size:14px;color:var(--text-soft)">打开下方<b style="color:var(--accent)">「阶段详情」→ Phase 0</b>，照做即可。第一次训练用<b style="color:var(--accent)">最低完成版</b>（热身+俯卧撑+深蹲+平板，15 分钟），先让身体和大脑接受「我在训练」这件事。</p>
       <div class="pill-row"><span class="tagg">周一 A 自重</span><span class="tagr">周二 B 跑步</span><span class="tagg">周三 A</span></div>
     </div>
     <div class="card" data-aos="zoom-in-up" data-aos-delay="300">
@@ -383,16 +411,16 @@ details.ex .ex-body{animation:exopen .38s ease}
   <h2>对抗性设计：预判你会想放弃的 10 个时刻</h2>
   <p class="sub">计划的敌人不是难度，是中断。每个失败模式都提前埋好对策。</p>
   <div class="a-grid" style="margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:14px">
-    <div class="a-item" data-aos="flip-left" style="display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:17px"><div class="n" style="flex:none;width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:14px">1</div><div><h4 style="font-size:14px;color:#ffd9a8">第 4~10 天 · 酸痛劝退</h4><p style="font-size:13px;color:#c9d4e4;margin-top:4px">前两周强度刻意压低。<b style="color:var(--accent)">酸痛≠有效</b>；第二组开始酸痛减半是正常适应。</p></div></div>
-    <div class="a-item" data-aos="flip-left" data-aos-delay="80" style="display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:17px"><div class="n" style="flex:none;width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:14px">2</div><div><h4 style="font-size:14px;color:#ffd9a8">第 3 周 · 课业社团冲突</h4><p style="font-size:13px;color:#c9d4e4;margin-top:4px">每个训练日都有「最低完成版」（见各阶段底部）。<b style="color:var(--accent)">不断比完美重要。</b></p></div></div>
-    <div class="a-item" data-aos="flip-left" data-aos-delay="160" style="display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:17px"><div class="n" style="flex:none;width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:14px">3</div><div><h4 style="font-size:14px;color:#ffd9a8">第 4 周 · 体重不降反涨</h4><p style="font-size:13px;color:#c9d4e4;margin-top:4px">新手增肌抵消减脂重量，是好事。<b style="color:var(--accent)">以腰围和照片为准。</b>看「效果时间线」建立正确预期。</p></div></div>
-    <div class="a-item" data-aos="flip-left" data-aos-delay="240" style="display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:17px"><div class="n" style="flex:none;width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:14px">4</div><div><h4 style="font-size:14px;color:#ffd9a8">第 6 周 · 无聊平台感</h4><p style="font-size:13px;color:#c9d4e4;margin-top:4px">T3 辅助每 4 周轮换；Hevy 里看重量上升曲线获得可视化正反馈。</p></div></div>
-    <div class="a-item" data-aos="flip-left" data-aos-delay="320" style="display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:17px"><div class="n" style="flex:none;width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:14px">5</div><div><h4 style="font-size:14px;color:#ffd9a8">聚餐奶茶破功一次</h4><p style="font-size:13px;color:#c9d4e4;margin-top:4px">单餐破功无影响，禁止破罐破摔。<b style="color:var(--accent)">下一顿正常吃即可</b>；每周固定留 1 顿自由餐泄压。</p></div></div>
-    <div class="a-item" data-aos="flip-left" data-aos-delay="400" style="display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:17px"><div class="n" style="flex:none;width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:14px">6</div><div><h4 style="font-size:14px;color:#ffd9a8">熬夜刷手机恶性循环</h4><p style="font-size:13px;color:#c9d4e4;margin-top:4px">23:00 手机放到够不着处充电。<b style="color:var(--accent)">睡眠是三大目标共同的根</b>，欠的觉都写在脸上。</p></div></div>
-    <div class="a-item" data-aos="flip-left" data-aos-delay="480" style="display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:17px"><div class="n" style="flex:none;width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:14px">7</div><div><h4 style="font-size:14px;color:#ffd9a8">第 8 周 · 重量停滞平台期</h4><p style="font-size:13px;color:#c9d4e4;margin-top:4px">先查睡眠+蛋白质；仍停滞→安排<b style="color:var(--accent)">减载周</b>（全部重量 ×80%，组数不变）再回来突破。</p></div></div>
-    <div class="a-item" data-aos="flip-left" data-aos-delay="560" style="display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:17px"><div class="n" style="flex:none;width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:14px">8</div><div><h4 style="font-size:14px;color:#ffd9a8">考试周全面崩盘</h4><p style="font-size:13px;color:#c9d4e4;margin-top:4px">切换「维持模式」：每周 2 次 40 分钟全身 + 蛋白质底线 + 睡眠 ≥7h。<b style="color:var(--accent)">详见特殊时期预案。</b></p></div></div>
-    <div class="a-item" data-aos="flip-left" data-aos-delay="640" style="display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:17px"><div class="n" style="flex:none;width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:14px">9</div><div><h4 style="font-size:14px;color:#ffd9a8">寒暑假回家中断</h4><p style="font-size:13px;color:#c9d4e4;margin-top:4px">每个健身房动作都有家庭平替映射表（见特殊时期预案），一副弹力带就能续命。</p></div></div>
-    <div class="a-item" data-aos="flip-left" data-aos-delay="720" style="display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:17px"><div class="n" style="flex:none;width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:14px">10</div><div><h4 style="font-size:14px;color:#ffd9a8">生病 / 关节疼痛</h4><p style="font-size:13px;color:#c9d4e4;margin-top:4px">发烧=停训至症状消失后 48h；关节痛（非肌肉酸）立即换平替绕行。<b style="color:var(--accent)">休息不算断。</b></p></div></div>
+    <div class="a-item" data-aos="flip-left" style="display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:17px"><div class="n" style="flex:none;width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:14px">1</div><div><h4 style="font-size:14px;color:var(--warn-soft)">第 4~10 天 · 酸痛劝退</h4><p style="font-size:13px;color:var(--text-soft);margin-top:4px">前两周强度刻意压低。<b style="color:var(--accent)">酸痛≠有效</b>；第二组开始酸痛减半是正常适应。</p></div></div>
+    <div class="a-item" data-aos="flip-left" data-aos-delay="80" style="display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:17px"><div class="n" style="flex:none;width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:14px">2</div><div><h4 style="font-size:14px;color:var(--warn-soft)">第 3 周 · 课业社团冲突</h4><p style="font-size:13px;color:var(--text-soft);margin-top:4px">每个训练日都有「最低完成版」（见各阶段底部）。<b style="color:var(--accent)">不断比完美重要。</b></p></div></div>
+    <div class="a-item" data-aos="flip-left" data-aos-delay="160" style="display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:17px"><div class="n" style="flex:none;width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:14px">3</div><div><h4 style="font-size:14px;color:var(--warn-soft)">第 4 周 · 体重不降反涨</h4><p style="font-size:13px;color:var(--text-soft);margin-top:4px">新手增肌抵消减脂重量，是好事。<b style="color:var(--accent)">以腰围和照片为准。</b>看「效果时间线」建立正确预期。</p></div></div>
+    <div class="a-item" data-aos="flip-left" data-aos-delay="240" style="display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:17px"><div class="n" style="flex:none;width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:14px">4</div><div><h4 style="font-size:14px;color:var(--warn-soft)">第 6 周 · 无聊平台感</h4><p style="font-size:13px;color:var(--text-soft);margin-top:4px">T3 辅助每 4 周轮换；Hevy 里看重量上升曲线获得可视化正反馈。</p></div></div>
+    <div class="a-item" data-aos="flip-left" data-aos-delay="320" style="display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:17px"><div class="n" style="flex:none;width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:14px">5</div><div><h4 style="font-size:14px;color:var(--warn-soft)">聚餐奶茶破功一次</h4><p style="font-size:13px;color:var(--text-soft);margin-top:4px">单餐破功无影响，禁止破罐破摔。<b style="color:var(--accent)">下一顿正常吃即可</b>；每周固定留 1 顿自由餐泄压。</p></div></div>
+    <div class="a-item" data-aos="flip-left" data-aos-delay="400" style="display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:17px"><div class="n" style="flex:none;width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:14px">6</div><div><h4 style="font-size:14px;color:var(--warn-soft)">熬夜刷手机恶性循环</h4><p style="font-size:13px;color:var(--text-soft);margin-top:4px">23:00 手机放到够不着处充电。<b style="color:var(--accent)">睡眠是三大目标共同的根</b>，欠的觉都写在脸上。</p></div></div>
+    <div class="a-item" data-aos="flip-left" data-aos-delay="480" style="display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:17px"><div class="n" style="flex:none;width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:14px">7</div><div><h4 style="font-size:14px;color:var(--warn-soft)">第 8 周 · 重量停滞平台期</h4><p style="font-size:13px;color:var(--text-soft);margin-top:4px">先查睡眠+蛋白质；仍停滞→安排<b style="color:var(--accent)">减载周</b>（全部重量 ×80%，组数不变）再回来突破。</p></div></div>
+    <div class="a-item" data-aos="flip-left" data-aos-delay="560" style="display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:17px"><div class="n" style="flex:none;width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:14px">8</div><div><h4 style="font-size:14px;color:var(--warn-soft)">考试周全面崩盘</h4><p style="font-size:13px;color:var(--text-soft);margin-top:4px">切换「维持模式」：每周 2 次 40 分钟全身 + 蛋白质底线 + 睡眠 ≥7h。<b style="color:var(--accent)">详见特殊时期预案。</b></p></div></div>
+    <div class="a-item" data-aos="flip-left" data-aos-delay="640" style="display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:17px"><div class="n" style="flex:none;width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:14px">9</div><div><h4 style="font-size:14px;color:var(--warn-soft)">寒暑假回家中断</h4><p style="font-size:13px;color:var(--text-soft);margin-top:4px">每个健身房动作都有家庭平替映射表（见特殊时期预案），一副弹力带就能续命。</p></div></div>
+    <div class="a-item" data-aos="flip-left" data-aos-delay="720" style="display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:17px"><div class="n" style="flex:none;width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;background:linear-gradient(135deg,rgba(251,113,133,.25),rgba(251,191,36,.25));color:var(--warn);font-size:14px">10</div><div><h4 style="font-size:14px;color:var(--warn-soft)">生病 / 关节疼痛</h4><p style="font-size:13px;color:var(--text-soft);margin-top:4px">发烧=停训至症状消失后 48h；关节痛（非肌肉酸）立即换平替绕行。<b style="color:var(--accent)">休息不算断。</b></p></div></div>
   </div>
 </section>
 
@@ -1107,13 +1135,13 @@ details.ex .ex-body{animation:exopen .38s ease}
   <p class="sub">为什么说它是地基：肌肉在你睡觉时生长，皮肤在你睡觉时修复，水肿在你睡觉时消退。睡眠欠账会同时毁掉三个目标。</p>
   <div class="card" style="margin-top:22px">
     <div>
-      <div class="s-row" data-aos="fade-left"><span class="s-time" style="flex:none;width:96px;font-weight:800;font-size:13.5px;color:var(--accent2);background:rgba(56,189,248,.1);border-radius:8px;padding:3px 0;text-align:center;margin-right:14px">07:00</span><span style="font-size:14px;color:#d7dfee">起床（按第一节课微调，保证固定睡眠窗口）</span></div>
-      <div class="s-row" data-aos="fade-left" data-aos-delay="50"><span class="s-time" style="flex:none;width:96px;font-weight:800;font-size:13.5px;color:var(--accent2);background:rgba(56,189,248,.1);border-radius:8px;padding:3px 0;text-align:center;margin-right:14px">07:00–07:40</span><span style="font-size:14px;color:#d7dfee">洗漱护肤 + 早餐</span></div>
-      <div class="s-row" data-aos="fade-left" data-aos-delay="100"><span class="s-time" style="flex:none;width:96px;font-weight:800;font-size:13.5px;color:var(--accent2);background:rgba(56,189,248,.1);border-radius:8px;padding:3px 0;text-align:center;margin-right:14px">12:30–13:00</span><span style="font-size:14px;color:#d7dfee">午睡 20–30 分钟（不超过 30，否则下午昏沉+影响夜间入睡）</span></div>
-      <div class="s-row" data-aos="fade-left" data-aos-delay="150"><span class="s-time" style="flex:none;width:96px;font-weight:800;font-size:13.5px;color:var(--accent);background:rgba(52,211,153,.1);border-radius:8px;padding:3px 0;text-align:center;margin-right:14px">17:00–19:00</span><span style="font-size:14px;color:#d7dfee"><b style="color:var(--accent)">黄金训练窗口</b>（课后晚饭前；固定「每周哪三天」比固定几点更重要）</span></div>
-      <div class="s-row" data-aos="fade-left" data-aos-delay="200"><span class="s-time" style="flex:none;width:96px;font-weight:800;font-size:13.5px;color:var(--accent2);background:rgba(56,189,248,.1);border-radius:8px;padding:3px 0;text-align:center;margin-right:14px">19:30 前</span><span style="font-size:14px;color:#d7dfee">晚餐结束</span></div>
-      <div class="s-row" data-aos="fade-left" data-aos-delay="250"><span class="s-time" style="flex:none;width:96px;font-weight:800;font-size:13.5px;color:var(--danger);background:rgba(251,113,133,.1);border-radius:8px;padding:3px 0;text-align:center;margin-right:14px">23:00</span><span style="font-size:14px;color:#d7dfee">手机放到够不着处充电（物理隔离 &gt; 意志力）</span></div>
-      <div class="s-row" data-aos="fade-left" data-aos-delay="300"><span class="s-time" style="flex:none;width:96px;font-weight:800;font-size:13.5px;color:var(--accent);background:rgba(52,211,153,.1);border-radius:8px;padding:3px 0;text-align:center;margin-right:14px">23:30</span><span style="font-size:14px;color:#d7dfee">入睡 —— 睡满 7.5h：深睡期分泌生长激素修复肌肉与皮肤</span></div>
+      <div class="s-row" data-aos="fade-left"><span class="s-time" style="flex:none;width:96px;font-weight:800;font-size:13.5px;color:var(--accent2);background:rgba(56,189,248,.1);border-radius:8px;padding:3px 0;text-align:center;margin-right:14px">07:00</span><span style="font-size:14px;color:var(--text-soft)">起床（按第一节课微调，保证固定睡眠窗口）</span></div>
+      <div class="s-row" data-aos="fade-left" data-aos-delay="50"><span class="s-time" style="flex:none;width:96px;font-weight:800;font-size:13.5px;color:var(--accent2);background:rgba(56,189,248,.1);border-radius:8px;padding:3px 0;text-align:center;margin-right:14px">07:00–07:40</span><span style="font-size:14px;color:var(--text-soft)">洗漱护肤 + 早餐</span></div>
+      <div class="s-row" data-aos="fade-left" data-aos-delay="100"><span class="s-time" style="flex:none;width:96px;font-weight:800;font-size:13.5px;color:var(--accent2);background:rgba(56,189,248,.1);border-radius:8px;padding:3px 0;text-align:center;margin-right:14px">12:30–13:00</span><span style="font-size:14px;color:var(--text-soft)">午睡 20–30 分钟（不超过 30，否则下午昏沉+影响夜间入睡）</span></div>
+      <div class="s-row" data-aos="fade-left" data-aos-delay="150"><span class="s-time" style="flex:none;width:96px;font-weight:800;font-size:13.5px;color:var(--accent);background:rgba(52,211,153,.1);border-radius:8px;padding:3px 0;text-align:center;margin-right:14px">17:00–19:00</span><span style="font-size:14px;color:var(--text-soft)"><b style="color:var(--accent)">黄金训练窗口</b>（课后晚饭前；固定「每周哪三天」比固定几点更重要）</span></div>
+      <div class="s-row" data-aos="fade-left" data-aos-delay="200"><span class="s-time" style="flex:none;width:96px;font-weight:800;font-size:13.5px;color:var(--accent2);background:rgba(56,189,248,.1);border-radius:8px;padding:3px 0;text-align:center;margin-right:14px">19:30 前</span><span style="font-size:14px;color:var(--text-soft)">晚餐结束</span></div>
+      <div class="s-row" data-aos="fade-left" data-aos-delay="250"><span class="s-time" style="flex:none;width:96px;font-weight:800;font-size:13.5px;color:var(--danger);background:rgba(251,113,133,.1);border-radius:8px;padding:3px 0;text-align:center;margin-right:14px">23:00</span><span style="font-size:14px;color:var(--text-soft)">手机放到够不着处充电（物理隔离 &gt; 意志力）</span></div>
+      <div class="s-row" data-aos="fade-left" data-aos-delay="300"><span class="s-time" style="flex:none;width:96px;font-weight:800;font-size:13.5px;color:var(--accent);background:rgba(52,211,153,.1);border-radius:8px;padding:3px 0;text-align:center;margin-right:14px">23:30</span><span style="font-size:14px;color:var(--text-soft)">入睡 —— 睡满 7.5h：深睡期分泌生长激素修复肌肉与皮肤</span></div>
     </div>
     <div class="note" style="margin-bottom:0"><b>睡眠纪律：</b>考试周允许压到 7h，不许低于 7h。低于 7h 的第二天训练自动降为最低完成版。<b>为什么这么严：</b>睡眠不足时训练=受伤率翻倍+皮质醇升高=存脂肪存水肿。</div>
   </div>
@@ -1151,7 +1179,7 @@ details.ex .ex-body{animation:exopen .38s ease}
       <p style="font-size:13px;color:var(--muted)">设定你的开始日期后，每天打开本页自动告诉你：第几周·哪个阶段·今天练什么·每组几次。</p>
       <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0">
         <label style="font-size:13px">开始日期：</label>
-        <input type="date" id="startDate" style="background:#101a2e;border:1px solid var(--border);color:var(--text);padding:8px 10px;border-radius:8px;font-family:inherit">
+        <input type="date" id="startDate" style="background:var(--input-bg);border:1px solid var(--border);color:var(--text);padding:8px 10px;border-radius:8px;font-family:inherit">
         <button class="tab-btn" id="saveStart" style="padding:8px 18px">保存</button>
         <button class="tab-btn" id="clearStart" style="padding:8px 18px;border-color:rgba(251,113,133,.4);color:var(--danger)">重置</button>
       </div>
@@ -1163,8 +1191,8 @@ details.ex .ex-body{animation:exopen .38s ease}
       <h3 style="margin-top:0">📈 我的体重 / 腰围曲线</h3>
       <p style="font-size:13px;color:var(--muted)">每周日录入一次，虚线是本计划的预测轨迹——你的实线比预测更重要。</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0">
-        <input type="number" id="inWeight" placeholder="体重kg" step="0.1" style="width:90px;background:#101a2e;border:1px solid var(--border);color:var(--text);padding:8px;border-radius:8px">
-        <input type="number" id="inWaist" placeholder="腰围cm" step="0.1" style="width:90px;background:#101a2e;border:1px solid var(--border);color:var(--text);padding:8px;border-radius:8px">
+        <input type="number" id="inWeight" placeholder="体重kg" step="0.1" style="width:90px;background:var(--input-bg);border:1px solid var(--border);color:var(--text);padding:8px;border-radius:8px">
+        <input type="number" id="inWaist" placeholder="腰围cm" step="0.1" style="width:90px;background:var(--input-bg);border:1px solid var(--border);color:var(--text);padding:8px;border-radius:8px">
         <button class="tab-btn" id="addMeasure" style="padding:8px 16px">记录本周</button>
         <button class="tab-btn" id="undoMeasure" style="padding:8px 16px;border-color:rgba(251,113,133,.4);color:var(--danger)">撤销上一条</button>
       </div>
@@ -1176,12 +1204,12 @@ details.ex .ex-body{animation:exopen .38s ease}
       <h3 style="margin-top:0">🏋️ GZCLP 重量速记本</h3>
       <p style="font-size:13px;color:var(--muted)">记录每次正式组成绩，自动执行进阶规则：成功→建议加重；同一动作失败2次→建议减10%重爬。</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0">
-        <select id="liftName" style="background:#101a2e;border:1px solid var(--border);color:var(--text);padding:8px;border-radius:8px">
+        <select id="liftName" style="background:var(--input-bg);border:1px solid var(--border);color:var(--text);padding:8px;border-radius:8px">
           <option value="深蹲">深蹲</option><option value="卧推">卧推</option><option value="推举">站姿推举</option>
           <option value="硬拉">硬拉</option><option value="划船">杠铃划船</option><option value="高位下拉">高位下拉</option>
         </select>
-        <input type="number" id="liftKg" placeholder="kg" step="0.5" style="width:80px;background:#101a2e;border:1px solid var(--border);color:var(--text);padding:8px;border-radius:8px">
-        <select id="liftRes" style="background:#101a2e;border:1px solid var(--border);color:var(--text);padding:8px;border-radius:8px">
+        <input type="number" id="liftKg" placeholder="kg" step="0.5" style="width:80px;background:var(--input-bg);border:1px solid var(--border);color:var(--text);padding:8px;border-radius:8px">
+        <select id="liftRes" style="background:var(--input-bg);border:1px solid var(--border);color:var(--text);padding:8px;border-radius:8px">
           <option value="ok">✅ 全部完成</option><option value="fail">❌ 未完成</option>
         </select>
         <button class="tab-btn" id="saveLift" style="padding:8px 16px">记录</button>
@@ -1204,7 +1232,7 @@ details.ex .ex-body{animation:exopen .38s ease}
   <!-- 健康筛查 -->
   <div class="card" style="margin-top:16px;border-color:rgba(251,191,36,.35)" data-aos="fade-up">
     <h3 style="margin-top:0">🩺 开练前健康自查（PAR-Q 简版 · 专业计划的第一道闸门）</h3>
-    <p style="font-size:13px;color:#ffd9a8">为什么放最前面：运动医学要求开始训练前先排除心血管与骨骼禁忌。以下任一答「是」，请先去医院/校医做一次评估再开始，这不是浪费时间，是让计划能跑满 12 周的保险。</p>
+    <p style="font-size:13px;color:var(--warn-soft)">为什么放最前面：运动医学要求开始训练前先排除心血管与骨骼禁忌。以下任一答「是」，请先去医院/校医做一次评估再开始，这不是浪费时间，是让计划能跑满 12 周的保险。</p>
     <ul class="chk">
       <li><label><input type="checkbox" data-k="par1"><i class="box"></i><span class="txt">医生说过我有心脏问题 / 只应在医生建议下才能运动</span></label></li>
       <li><label><input type="checkbox" data-k="par2"><i class="box"></i><span class="txt">活动时有胸痛 / 近期静息时也有过胸痛</span></label></li>
@@ -1439,11 +1467,18 @@ if(window.particlesJS){
   particlesJS('particles',{particles:{number:{value:55,density:{enable:true,value_area:900}},color:{value:['#34d399','#38bdf8']},shape:{type:'circle'},opacity:{value:.28,random:true},size:{value:2.6,random:true},line_linked:{enable:true,distance:130,color:'#34d399',opacity:.14,width:1},move:{enable:true,speed:.7,direction:'none',random:true,out_mode:'out'}},interactivity:{detect_on:'canvas',events:{onhover:{enable:true,mode:'grab'},onclick:{enable:false},resize:true},modes:{grab:{distance:150,line_linked:{opacity:.32}}}},retina_detect:true});
 }
 
-// charts
-if(window.Chart){
-  Chart.defaults.color='#93a1b8';
+// charts（跟随主题配色，切换时整体重建）
+function chartTheme(){
+  if(!window.Chart)return;
+  const cs=getComputedStyle(document.documentElement);
+  Chart.defaults.color=cs.getPropertyValue('--muted').trim()||'#93a1b8';
   Chart.defaults.font.family='"PingFang SC","Microsoft YaHei",sans-serif';
-  Chart.defaults.borderColor='rgba(255,255,255,.07)';
+  Chart.defaults.borderColor=cs.getPropertyValue('--chart-grid').trim()||'rgba(255,255,255,.07)';
+}
+function buildStaticCharts(){
+  if(!window.Chart)return;
+  ['weightChart','strengthChart'].forEach(id=>{const ex=Chart.getChart(id);if(ex)ex.destroy();});
+  chartTheme();
   const grad=(ctx,c)=>{const g=ctx.createLinearGradient(0,0,0,320);g.addColorStop(0,c+'55');g.addColorStop(1,c+'00');return g;};
   const safeGrad=(c,color)=>{try{return c.chart&&c.chart.chartArea?grad(c.chart.ctx,color):'rgba(52,211,153,.12)';}catch(e){return 'rgba(52,211,153,.12)';}};
 
@@ -1474,6 +1509,7 @@ if(window.Chart){
       scales:{y:{beginAtZero:true,max:85,title:{display:true,text:'重量 (kg)'}},x:{grid:{display:false}}}}
   });
 }
+buildStaticCharts();
 
 // ===== 肌肉示意图标（按肌群注入动作卡）=====
 const FIG=(hi,back)=>'<svg viewBox="0 0 44 60" xmlns="http://www.w3.org/2000/svg">'+
@@ -1567,6 +1603,7 @@ document.getElementById('clearStart').onclick=()=>{localStorage.removeItem('fit9
 let measures=LS.get('measures',[]);
 let mChart=null;
 function renderMeasures(){
+  if(!window.Chart)return;chartTheme();
   const labels=measures.map(m=>m.d.slice(5)),w=measures.map(m=>m.w),cw=measures.map(m=>m.c);
   const projW=[70,69.8,69.6,69.0,68.4,67.9,67.4,66.9].slice(0,Math.max(measures.length,2));
   const projC=[0,.4,.8,1.5,2.2,3,3.8,4.6].slice(0,Math.max(measures.length,2));
@@ -1658,6 +1695,22 @@ if(window.AOS){
 }else{
   document.querySelectorAll('[data-aos]').forEach(el=>{el.style.opacity=1;el.style.transform='none';});
 }
+
+// ===== 主题切换（默认日间）=====
+const themeBtn=document.getElementById('themeBtn');
+function refreshThemeLabel(){
+  const light=document.documentElement.getAttribute('data-theme')!=='dark';
+  themeBtn.textContent=light?'🌙 夜间':'☀️ 日间';
+}
+themeBtn.addEventListener('click',()=>{
+  const next=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  try{localStorage.setItem('fit90_theme',next)}catch(e){}
+  refreshThemeLabel();
+  buildStaticCharts();
+  if(typeof renderMeasures==='function')renderMeasures();
+});
+refreshThemeLabel();
 </script>
 </body>
 </html>
