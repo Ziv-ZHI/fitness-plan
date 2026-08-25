@@ -160,6 +160,61 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
 .alt-table th{font-size:11.5px}
 .alt-table td{font-size:13px}
 .pill-row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 2px}
+
+/* ===== texture & dynamics ===== */
+body::after{content:"";position:fixed;inset:0;z-index:99;pointer-events:none;opacity:.05;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+main{background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px);background-size:26px 26px}
+main{counter-reset:secnum}
+main>section{counter-increment:secnum}
+main>section h2::after{content:"/" counter(secnum,decimal-leading-zero);margin-left:12px;font-size:.5em;color:rgba(255,255,255,.16);font-weight:900;letter-spacing:3px;vertical-align:middle}
+
+/* hero bg photo + ken burns + parallax */
+.hero-bg{position:absolute;inset:0;z-index:0;background:url('img/hero.jpg') center/cover no-repeat;animation:kenburns 26s ease-in-out infinite alternate;will-change:transform}
+.hero-veil{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(11,18,32,.55),rgba(11,18,32,.82) 60%,var(--bg))}
+@keyframes kenburns{from{transform:scale(1) translateY(0)}to{transform:scale(1.14) translateY(-18px)}}
+.scroll-hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:2;width:26px;height:42px;border:2px solid rgba(255,255,255,.35);border-radius:14px;display:flex;justify-content:center;padding-top:7px}
+.scroll-hint i{width:4px;height:9px;border-radius:3px;background:var(--accent);animation:wheel 1.6s ease-in-out infinite}
+@keyframes wheel{0%{transform:translateY(0);opacity:1}70%{transform:translateY(14px);opacity:0}100%{opacity:0}}
+header.hero .hero-inner{animation:none}
+
+/* ticker marquee */
+.ticker{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(52,211,153,.04);position:relative;z-index:3}
+.ticker-track{display:inline-flex;white-space:nowrap;animation:tick 36s linear infinite;padding:11px 0}
+.ticker-track:hover{animation-play-state:paused}
+.ticker span{font-size:13px;font-weight:700;letter-spacing:2px;color:#b9c6da;padding:0 22px;display:inline-flex;align-items:center;gap:22px}
+.ticker b{color:var(--accent)}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* full-bleed parallax bands */
+.band{position:relative;margin:74px calc(50% - 50vw) 0;width:100vw;min-height:300px;background-size:cover;background-position:center;display:flex;align-items:center}
+@media(hover:hover){.band{background-attachment:fixed}}
+.band::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,18,32,.92),rgba(11,18,32,.45))}
+.band-inner{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:40px 24px;width:100%}
+.band-quote{font-size:clamp(21px,3.4vw,30px);font-weight:900;line-height:1.4;max-width:720px}
+.band-quote em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.band-sub{display:inline-block;margin-top:14px;font-size:12px;letter-spacing:3px;color:#cfe9dd;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:5px 16px;backdrop-filter:blur(4px)}
+
+/* exercise icons injected by JS */
+.ex summary .ex-icon{flex:none;width:44px;height:60px;filter:drop-shadow(0 0 10px rgba(52,211,153,.15));transition:.35s}
+.ex:hover .ex-icon{transform:translateY(-3px) scale(1.06)}
+.ex[open] .ex-icon svg .pulse{animation:pulseG 2.4s ease-in-out infinite}
+@keyframes pulseG{0%,100%{opacity:.85}50%{opacity:.45}}
+
+/* details open animation */
+details.ex .ex-body{animation:exopen .38s ease}
+@keyframes exopen{from{opacity:0;transform:translateY(-8px)}to{opacity:1}}
+
+/* btn shine sweep */
+.btn.primary{position:relative;overflow:hidden}
+.btn.primary::before{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-20deg);transition:left .6s ease}
+.btn.primary:hover::before{left:130%}
+
+/* stat idle float */
+.stats .stat{animation:idlefloat 6s ease-in-out infinite alternate}
+.stats .stat:nth-child(2){animation-delay:-1.2s}.stats .stat:nth-child(3){animation-delay:-2.4s}
+.stats .stat:nth-child(4){animation-delay:-3.6s}.stats .stat:nth-child(5){animation-delay:-4.8s}
+@keyframes idlefloat{from{transform:translateY(0)}to{transform:translateY(-6px)}}
 </style>
 </head>
 <body>
@@ -201,6 +256,8 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
 </aside>
 
 <header class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-veil"></div>
   <div class="orb o1"></div><div class="orb o2"></div>
   <div id="particles"></div>
   <div class="hero-inner">
@@ -219,7 +276,13 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
       <a class="btn ghost" href="#moves">直接看动作库</a>
     </div>
   </div>
+  <div class="scroll-hint"><i></i></div>
 </header>
+
+<div class="ticker"><div class="ticker-track">
+  <span><b>渐进超负荷</b>是唯一法则</span><span>蛋白质 <b>1.6–2g/kg/天</b></span><span>温和缺口 <b>300–400 kcal</b></span><span>早睡 <b>23:30</b> 是免费整容</span><span>每周 <b>3 练</b>先保住频率</span><span>出汗后 <b>15 分钟内洗脸</b></span><span>每天 <b>SPF30+</b></span><span><b>腰围与照片</b>才是真相</span><span><b>标准 &gt; 重量</b></span><span>戒糖饮 = 皮肤第一红利</span>
+  <span><b>渐进超负荷</b>是唯一法则</span><span>蛋白质 <b>1.6–2g/kg/天</b></span><span>温和缺口 <b>300–400 kcal</b></span><span>早睡 <b>23:30</b> 是免费整容</span><span>每周 <b>3 练</b>先保住频率</span><span>出汗后 <b>15 分钟内洗脸</b></span><span>每天 <b>SPF30+</b></span><span><b>腰围与照片</b>才是真相</span><span><b>标准 &gt; 重量</b></span><span>戒糖饮 = 皮肤第一红利</span>
+</div></div>
 
 <main>
 
@@ -511,6 +574,13 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
     </table>
   </div>
 </section>
+
+<div class="band" style="background-image:url('img/gym.jpg')" data-aos="fade-up">
+  <div class="band-inner">
+    <p class="band-quote">杠铃从不评判任何人。<br>它只问一个问题：<em>今天，比上次多一点点了吗？</em></p>
+    <span class="band-sub">TRAINING · 渐进超负荷</span>
+  </div>
+</div>
 
 <!-- ============ EXERCISE LIBRARY ============ -->
 <section id="moves" data-aos="fade-up">
@@ -870,6 +940,13 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
     </div>
   </div>
 </section>
+<div class="band" style="background-image:url('img/food.jpg')" data-aos="fade-up">
+  <div class="band-inner">
+    <p class="band-quote">三分练，七分吃。<br>腹肌不是练出来的，是<em>在餐桌上攒出来的</em>。</p>
+    <span class="band-sub">NUTRITION · 饮食篇</span>
+  </div>
+</div>
+
 <!-- ============ DIET ============ -->
 <section id="diet" data-aos="fade-up">
   <span class="sec-tag">Nutrition</span>
@@ -1172,6 +1249,13 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
   </div>
 </section>
 
+<div class="band" style="background-image:url('img/sleep.jpg')" data-aos="fade-up">
+  <div class="band-inner">
+    <p class="band-quote">肌肉在健身房撕裂，<br>在餐桌上备料，<em>在深夜里生长</em>。</p>
+    <span class="band-sub">RECOVERY · 恢复篇</span>
+  </div>
+</div>
+
 <!-- ============ FAQ ============ -->
 <section id="faq" data-aos="fade-up">
   <span class="sec-tag">FAQ</span>
@@ -1205,7 +1289,8 @@ footer code{background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px;f
   <div class="refs">
     页面增强：<a href="https://github.com/michalsnik/aos" style="color:var(--accent2)">AOS ⭐28k</a> ·
     <a href="https://github.com/chartjs/Chart.js" style="color:var(--accent2)">Chart.js ⭐67.6k</a> ·
-    <a href="https://github.com/VincentGarreau/particles.js" style="color:var(--accent2)">particles.js ⭐30k</a>（均已自托管于本仓库 vendor/）
+    <a href="https://github.com/VincentGarreau/particles.js" style="color:var(--accent2)">particles.js ⭐30k</a>（均已自托管于本仓库 vendor/）·
+    摄影图片来自 <a href="https://unsplash.com" style="color:var(--accent2)">Unsplash License</a>（免费商用，已自托管于 img/）
   </div>
   <p style="margin-top:16px">90-Day Transformation Plan · 第一性原理推导 × 对抗性设计加固</p>
 </footer>
@@ -1305,6 +1390,43 @@ if(window.Chart){
       scales:{y:{beginAtZero:true,max:85,title:{display:true,text:'重量 (kg)'}},x:{grid:{display:false}}}}
   });
 }
+
+// ===== 肌肉示意图标（按肌群注入动作卡）=====
+const FIG=(hi,back)=>'<svg viewBox="0 0 44 60" xmlns="http://www.w3.org/2000/svg">'+
+'<g fill="none" stroke="#3a4a66" stroke-width="1.6" stroke-linecap="round">'+
+'<circle cx="22" cy="7" r="4.6"/>'+
+(back?'<path d="M15 14 h14 l2 17 h-18 z"/>':'<path d="M15 14 h14 l1.5 17 h-17 z"/>'+
+'<path d="M15 15 L9 30 M29 15 L35 30"/>')+
+'<path d="M16 31 L13 54 M28 31 L31 54"/>'+
+(back?'<path d="M15 15 L10 29 M29 15 L34 29"/>':'')+
+'</g><g class="pulse">'+hi+'</g></svg>';
+const C='#34d399',B='#38bdf8',Y='#fbbf24',R='#fb7185';
+const ell=(x,y,rx,ry,c,rot)=>'<ellipse cx="'+x+'" cy="'+y+'" rx="'+rx+'" ry="'+ry+'" fill="'+c+'" opacity=".85" transform="rotate('+(rot||0)+' '+x+' '+y+')"/>';
+const EXICON={
+ chest:FIG(ell(17.5,20,4.2,3.4,C,-12)+ell(26.5,20,4.2,3.4,C,12)),
+ shoulders:FIG(ell(11,17,3.4,3,B)+ell(33,17,3.4,3,B)),
+ triceps:FIG(ell(9.5,23,2.4,5,R)+ell(34.5,23,2.4,5,R)),
+ biceps:FIG(ell(10.5,21,2.2,4,Y)+ell(33.5,21,2.2,4,Y)),
+ back:FIG(ell(22,19,3,7,B,-90),true),
+ lats:FIG('<path d="M16 16 Q22 24 28 16 L27 27 L17 27 Z" fill="'+B+'" opacity=".85"/>',true),
+ quads:FIG(ell(17.5,38,3.2,8,C,-3)+ell(26.5,38,3.2,8,C,3)),
+ hams:FIG(ell(17.5,38,3.1,8,Y,3)+ell(26.5,38,3.1,8,Y,-3)+ell(22,30,5.5,3,Y),true),
+ glutes:FIG(ell(17.5,29,4,3.4,C)+ell(26.5,29,4,3.4,C),true),
+ core:FIG('<rect x="17" y="18" width="10" height="12" rx="3" fill="'+C+'" opacity=".85"/>'),
+ cardio:'<svg viewBox="0 0 44 60" xmlns="http://www.w3.org/2000/svg"><path d="M22 50 C10 40 6 32 6 25 a8 8 0 0 1 16 -3 a8 8 0 0 1 16 3 c0 7 -4 15 -16 25z" fill="none" stroke="'+R+'" stroke-width="2"/><path d="M10 27 h7 l3 -6 4 12 3 -6 h7" fill="none" stroke="'+C+'" stroke-width="2" stroke-linecap="round"/></svg>'
+};
+const GROUP={'ex-pushup':'chest','ex-bench':'chest','ex-ohp':'shoulders','ex-lateral':'shoulders','ex-pushdown':'triceps','ex-curl':'biceps','ex-doorrow':'back','ex-brow':'lats','ex-pulldown':'lats','ex-facepull':'shoulders','ex-squat':'quads','ex-bsquat':'quads','ex-deadlift':'hams','ex-bridge':'glutes','ex-legcurl':'hams','ex-plank':'core','ex-crunch':'core','ex-run':'cardio'};
+document.querySelectorAll('details.ex').forEach(d=>{
+  const g=GROUP[d.id];if(!g||!EXICON[g])return;
+  const s=document.createElement('span');s.className='ex-icon';s.innerHTML=EXICON[g];
+  const sum=d.querySelector('summary');if(sum)sum.insertBefore(s,sum.firstChild);
+});
+
+// ===== 首屏视差（背景图随滚动缓移）=====
+const heroBg=document.getElementById('heroBg');
+addEventListener('scroll',()=>{
+  if(scrollY<innerHeight)heroBg.style.transform='translateY('+(scrollY*0.28)+'px)';
+},{passive:true});
 
 // AOS init last — 库加载失败自动放行全部动画元素
 if(window.AOS){
