@@ -19,11 +19,12 @@
   --hero-veil:linear-gradient(180deg,rgba(38,35,32,.45),rgba(38,35,32,.8) 60%,var(--bg));
   --band-veil:linear-gradient(90deg,rgba(38,35,32,.9),rgba(38,35,32,.4));
   --text-soft:#c9c1b2;--warn-soft:#d4b483;
-  --input-bg:#332f2a;--chk-border:#6e6558;--dot:#565046;--ticker-text:#c9c1b2;
+  --input-bg:rgba(51,47,42,.6);--chk-border:#6e6558;--dot:#565046;--ticker-text:#c9c1b2;
   --num-dim:rgba(232,224,208,.16);--hint-border:rgba(232,224,208,.35);
   --grid-dot:rgba(232,224,208,.035);--hover-row:rgba(232,224,208,.03);
   --chip-bg:rgba(232,224,208,.045);--chart-grid:rgba(232,224,208,.09);
   --shadow:0 14px 36px rgba(0,0,0,.3);
+  --glass:rgba(46,42,37,.42);--glass-hi:rgba(232,224,208,.16);--glass-edge:rgba(232,224,208,.07);
 }
 [data-theme="light"]{
   --bg:#f4efe6;--card:rgba(253,250,244,.86);--border:#e3dac8;
@@ -34,11 +35,12 @@
   --hero-veil:linear-gradient(180deg,rgba(244,239,230,.32),rgba(244,239,230,.62) 55%,#f4efe6);
   --band-veil:linear-gradient(90deg,rgba(244,239,230,.94),rgba(244,239,230,.38));
   --text-soft:#5a5244;--warn-soft:#8a6a35;
-  --input-bg:#fdfaf3;--chk-border:#c9bda5;--dot:#cfc4ae;--ticker-text:#5a5244;
+  --input-bg:rgba(253,250,244,.62);--chk-border:#c9bda5;--dot:#cfc4ae;--ticker-text:#5a5244;
   --num-dim:rgba(63,58,49,.16);--hint-border:rgba(63,58,49,.32);
   --grid-dot:rgba(120,100,70,.06);--hover-row:rgba(140,110,60,.05);
   --chip-bg:rgba(140,110,60,.06);--chart-grid:rgba(90,80,60,.13);
   --shadow:0 10px 28px rgba(96,76,44,.13);
+  --glass:rgba(255,255,255,.55);--glass-hi:rgba(255,255,255,.85);--glass-edge:rgba(255,255,255,.6);
 }
 [data-theme="light"] .orb{opacity:.32}
 [data-theme="light"] body::after{opacity:.035}
@@ -55,6 +57,28 @@ h2{font-weight:700}
 .quote{background:none;border:none;border-top:1px solid var(--border);border-bottom:1px solid var(--border);border-radius:0;padding:30px 20px;font-size:17px;color:var(--text-soft)}
 .band-quote em{font-style:normal}
 .ticker-track span{font-family:var(--font-serif)}
+
+/* ===== 磨砂玻璃层 ===== */
+.card,details.ex{background:var(--glass);backdrop-filter:blur(16px) saturate(1.35);-webkit-backdrop-filter:blur(16px) saturate(1.35);position:relative;overflow:hidden}
+.card::before,details.ex::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--glass-hi),transparent);z-index:2;pointer-events:none}
+.card::after{content:"";position:absolute;top:0;left:14%;right:60%;height:38%;background:linear-gradient(160deg,var(--glass-hi),transparent 70%);opacity:.35;pointer-events:none;z-index:0}
+.card>*{position:relative;z-index:1}
+.stat,.wday,.a-item,.t-card,.good,.bad,.mchip,.palm .p,#todayCard,nav,#toc{backdrop-filter:blur(12px) saturate(1.3);-webkit-backdrop-filter:blur(12px) saturate(1.3)}
+.card:hover::after{opacity:.15}
+main{background-image:
+ radial-gradient(var(--grid-dot) 1px,transparent 1px),
+ radial-gradient(620px 430px at 12% 16%,rgba(125,148,132,.13),transparent 70%),
+ radial-gradient(540px 400px at 88% 36%,rgba(126,151,168,.12),transparent 70%),
+ radial-gradient(500px 380px at 20% 74%,rgba(194,160,107,.10),transparent 70%);
+ background-size:26px 26px,100% 100%,100% 100%,100% 100%;
+ background-attachment:fixed,fixed,fixed,fixed}
+input,select{background:var(--input-bg)!important;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+
+/* 组间休息计时器 */
+.rt-wrap{position:relative;width:150px;height:150px;margin:8px auto 4px}
+.rt-wrap svg{transform:rotate(-90deg)}
+.rt-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:27px;font-weight:800;font-family:var(--font-sans);letter-spacing:1px}
+.rt-btns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:10px}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:radial-gradient(900px 500px at 85% -10%,rgba(163,184,171,.16),transparent 60%),radial-gradient(800px 500px at -10% 20%,rgba(164,188,201,.14),transparent 60%),var(--bg);color:var(--text);font-family:var(--font-serif);line-height:1.9}
@@ -273,6 +297,7 @@ details.ex .ex-body{animation:exopen .38s ease}
   <a href="#adversarial">防放弃</a>
   <a href="#roadmap">路线图</a>
   <a href="#phases">训练</a>
+  <a href="#playbook">手册</a>
   <a href="#moves">动作库</a>
   <a href="#diet">饮食</a>
   <a href="#viz">数据</a>
@@ -290,6 +315,7 @@ details.ex .ex-body{animation:exopen .38s ease}
   <a href="#roadmap"><span>12周路线图</span></a>
   <a href="#overview"><span>训练总览表</span></a>
   <a href="#phases"><span>阶段详情</span></a>
+  <a href="#playbook"><span>执行手册·逐步做</span></a>
   <a href="#moves"><span>动作库·18个动作</span></a>
   <a href="#warmup"><span>热身与拉伸</span></a>
   <a href="#diet"><span>饮食系统</span></a>
@@ -620,6 +646,119 @@ details.ex .ex-body{animation:exopen .38s ease}
         <tr><td>11–12 周</td><td>周累计 ≥100 分钟</td><td>期末周全换操场快走</td></tr>
       </tbody>
     </table>
+  </div>
+</section>
+
+<!-- ============ PLAYBOOK ============ -->
+<section id="playbook" data-aos="fade-up">
+  <span class="sec-tag">Playbook</span>
+  <h2>训练日执行手册：每一步怎么做</h2>
+  <p class="sub">为什么单独写这一章：计划失败往往不在「练什么」，而在「到了现场不知道接下来 60 分钟怎么过」。本章把一次训练拆到分钟级，照着做就行。</p>
+
+  <div class="grid g2" style="margin-top:24px">
+    <div class="card" data-aos="fade-right">
+      <h3 style="margin-top:0">⏱ 通用训练日时间轴（任何阶段通用）</h3>
+      <div>
+        <div class="s-row"><span class="s-time" style="flex:none;width:104px;font-weight:700;font-size:13px;color:var(--accent2);background:rgba(126,151,168,.12);border-radius:8px;padding:3px 0;text-align:center;margin-right:12px;font-family:var(--font-sans)">前 60 分钟</span><span style="font-size:14px;color:var(--text-soft)">正常一餐（碳水为主+少量蛋白），喝水300ml；别空腹也别吃撑</span></div>
+        <div class="s-row"><span class="s-time" style="flex:none;width:104px;font-weight:700;font-size:13px;color:var(--accent2);background:rgba(126,151,168,.12);border-radius:8px;padding:3px 0;text-align:center;margin-right:12px;font-family:var(--font-sans)">T-10 分钟</span><span style="font-size:14px;color:var(--text-soft)">更衣、水壶装满、毛巾放好、打开 Hevy 翻到「上次这次训练的成绩」</span></div>
+        <div class="s-row"><span class="s-time" style="flex:none;width:104px;font-weight:700;font-size:13px;color:var(--accent);background:rgba(125,148,132,.14);border-radius:8px;padding:3px 0;text-align:center;margin-right:12px;font-family:var(--font-sans)">0–10 分钟</span><span style="font-size:14px;color:var(--text-soft)"><b>动态热身六步</b>（见「热身与拉伸」章节），一步都不许省</span></div>
+        <div class="s-row"><span class="s-time" style="flex:none;width:104px;font-weight:700;font-size:13px;color:var(--accent);background:rgba(125,148,132,.14);border-radius:8px;padding:3px 0;text-align:center;margin-right:12px;font-family:var(--font-sans)">10–50 分钟</span><span style="font-size:14px;color:var(--text-soft)"><b>主训练。</b>每个动作的循环：默念目标次数→做组→Hevy 记录重量→启动休息计时器→组间只做「深呼吸+走动」，<b>不刷手机</b></span></div>
+        <div class="s-row"><span class="s-time" style="flex:none;width:104px;font-weight:700;font-size:13px;color:var(--accent2);background:rgba(126,151,168,.12);border-radius:8px;padding:3px 0;text-align:center;margin-right:12px;font-family:var(--font-sans)">50–58 分钟</span><span style="font-size:14px;color:var(--text-soft)">静态拉伸清单，重点当日训练的肌群</span></div>
+        <div class="s-row"><span class="s-time" style="flex:none;width:104px;font-weight:700;font-size:13px;color:var(--warn);background:rgba(194,160,107,.14);border-radius:8px;padding:3px 0;text-align:center;margin-right:12px;font-family:var(--font-sans)+30 分钟内</span><span style="font-size:14px;color:var(--text-soft)">蛋白质 20g+（蛋白粉/鸡蛋/牛奶）+ 一份水果；洗澡水温别太烫</span></div>
+        <div class="s-row" style="margin-bottom:0"><span class="s-time" style="flex:none;width:104px;font-weight:700;font-size:13px;color:var(--muted);background:var(--chip-bg);border-radius:8px;padding:3px 0;text-align:center;margin-right:12px;font-family:var(--font-sans)">当晚睡前</span><span style="font-size:14px;color:var(--text-soft)">打卡表勾选今天 → 23:30 上床。肌肉是在睡眠里长出来的</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-aos="fade-left">
+      <h3 style="margin-top:0">📋 P1 · Workout A 逐分钟脚本（示例课表）</h3>
+      <table>
+        <thead><tr><th>时间</th><th>做什么</th><th>关键细节</th></tr></thead>
+        <tbody>
+          <tr><td>10–15′</td><td>深蹲热身链</td><td>空杆×10 → 计划重量50%×8 → 70%×5，组间45″，杆一定压在斜方上不是脖子上</td></tr>
+          <tr><td>15–25′</td><td>深蹲正式 3×5+</td><td>末组做到「杠速慢半拍」就停并记数；组间<b>180″</b>=计时器三分钟</td></tr>
+          <tr><td>25–33′</td><td>卧推热身+正式</td><td>空杆×10→70%×5→正式3×5+；肩胛「夹死」再出杆；<b>安全销立好或叫人保护</b></td></tr>
+          <tr><td>33–40′</td><td>划船 3×5+</td><td>躯干45°锁定不变；拉向下腹；组间150″</td></tr>
+          <tr><td>40–46′</td><td>弯举+侧平举</td><td>各2×12–15，交替做省时（A做完直接B算一组），组间60″</td></tr>
+          <tr><td>46–50′</td><td>平板支撑 2×45″</td><td>组间60″；塌腰立即停当次</td></tr>
+          <tr><td>50–62′</td><td>拉伸+补给</td><td>静态清单8′→蛋白粉一勺+香蕉→Hevy保存→走人</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:12.5px;color:var(--muted);margin-bottom:0">Workout B / P2 各日同理：把动作换成当日列表，节奏结构完全一样——热身链→正式组(记重+计时休息)→辅助→核心→拉伸。</p>
+    </div>
+
+    <div class="card" data-aos="fade-right">
+      <h3 style="margin-top:0">🎫 第一次进健身房的完整剧本（12 步）</h3>
+      <ol class="rules">
+        <li><b>进门：</b>出示手牌/扫码，径直去更衣柜，包锁好、手机装臂包或放格位</li>
+        <li><b>开口：</b>找到穿工作服的巡场教练说：「您好，我第一次来，想学深蹲、卧推、划船这三个动作，麻烦帮我看一下姿势可以吗？」——这是免费服务，大胆用</li>
+        <li><b>选址：</b>直走最里面的<b>深蹲架</b>（人多也在那等着，没人围观你，大家都在忙自己的）</li>
+        <li><b>安全销：</b>把架两侧安全销调到「你蹲最低点时髋部的高度」——砸下来有它兜底</li>
+        <li><b>空杆先蹲：</b>杆本身 20kg，先蹲 5 个感受轨迹；出杆后退两步站稳，别倒退太多步</li>
+        <li><b>加片规则：</b>小片有 1.25/2.5/5kg；两边对称加；卡扣一定夹紧贴住片</li>
+        <li><b>卧推保命设置：</b>凳进架，安全销调到「杠落到底时离胸口一拳」，或等旁边人组间请他帮看一眼（举手即可，健身房都愿意）</li>
+        <li><b>哑铃区：</b>选最轻一对（通常 2.5–5kg）做弯举和侧平举找发力感，用完<b>归位</b></li>
+        <li><b>器械区：</b>坐姿划船调座椅——手柄在肩正前方、胸贴垫；插销选最轻感受背收缩</li>
+        <li><b>礼仪：</b>器械轮着用、擦汗巾垫凳、不占着玩手机（休息就站起来走动）</li>
+        <li><b>收尾：</b>拉伸区按清单拉 8 分钟</li>
+        <li><b>出门前：</b>Hevy 点保存 → 30 分钟内喝上蛋白质 → 当晚打卡表打勾 ✅</li>
+      </ol>
+    </div>
+
+    <div class="card" data-aos="fade-left">
+      <h3 style="margin-top:0">🫁 节拍与呼吸速查表（Tempo：离心-底部-向心·秒）</h3>
+      <table>
+        <thead><tr><th>动作</th><th>下放(离心)</th><th>底部</th><th>举起(向心)</th><th>呼吸</th></tr></thead>
+        <tbody>
+          <tr><td>深蹲</td><td>3″</td><td>1″</td><td>1″</td><td>下吸上呼（瓦式：大重量憋至过粘滞点）</td></tr>
+          <tr><td>卧推</td><td>2″</td><td>轻触</td><td>1″</td><td>下吸上呼</td></tr>
+          <tr><td>硬拉/RDL</td><td>—</td><td>—</td><td>1″</td><td>拉前吸气锁腹，顶端呼气</td></tr>
+          <tr><td>站姿推举</td><td>2″</td><td>锁骨</td><td>1″</td><td>推前吸，顶呼</td></tr>
+          <tr><td>各类划船</td><td>2″</td><td>—</td><td>2″顶峰挤</td><td>拉呼还吸</td></tr>
+          <tr><td>高位下拉</td><td>2″挤</td><td>—</td><td>2″</td><td>拉呼还吸</td></tr>
+          <tr><td>弯举类</td><td>1″</td><td>挤1″</td><td>3″慢放</td><td>抬呼放吸</td></tr>
+          <tr><td>侧平举</td><td>1″</td><td>—</td><td>3″慢放</td><td>抬呼放吸</td></tr>
+          <tr><td>俯卧撑</td><td>2″</td><td>胸近地</td><td>1″</td><td>下吸上呼</td></tr>
+          <tr><td>平板支撑</td><td colspan="3">全程静力：臀腹持续收紧</td><td>匀速浅呼吸，不憋气</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:12.5px;color:var(--muted);margin-bottom:0"><b>为什么强调慢放（离心）：</b>肌肉增大的主要信号发生在离心阶段；「放下」永远比「举起」更需要控制。</p>
+    </div>
+
+    <div class="card" data-aos="fade-right">
+      <h3 style="margin-top:0">✅ 训练日随身检查单（勾选自动保存）</h3>
+      <ul class="chk">
+        <li><label><input type="checkbox" data-k="ck1"><i class="box"></i><span class="txt">出发带齐：水壶 / 毛巾 / 能查上次成绩的 Hevy</span></label></li>
+        <li><label><input type="checkbox" data-k="ck2"><i class="box"></i><span class="txt">动态热身六步全部完成，身体微微出汗才开始</span></label></li>
+        <li><label><input type="checkbox" data-k="ck3"><i class="box"></i><span class="txt">每个正式组前默念：「目标次数 × 目标重量，留 1–2 次」</span></label></li>
+        <li><label><input type="checkbox" data-k="ck4"><i class="box"></i><span class="txt">组间只用计时器，手机不刷社交软件</span></label></li>
+        <li><label><input type="checkbox" data-k="ck5"><i class="box"></i><span class="txt">力竭判定遵守「杠速慢半拍即收」，不赌最后一下</span></label></li>
+        <li><label><input type="checkbox" data-k="ck6"><i class="box"></i><span class="txt">关节刺痛 = 立即换平替动作，不带伤硬撑</span></label></li>
+        <li><label><input type="checkbox" data-k="ck7"><i class="box"></i><span class="txt">练后 30 分钟内摄入 20g+ 蛋白质</span></label></li>
+        <li><label><input type="checkbox" data-k="ck8"><i class="box"></i><span class="txt">今晚 23:30 上床，睡眠是今天的第三组训练</span></label></li>
+      </ul>
+    </div>
+
+    <div class="card" data-aos="fade-left">
+      <h3 style="margin-top:0">⏱ 组间休息计时器</h3>
+      <p style="font-size:13px;color:var(--muted)">为什么需要：新手普遍休息过短导致后两组掉次数，或过长拖堂。大重量主项 180″、辅助 60–90″，按下面预设一键开始。</p>
+      <div class="rt-wrap">
+        <svg viewBox="0 0 100 100" width="150" height="150">
+          <circle cx="50" cy="50" r="44" fill="none" stroke="var(--border)" stroke-width="7"/>
+          <circle id="rtProg" cx="50" cy="50" r="44" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round" stroke-dasharray="276.5" stroke-dashoffset="0"/>
+        </svg>
+        <div class="rt-num" id="rtNum">01:30</div>
+      </div>
+      <div class="rt-btns">
+        <button class="tab-btn rt-preset active" data-sec="60">60″ 辅助</button>
+        <button class="tab-btn rt-preset" data-sec="90">90″ 常规</button>
+        <button class="tab-btn rt-preset" data-sec="120">120″ 复合</button>
+        <button class="tab-btn rt-preset" data-sec="180">180″ 大重量</button>
+      </div>
+      <div class="rt-btns">
+        <button class="btn primary" id="rtStart" style="padding:9px 24px;font-size:13.5px">▶ 开始休息</button>
+        <button class="btn ghost" id="rtReset" style="padding:9px 20px;font-size:13.5px">↺ 重置</button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1710,6 +1849,31 @@ if(window.AOS){
 }else{
   document.querySelectorAll('[data-aos]').forEach(el=>{el.style.opacity=1;el.style.transform='none';});
 }
+
+// ===== 组间休息计时器 =====
+(function(){
+  const prog=document.getElementById('rtProg'),num=document.getElementById('rtNum');
+  if(!prog)return;
+  const CIRC=276.5;let total=90,left=90,run=false,tid=null;
+  function paint(){num.textContent=String(Math.floor(left/60)).padStart(2,'0')+':'+String(left%60).padStart(2,'0');prog.style.strokeDashoffset=CIRC*(1-left/total);}
+  function beep(){try{const ctx=new (window.AudioContext||window.webkitAudioContext)();[0,350,700].forEach(d=>{const o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.type='sine';o.frequency.value=880;g.gain.setValueAtTime(.001,ctx.currentTime+d/1000);g.gain.exponentialRampToValueAtTime(.25,ctx.currentTime+d/1000+.02);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+d/1000+.3);o.start(ctx.currentTime+d/1000);o.stop(ctx.currentTime+d/1000+.35);});}catch(e){}}
+  function stop(){run=false;if(tid){clearInterval(tid);tid=null;}document.getElementById('rtStart').textContent='▶ 开始休息';}
+  document.querySelectorAll('.rt-preset').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('.rt-preset').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');stop();total=+b.dataset.sec;left=total;paint();
+  }));
+  document.getElementById('rtStart').addEventListener('click',function(){
+    if(run){stop();return;}
+    if(left<=0)left=total;
+    run=true;this.textContent='⏸ 暂停';
+    tid=setInterval(()=>{
+      left--;paint();
+      if(left<=0){beep();stop();left=total;setTimeout(paint,600);}
+    },1000);
+  });
+  document.getElementById('rtReset').addEventListener('click',()=>{stop();left=total;paint();});
+  paint();
+})();
 
 // ===== 主题切换（默认日间）=====
 const themeBtn=document.getElementById('themeBtn');
